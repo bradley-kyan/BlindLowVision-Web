@@ -60,6 +60,38 @@
     padding: 10px 10px;
 }
 </style>
+<style>
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+.slideshow-container {
+    backface-visibility: hidden;
+}
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 2s;
+    animation-name: fade;
+    animation-duration: 6s;
+}
+@-webkit-keyframes fade {
+from {
+opacity: .001
+}
+to {
+opacity: 1
+}
+}
+@keyframes fade {
+from {
+opacity: .001
+}
+to {
+opacity: 1
+}
+}
+</style>
 </head>
 
 <body>
@@ -103,6 +135,27 @@
             <h1>Event Title</h1>
             <p>Breif description of the event</p>
             <p><a class="btn btn-info btn-lg" href="#" role="button">Learn More</a> <a class="btn btn-info btn-lg" href="#" role="button">Sign Up</a></p>
+            <div class="slideshow-container">
+                <div class="mySlides fade"> <img src="DSC_3033.JPG" style="width:100%" alt="fill"> </div>
+                <div class="mySlides fade"> <img src="DSC_5648.JPG" style="width:100%" alt="fill"> </div>
+                <div class="mySlides fade"> <img src="IMG_8673.JPG" style="width:100%" alt="fill"> </div>
+                <script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 6000); // Change image every 8 seconds
+}
+</script> 
+            </div>
         </div>
     </div>
 </div>
