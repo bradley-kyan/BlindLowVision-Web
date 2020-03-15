@@ -7,16 +7,57 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<style>
+<style type="text/css">
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: #5E5E5E;
+    background-color: #656565;
     color: #FFFFFF;
 }
-</style>
-<style>
-#dontate-navbar {
-    background-color: #CD0003;
-    color: #FFFFFF;
+.navbar-default {
+    background-color: #FFFFFF;
+    padding-bottom: 10px;
+}
+.navbar-brand {
+    padding-top: 10px;
+}
+
+@media (max-width: 991px) {
+.navbar-header {
+    float: none;
+}
+.navbar-toggle {
+    display: block;
+}
+.navbar-collapse {
+    margin-top: 20px;
+    overflow: hidden !important;
+}
+.navbar-collapse.collapse {
+    display: none!important;
+}
+.navbar-collapse.collapse.in {
+    display: block!important;
+}
+.navbar-collapse *[class*='navbar-'] {
+    float: none!important;
+    margin: 7.5px -15px;
+}
+.navbar-nav > li {
+    float: none;
+}
+.navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+#navcont {
+    padding-top: 10px;
+}
+.content {
+    padding: 10px 10px;
 }
 </style>
 </head>
@@ -27,39 +68,42 @@
 
 <nav class="navbar-default">
     <div class="container">
-        <div class="navbar-header"> <a class="navbar-brand" href="home.html"> <img class="img-resonsive" width="150px" height="" src="Blind & Low Vision NZ_Formerly_Horizontal_RGB (1).jpg" alt="Blind And Low Vision New Zealand" style="position: relative;top: -5px"> </a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <div class="navbar-header"> <a class="navbar-brand" href="home.html"> <img class="img-resonsive" width="300px" height="" src="Blind & Low Vision NZ_Formerly_Horizontal_RGB (1).jpg" alt="Blind And Low Vision New Zealand"> </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded=""> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <!-- Home Button -->
-                <li class="active"><a href="home.html">Home</a></li>
-                <li class="dropdown"> 
-                    <!-- 1st page button --> 
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">About <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="about.html">Who Are We?</a></li>
-                        <li><a href="goal.html">Our Goal</a></li>
-                    </ul>
-                </li>
-                <!--Sign Up Page-->
-                <li><a href="goal.html">Sign Up</a></li>
-                <!-- 2nd page button -->
-                <li><a id="dontate-navbar" href="https://blindfoundation.secure.force.com/DonateNow/"  role="menuitem">Donate</a></li>
-                <!-- 3rd page button -->
-                <li><a href="https://www.blindlowvision.org.nz/">Official Website</a></li>
-            </ul>
+        <div id="navcont" class="container">
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <!-- Home Button -->
+                    <li class="active"><a href="home.html">Home</a></li>
+                    <li class="dropdown"> 
+                        <!-- 1st page button --> 
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">About <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">Who Are We?</a></li>
+                            <li><a href="goal.html">Our Goal</a></li>
+                        </ul>
+                    </li>
+                    <!--Sign Up Page-->
+                    <li><a href="goal.html">Sign Up</a></li>
+                    <!-- 2nd page button -->
+                    <li><a href="https://www.blindlowvision.org.nz/">Official Website</a></li>
+                    <!-- 3rd page button -->
+                    <li><a id="donate" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="background-color: #BE1C28; color: #FFFFFF">Donate</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
 
-<!--Main Body of Website --> 
-<br>
-<div class="container">
-    <div class="jumbotron">
-        <h1>Event Title</h1>
-        <p>Breif description of the event</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">More Information</a> <a class="btn btn-primary btn-lg" href="#" role="button">Sign Up</a></p>
+<!--Main Body of Website -->
+<div class="content">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Event Title</h1>
+            <p>Breif description of the event</p>
+            <p><a class="btn btn-info btn-lg" href="#" role="button">Learn More</a> <a class="btn btn-info btn-lg" href="#" role="button">Sign Up</a></p>
+        </div>
     </div>
 </div>
 </body>
