@@ -49,7 +49,7 @@
     padding-bottom: 15px;
 }
 }
-.container {
+#navcontainer {
     padding-right: 15px;
     padding-left: 15px;
 }
@@ -91,6 +91,28 @@ to {
 opacity: 1
 }
 }
+.front {
+    z-index: 2;
+    position: absolute;
+}
+.behind {
+    position: relative;
+    z-index: 1;
+}
+.imgfit {
+    height: 400px;
+    object-fit: cover;
+}
+.btn-primary {
+    background-color: #F9D014;
+    border-color: transparent;
+    color: black;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open >.dropdown-toggle.btn-primary {
+    color: black;
+    background-color: #FBE683;
+    border-color: transparent;
+}
 </style>
 </head>
 
@@ -99,13 +121,13 @@ opacity: 1
 <!-- Website Navigation Bar -->
 
 <nav class="navbar-default">
-    <div class="container">
+    <div id="navcontainer" class="container">
         <div class="navbar-header"> <a class="navbar-brand" href="home.html"> <img class="img-resonsive" width="300px" height="" src="Blind & Low Vision NZ_Formerly_Horizontal_RGB (1).jpg" alt="Blind And Low Vision New Zealand"> </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded=""> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
         </div>
         <div id="navcont" class="container">
             <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
                     <!-- Home Button -->
                     <li class="active"><a href="home.html">Home</a></li>
                     <li class="dropdown"> 
@@ -114,10 +136,11 @@ opacity: 1
                         <ul class="dropdown-menu">
                             <li><a href="about.html">Who Are We?</a></li>
                             <li><a href="goal.html">Our Goal</a></li>
+                            <li><a href="https://blindlowvision.org.nz/contact/contact-the-blind-low-vision-nz/">Get In Touch</a></li>
                         </ul>
                     </li>
                     <!--Sign Up Page-->
-                    <li><a href="goal.html">Sign Up</a></li>
+                    <li><a href="register.html">Sign Up</a></li>
                     <!-- 2nd page button -->
                     <li><a href="https://www.blindlowvision.org.nz/">Official Website</a></li>
                     <!-- 3rd page button -->
@@ -130,16 +153,21 @@ opacity: 1
 
 <!--Main Body of Website -->
 <div class="content">
-    <div class="container">
-        <div class="jumbotron">
-            <h1>Event Title</h1>
-            <p>Breif description of the event</p>
-            <p><a class="btn btn-info btn-lg" href="#" role="button">Learn More</a> <a class="btn btn-info btn-lg" href="#" role="button">Sign Up</a></p>
-            <div class="slideshow-container">
-                <div class="mySlides fade"> <img src="DSC_3033.JPG" style="width:100%" alt="fill"> </div>
-                <div class="mySlides fade"> <img src="DSC_5648.JPG" style="width:100%" alt="fill"> </div>
-                <div class="mySlides fade"> <img src="IMG_8673.JPG" style="width:100%" alt="fill"> </div>
-                <script>
+    <div class="container" style="background-color: #FFFFFF; height:400px">
+        <div class="front">
+            <div class="container-fluid" style="background-color: #E7E7E7; height:400px">
+                <h1>Event Title</h1>
+                <p>Breif description of the event</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a> <a class="btn btn-primary btn-lg" href="register.html" role="button">Sign Up</a></p>
+            </div>
+        </div>
+        <div class="behind">
+            <div class="mySlides fade"> <img class="imgfit" src="DSC_3033.JPG" style="width:100%" alt="Guide Dog Puppy"> </div>
+            <div class="mySlides fade"> <img class="imgfit" src="DSC_5648.JPG" style="width:100%" alt="Black puppy running across grass"> </div>
+            <div class="mySlides fade"> <img class="imgfit" src="IMG_8673.JPG" style="width:100%" alt="Mascott with two guide dogs"> </div>
+            <div class="mySlides fade"> <img class="imgfit" src="DSC_5706.JPG" style="width:100%" alt="Guide dog puppy lying on grass"> </div>
+        </div>
+        <script>
 var slideIndex = 0;
 showSlides();
 
@@ -155,8 +183,6 @@ function showSlides() {
   setTimeout(showSlides, 6000); // Change image every 8 seconds
 }
 </script> 
-            </div>
-        </div>
     </div>
 </div>
 </body>
