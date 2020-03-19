@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 <style type="text/css">
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     background-color: #656565;
@@ -61,36 +63,6 @@
 }
 </style>
 <style>
-/* Hide the images by default */
-.mySlides {
-    display: none;
-}
-.slideshow-container {
-    backface-visibility: hidden;
-}
-/* Fading animation */
-.fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 2s;
-    animation-name: fade;
-    animation-duration: 6s;
-}
-@-webkit-keyframes fade {
-from {
-opacity: .001
-}
-to {
-opacity: 1
-}
-}
-@keyframes fade {
-from {
-opacity: .001
-}
-to {
-opacity: 1
-}
-}
 .front {
     z-index: 2;
     position: absolute;
@@ -107,25 +79,12 @@ opacity: 1
     background-color: #F9D014;
     border-color: transparent;
     color: black;
+    padding:5px 5px;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open >.dropdown-toggle.btn-primary {
     color: black;
     background-color: #FBE683;
     border-color: transparent;
-}
-.bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-@media (min-width: 768px) {
-.bd-placeholder-img-lg {
-    font-size: 3.5rem;
-}
 }
 </style>
 </head>
@@ -168,20 +127,41 @@ opacity: 1
 
 <!--Main Body of Website -->
 <div class="content">
-    <div class="container" style="background-color: #FFFFFF; height:400px">
-        <div class="front">
-            <div class="container" style="background-color: #E7E7E7; height:400px; width: 258px">
-                <h1>Red Puppy Parade</h1>
-                <p>Join in for this once in a lifetime opportunity to get up in close with the most precious pups and win prizes for your affection! </p>
-                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a> <a class="btn btn-primary btn-lg" href="register.html" role="button">Sign Up</a></p>
+    <div class="slideshow container">
+        <div class="container" style="background-color: #FFFFFF; height:400px">
+            <div>
+                <div class="front">
+                    <div class="container" style="background-color: #E7E7E7; height:400px; width: 258px; padding-left: 40px">
+                        <h1>Red Puppy Parade</h1>
+                        <p>Join in for this once in a lifetime opportunity to get up in close with the most precious pups and win prizes for your affection! </p>
+                        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a><br><br><a class="btn btn-primary btn-lg" href="register.html" role="button">Sign Up</a></p>
+                    </div>
+                </div>
+                <div> <img class="imgfit" src="ezgif.com-gif-maker.gif" style="width:100%" alt="Guide Dog Puppy"> </div>
             </div>
         </div>
-        <div class="behind">
+        <div>
+            <div class="front">
+                <div class="container" style="background-color: #E7E7E7; height:400px; width: 258px; padding-left: 50px">
+                    <h1>Harbour Bridge Run</h1>
+                    <p>Need to loose some weight, or do you need to get those muscles going? Maybe you just want to see what it is like on the Harbour Bridge! Participate in this 5km fun run to support those in need! </p>
+                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a><br><br><a class="btn btn-primary btn-lg" href="register.html" role="button">Sign Up</a></p>
+                </div>
+            </div>
             <div> <img class="imgfit" src="ezgif.com-gif-maker.gif" style="width:100%" alt="Guide Dog Puppy"> </div>
         </div>
     </div>
-    <div class="container">
-</div>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> 
+    <script type="text/javascript">
+$(document).ready(function(){
+  $('.slideshow').slick({
+      autoplay:true,
+      autoplaySpeed:9000,
+      centerPadding:20
+      
+  });
+});
+</script> 
 </div>
 </body>
 </html>
