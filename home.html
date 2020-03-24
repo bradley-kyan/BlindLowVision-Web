@@ -11,6 +11,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    transition: background-color .2s;
+    transition: color .2;
     background-color: #656565;
     color: #FFFFFF;
 }
@@ -82,6 +84,7 @@
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open >.dropdown-toggle.btn-primary {
     color: black;
+    transition: background-color .2s;
     background-color: #FBE683;
     border-color: transparent;
 }
@@ -94,6 +97,15 @@
 }
 p {
     text-align: justify;
+}
+marquee {
+    background: #F9D110;
+    font-size: 30px;
+    transition: transform .2s;
+    text-transform: uppercase;
+}
+marquee:hover {
+    transform: scale(1.01);
 }
 </style>
 </head>
@@ -136,6 +148,11 @@ p {
 
 <!--Main Body of Website -->
 <div class="content">
+    <div class="container">
+        <marquee title="Due to the COVID-19 - novel Coronavirus outbreak, to prevent community spread, all events have been cancelled untill further notice">
+        Due to the COVID-19 - novel Coronavirus outbreak, to prevent community spread, all events have been cancelled untill further notice
+        </marquee>
+    </div>
     <div class="slideshow container">
         <div class="container" style="background-color: #FFFFFF; height:400px">
             <div>
