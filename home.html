@@ -63,6 +63,20 @@
 .content {
     padding: 10px 10px;
 }
+#donate-nav {
+    background-color: #BE1C28;
+    color: #FFFFFF;
+}
+#donate-nav:hover {
+    transition: background-color .2s;
+    transition: transform .2s;
+    background-color: #9A1620;
+    transform: scale(1.1);
+}
+#donate-nav:not(:hover) {
+    transition: transform .2s;
+    transform: scale(1)
+}
 </style>
 <style>
 .front {
@@ -84,13 +98,21 @@
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open >.dropdown-toggle.btn-primary {
     color: black;
-    transition: background-color .2s;
+    transition: background-color .3s;
     background-color: #FBE683;
     border-color: transparent;
 }
 .img-content {
     padding: 15px;
     width: 40vmin;
+}
+.img-content:hover {
+    transition: transform .2s;
+    transform: scale(1.04);
+}
+.img-content:not(:hover) {
+    transition: transform .2s;
+    transform: scale(1);
 }
 .h-content {
     font-size: 6vmin;
@@ -102,7 +124,6 @@ marquee {
     background: #F9D110;
     font-size: 30px;
     transition: transform .2s;
-    text-transform: uppercase;
 }
 marquee:hover {
     transform: scale(1.01);
@@ -139,7 +160,7 @@ marquee:hover {
                     <!-- 2nd page button -->
                     <li><a href="https://www.blindlowvision.org.nz/">Official Website</a></li>
                     <!-- 3rd page button -->
-                    <li><a id="donate" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="background-color: #BE1C28; color: #FFFFFF">Donate</a></li>
+                    <li><a id="donate-nav" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem">Donate</a></li>
                 </ul>
             </div>
         </div>
@@ -194,12 +215,12 @@ $(document).ready(function(){
 </script>
     <div class="container">
         <h2 class="h-content">Placeholder Text</h2>
-        <img class="img-content" src="https://via.placeholder.com/300" align="left">
+        <img class="img-content" src="https://via.placeholder.com/300" alt="placeholder" align="left">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
     <div class="container">
         <h2 class="h-content">Placeholder Text</h2>
-        <img class="img-content" src="https://via.placeholder.com/300" align="left">
+        <img class="img-content" src="https://via.placeholder.com/300" alt="placeholder" align="left">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
 </div>
