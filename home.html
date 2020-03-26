@@ -120,14 +120,6 @@
 p {
     text-align: justify;
 }
-marquee {
-    background: #F9D110;
-    font-size: 30px;
-    transition: transform .2s;
-}
-marquee:hover {
-    transform: scale(1.01);
-}
 </style>
 <style type="text/css">
 .loader, .loader:after {
@@ -186,14 +178,13 @@ transform: rotate(360deg);
 <script>
     $('body').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
 $(window).on('load', function(){
-  setTimeout(removeLoader, 1000); //wait for page load PLUS two seconds.
+  setTimeout(removeLoader, 1000);
 });
 function removeLoader(){
     $( "#loadingDiv" ).fadeOut(500, function() {
-      // fadeOut complete. Remove the loading div
-      $( "#loadingDiv" ).remove(); //makes page more lightweight 
+      $( "#loadingDiv" ).remove();
   });  
-}</script>
+}</script> 
 <!--Navbar-->
 <nav class="navbar-default">
     <div id="navcontainer" class="container">
@@ -220,7 +211,7 @@ function removeLoader(){
                     <!-- 2nd page button -->
                     <li><a href="https://www.blindlowvision.org.nz/">Official Website</a></li>
                     <!-- 3rd page button -->
-                    <li><a id="donate-nav" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem">Donate</a></li>
+                    <li><a id="donate-nav" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="text-align: center">Donate</a></li>
                 </ul>
             </div>
         </div>
@@ -228,12 +219,8 @@ function removeLoader(){
 </nav>
 
 <!--Main Body of Website -->
-<div class="content">
-    <div class="container">
-        <marquee title="Due to the COVID-19 - novel Coronavirus outbreak, to prevent community spread, all events have been cancelled untill further notice">
-        Due to the COVID-19 - novel Coronavirus outbreak, to prevent community spread, all events have been cancelled untill further notice
-        </marquee>
-    </div>
+<div class="content"> <br>
+    <!--Carousel-->
     <div class="slideshow container">
         <div class="container" style="background-color: #FFFFFF; height:400px">
             <div>
@@ -272,7 +259,11 @@ $(document).ready(function(){
       autoplaySpeed:9000,
   });
 }); 
-</script>
+</script> 
+    <!--Content-->
+    <div class="container">
+        <p>Donate Today</p>
+    </div>
     <div class="container">
         <h2 class="h-content">Placeholder Text</h2>
         <img class="img-content" src="https://via.placeholder.com/300" alt="placeholder" align="left">
