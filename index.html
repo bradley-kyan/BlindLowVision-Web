@@ -3,10 +3,12 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>Blind Low Vision NZ - Fundraising to support ones with vision impairment</title>
 <meta name="viewport" content="width=device-width, inital scale=1">
 <link rel="stylesheet" type="text/css" href="css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="icon" href="img/logo.png">
 <link href="css/liMarquee.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
@@ -101,19 +103,8 @@
     background-color: #F9D014;
     border-color: transparent;
     color: black;
-    position: absolute;
-    left: 15px;
-    bottom: 10px;
 }
-.btn-primary2 {
-    background-color: #F9D014;
-    border-color: transparent;
-    color: black;
-    position: absolute;
-    left: 15px;
-    bottom: 65px;
-}
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open >.dropdown-toggle.btn-primary, .btn-primary2:hover, .btn-primary2:focus, .btn-primary2:active, .btn-primary2.active, .open >.dropdown-toggle.btn-primary2 {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open >.dropdown-toggle.btn-primary {
     color: black;
     transition: background-color .3s;
     background-color: #FBE683;
@@ -271,41 +262,101 @@ transform: rotate(360deg);
     border: 10px solid #1B1B1B;
 }
 html {
-	scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 </style>
 </head>
 <body>
+<!-- Returns links to # if linking to current page using 'onclick="function(); return false;"' | Change ID to current page--> 
+<script type="text/javascript" id="home">
+function clickHome() {
+   if ($( "#home" ).length)
+       window.location.href = "#";
+   else
+       window.location.href = "index.html";
+}
+function clickEvents() {
+   if ($( "#events" ).length)
+       window.location.href = "#";
+   else
+       window.location.href = "events.html";
+}
+function clickEventsPuppy() {
+   if ($( "#events" ).length)
+       window.location.href = "#red_puppy";
+   else
+       window.location.href = "events.html#red_puppy";
+}
+function clickEventsRun() {
+   if ($( "#events" ).length)
+       window.location.href = "#bride_run";
+   else
+       window.location.href = "events.html#bridge_run";
+}
+function clickAbout() {
+   if ($( "#aboutpage" ).length)
+       window.location.href = "#";
+   else
+       window.location.href = "about.html";
+}
+function clickAboutGoal() {
+   if ($( "#aboutpage" ).length)
+       window.location.href = "#goal";
+   else
+       window.location.href = "about.html#goal";
+}
+function clickAboutContact() {
+   if ($( "#aboutpage" ).length)
+       window.location.href = "#contact";
+   else
+       window.location.href = "about.html#contact";
+}
+function clickRegister() {
+   if ($( "#register" ).length)
+       window.location.href = "#";
+   else
+       window.location.href = "register.html";
+}
+</script> 
 <!--Loading --> 
-<script>
+<script type="text/javascript">
     $('body').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
 $(window).on('load', function(){
-  setTimeout(removeLoader, 1000);
+  setTimeout(removeLoader, 0);
 });
 function removeLoader(){
     $( "#loadingDiv" ).fadeOut(500, function() {
       $( "#loadingDiv" ).remove();
   });  
 }</script> 
+<!-- 'About' Dropdown Javascript Toggle --> 
+<script type="text/javascript">
+function showAbout() {
+    document.getElementById('about').style.display = 'block';
+}
+function hideAbout() {
+    document.getElementById('about').style.display = 'none';
+}
+</script> 
 <!--Navbar-->
 <nav class="navbar-default">
     <div id="navcontainer" class="container">
-        <div class="navbar-header"> <a class="navbar-brand" href="index.html"> <img class="img-resonsive" width="300px" height="" src="img/Blind & Low Vision NZ_Formerly_Horizontal_RGB (1).jpg" alt="Blind And Low Vision New Zealand"> </a>
+        <div class="navbar-header"> <a class="navbar-brand" href="index.html" onclick="clickHome(); return false;"> <img class="img-resonsive" width="300px" height="" src="img/Blind & Low Vision NZ_Formerly_Horizontal_RGB (1).jpg" alt="Blind And Low Vision New Zealand"> </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded=""> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
         </div>
         <div id="navcont" class="container">
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Home Button -->
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="events.html">Events</a></li>
+                    <li class="active"><a href="index.html" onclick="clickHome(); return false;">Home</a></li>
+                    <li><a href="events.html" onclick="clickEvents(); return false;">Events</a></li>
                     <li class="dropdown"> 
                         <!-- 1st page button --> 
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">About <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="about.html">Who Are We?</a></li>
-                            <li><a href="goal.html">Our Goal</a></li>
-                            <li><a href="https://blindlowvision.org.nz/contact/contact-the-blind-low-vision-nz/">Get In Touch</a></li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="about.html" onmouseover="showAbout()" onmouseout="hideAbout()">About <span class="caret"></span></a>
+                        <ul class="dropdown-menu" id="about" onmouseover="showAbout()" onmouseout="hideAbout()">
+                            <li><a href="about.html#about" onclick="clickAbout(); return false;">Who Are We?</a></li>
+                            <li><a href="about.html#goal" onclick="clickAboutGoal(); return false;">Our Goal</a></li>
+                            <li><a href="about.html#contact" onclick="clickAboutContact(); return false;">Get In Touch</a></li>
                         </ul>
                     </li>
                     <!--Sign Up Page-->
@@ -330,9 +381,9 @@ function removeLoader(){
                     <div class="container" style="background-color: #E7E7E7; height:400px; width: 258px; position: absolute; left: 10px">
                         <h1>Red Puppy Parade</h1>
                         <p>Join in for this once in a lifetime opportunity to get up in close with the most precious pups and win prizes for your affection! </p>
-                        <p><a class="btn btn-primary btn-lg" href="#red_puppy" role="button">Learn More</a><br>
+                        <p><a class="btn btn-primary btn-lg" href="events.html#red_puppy" role="button" style="position: absolute; left: 15px; bottom: 10px;">Learn More</a><br>
                             <br>
-                            <a class="btn btn-primary2 btn-lg" href="register.html" role="button">Sign Up</a></p>
+                            <a class="btn btn-primary btn-lg" href="register.html" role="button" style="position: absolute; left: 15px; bottom: 65px;">Sign Up</a></p>
                     </div>
                 </div>
                 <div> <img class="imgfit" src="img/ezgif.com-gif-maker.gif" style="width:100%" alt="Guide Dog Puppy"> </div>
@@ -343,9 +394,9 @@ function removeLoader(){
                 <div class="container" style="background-color: #E7E7E7; height:400px; width: 258px; position: absolute; left: 25px ">
                     <h1>Harbour Bridge Run</h1>
                     <p>Need to loose some weight, or do you need to get those muscles going? Maybe you just want to see what it is like on the Harbour Bridge! Participate in this 5km fun run to support those in need! </p>
-                    <p><a class="btn btn-primary btn-lg" href="#bridge_run" role="button">Learn More</a><br>
+                    <p><a class="btn btn-primary btn-lg" href="events.html#bridge_run" role="button" style="position: absolute; left: 15px; bottom: 10px;">Learn More</a><br>
                         <br>
-                        <a class="btn btn-primary2 btn-lg" href="register.html" role="button">Sign Up</a></p>
+                        <a class="btn btn-primary btn-lg" href="register.html" role="button" style="position: absolute; left: 15px; bottom: 65px;">Sign Up</a></p>
                 </div>
             </div>
             <div> <img class="imgfit" src="img/ezgif.com-gif-maker.gif" style="width:100%" alt="Guide Dog Puppy"> </div>
@@ -367,6 +418,7 @@ $(document).ready(function(){
     $('.donate-scroll').liMarquee({
         drag: false,
         scrollamount: 70,
+        hoverstop:false,
     });
     </script> 
         </div>
@@ -375,38 +427,28 @@ $(document).ready(function(){
                 This Happen!</h3>
             <a class="btn-content btn btn-donate-content" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="font-size: 20px; width: 90%">Donate Today</a> </div>
     </div>
-    <div class="container border-content">
-        <h2 class="h-content" id="red_puppy">Red Puppy Parade</h2>
-        <img class="img-content" src="https://via.placeholder.com/300" alt="placeholder" align="left">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div>
-    <div class="container border-content">
-        <h2 class="h-content" id="bridge_run">Harbour Bridge Run</h2>
-        <img class="img-content" src="https://via.placeholder.com/300" alt="placeholder" align="left">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div>
 </div>
 <div class="footer-dark">
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-push-6"><img class="img-fluid" src="img/Blind_Low_Vision_NZ_Formerly_Stacked_Rev_RGB-1.png"></div>
+                <div class="col-md-6 col-md-push-6"><a href="index.html" onclick="clickHome(); return false;"><img class="img-fluid" src="img/Blind_Low_Vision_NZ_Formerly_Stacked_Rev_RGB-1.png" alt="Blind Low Vision - Formerly Blind Foundtation"></a></div>
                 <div class="col-md-3 col-md-pull-6 col-sm-4">
                     <h3>About</h3>
                     <ul>
-                        <li><a href="#" style="color: #FFFFFF">Who Are We?</a></li>
-                        <li><a href="#" style="color: #FFFFFF">Our Goal</a></li>
-                        <li><a href="#" style="color: #FFFFFF">Get In Touch</a></li>
+                        <li><a href="about.html" style="color: #FFFFFF" onclick="clickAbout(); return false;">Who Are We?</a></li>
+                        <li><a href="about.html#goal" style="color: #FFFFFF" onclick="clickAboutGoal(); return false;">Our Goal</a></li>
+                        <li><a href="about.html#contact" style="color: #FFFFFF" onclick="clickAboutContact(); return false;">Get In Touch</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-md-pull-6 col-sm-4">
                     <h3>Events</h3>
                     <ul>
-                        <li><a href="#" style="color: #FFFFFF">Red Puppy Parade</a></li>
-                        <li><a href="#" style="color: #FFFFFF">Harbour Bridge Run</a></li>
+                        <li><a href="events.html#red_puppy" style="color: #FFFFFF" onclick="clickEventsPuppy(); return false;">Red Puppy Parade</a></li>
+                        <li><a href="events.html#bridge_run" style="color: #FFFFFF" onclick="clickEventsRun(); return false;">Harbour Bridge Run</a></li>
                     </ul>
                 </div>
-                <div class="col-md-12 col-sm-4"><a href="https://www.instagram.com/BlindLowVisionNZ/" target="_blank"><img class="social" src="img/instagram.svg"></a><a href="https://www.facebook.com/BlindLowVisionNZ/" target="_blank"><img class="social" src="img/facebook.svg"></a><a href="https://www.youtube.com/c/BlindLowVisionNZ" target="_blank"><img class="social" src="img/youtube.svg"></a><a href="https://twitter.com/BlindLowVision" target="_blank"><img class="social" src="img/twitter.svg"></a><a href="https://www.linkedin.com/company/blind-low-vision-nz" target="_blank"><img class="social" src="img/linkedin.svg"></a></div>
+                <div class="col-md-12 col-sm-4"><a href="https://www.instagram.com/BlindLowVisionNZ/" target="_blank"><img class="social" src="img/instagram.svg" alt="Our Instagram"></a><a href="https://www.facebook.com/BlindLowVisionNZ/" target="_blank"><img class="social" src="img/facebook.svg" alt="Our Facebook"></a><a href="https://www.youtube.com/c/BlindLowVisionNZ" target="_blank"><img class="social" src="img/youtube.svg" alt="Our Youtube"></a><a href="https://twitter.com/BlindLowVision" target="_blank"><img class="social" src="img/twitter.svg" alt="Our Twitter"></a><a href="https://www.linkedin.com/company/blind-low-vision-nz" target="_blank"><img class="social" src="img/linkedin.svg" alt="Our LinkedIn"></a></div>
             </div>
             <p>Copyright Blind Low Vision NZ 2020 © | Blind Low Vision NZ is registered in New Zealand. Our Charities Commission Registration number is CC21361</p>
         </div>
