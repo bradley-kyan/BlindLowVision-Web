@@ -15,6 +15,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
 <script type="text/javascript" src="css/slick.min.js"></script> 
 <script src="js/jquery.liMarquee.js"></script>
+
 <style type="text/css">
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     transition: background-color .2s;
@@ -256,6 +257,13 @@ transform: rotate(360deg);
     width: 60px;
     border: 10px solid #1B1B1B;
 }
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
 html {
     scroll-behavior: smooth;
 }
@@ -365,9 +373,50 @@ function hideAbout() {
         </div>
     </div>
 </nav>
+	<!--Content-->
 <div class="content"> 
-    <!--Content--><br>
-    <div class="container" style="padding: 15px">
+    <br>
+	<!--Regestration Form-->
+	
+	<div class="container">
+		<form>
+		<div class="form-group">
+			<label for="emailform">Email Address</label>
+			<input type="email" class="form-control" id="emailform" aria-describedby="emailHelp" placeholder="Enter email">
+		</div>
+		<div class="form-group">
+			<label for="addressform">Address</label>
+			<input type="text" class="form-control" id="addressForm" aria-describedby="addressHelp">
+			<small id="addressForm" class="form-text text-muted">Street Address</small>
+			<input type="text" class="form-control" id="address2Form" aria-describedby="addressHelp">
+			<small id="address2Form" class="form-text text-muted">Street Address Line 2</small>
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="form-group">
+					<input type="text" class="form-control" id="cityform" aria-describedby="addressHelp">
+					<small id="cityform" class="form-text text-muted">City</small>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="form-group">
+					<input type="text" class="form-control" id="stateform" aria-describedby="addressHelp">
+					<small id="stateform" class="form-text text-muted">State / Province</small>
+				</div>
+			</div>			
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+			<div class="form-group">
+				<input type="text" class="form-control" id="addressForm" aria-describedby="addressHelp">
+				<small id="addressForm" class="form-text text-muted">Zip Code</small>
+			</div>
+			</div>
+		</div>
+		</div>
+		</form>
+	</div>
+	
+	<div class="container" style="padding: 15px">
         <div class="left-frame">
             <div class="donate-scroll str_wrap"> <img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"></div>
             <script type="text/javascript">
