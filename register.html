@@ -374,35 +374,53 @@ function hideAbout() {
 	
 	<div class="container">
 		<form>
-		<div class="form-group">
-			<label for="emailform">Email Address</label>
-			<input type="email" class="form-control" id="emailForm" aria-describedby="emailHelp" placeholder="Enter email">
-		</div>
-		<div class="form-group">
-			<label for="addressform">Address</label>
-			<input type="text" class="form-control" id="addressForm" aria-describedby="addressHelp">
-			<small id="addressform" class="form-text text-muted">Street Address</small>
-			<input type="text" class="form-control" id="address2Form" aria-describedby="addressHelp">
-			<small id="address2form" class="form-text text-muted">Street Address Line 2</small>
+			<div class="row">
+				<div class="form-group">
+				<label for="NameF">First Name</label>
+				<input type="name" class="form-control" id="NameF" placeholder="John" required autocomplete="given-name">
+				</div>
+				<div class="form-group">
+				<label for="NameL">Last Name</label>
+				<input type="name" class="form-control" id="NameL" placeholder="Doe" required autocomplete="family-name">
+				</div>	
+				<div class="row">
+					<div class="col-lg-6">
+					<div class="form-group">
+						<label for="EmailA">Email Address</label>
+						<input type="email" class="form-control" id="EmailA" placeholder="someone@example.com" required autocomplete="email">
+					</div>					
+					</div>
+					<div class="col-lg-6">
+					<div class="form-group">
+						<label for="EmailC">Confirm Email Address</label>
+						<input type="email" class="form-control" id="EmailC" placeholder="someone@example.com" required autocomplete="email">
+					</div>						
+					</div>	
+				</div>
+					
+			<div class="form-group">
+				<label for="AddressShip">Address</label>
+				<input type="text" class="form-control" id="AddressShip" placeholder="10 Address Street" autocomplete="shipping street-address">
+			</div>
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="form-group">
-					<input type="text" class="form-control" id="cityForm" aria-describedby="addressHelp">
-					<small id="cityform" class="form-text text-muted">City</small>
+					<label for="CityA">City</label>
+					<input type="text" class="form-control" id="CityA" placeholder="Auckland" autocomplete="shipping locality">
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
-					<input type="text" class="form-control" id="stateForm" aria-describedby="addressHelp">
-					<small id="stateform" class="form-text text-muted">State / Province</small>
+					<label for="StateA">State / Province</label>
+					<input type="text" class="form-control" id="StateA" placeholder="Waitakere" autocomplete="shipping region">
 				</div>
 			</div>			
 		</div>
 		<div class="row">
 			<div class="col-lg-3">
 			<div class="form-group">
-				<input type="number" class="form-control" id="zipForm" aria-describedby="addressHelp">
-				<small id="zipform" class="form-text text-muted">Zip Code</small>
+				<label for="ZipCode">Zip</label>
+				<input type="number" class="form-control" id="zipForm" placeholder="0610" autocomplete="shipping postal-code">
 			</div>
 			</div>
 		</div>
