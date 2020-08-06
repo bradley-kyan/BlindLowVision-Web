@@ -192,7 +192,27 @@ transform: rotate(360deg);
 .btn-donate-content:not(:hover) {
 	transition: background-color .2s;
 }
-
+.btn-submit-content {
+	background-color: #1A73E8;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 4px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 2em;
+}
+.btn-submit-content:hover {
+	background-color: #71A8F0;
+	color: #FFFFFF;
+	transition: background-color .2s;
+}
+.btn-submmit-content:not(:hover) {
+	transition: background-color .2s;
+}
+	
+	
 @media(min-width: 991px) {
 .box-right {
 	width: 25%;
@@ -369,7 +389,7 @@ function hideAbout() {
 <div class="content"> <br>
 	<!--Regestration Form-->
 	
-	<div class="container" style="padding: 15px">
+	<div class="container" style=" position: relative; padding: 15px">
 		<div class="container col-lg-6">
 			<form>
 				<div class="row">
@@ -432,8 +452,13 @@ function hideAbout() {
 			<p style="color: red; font-weight: lighter">*&nbsp;&nbsp;<em>Required</em></p>
 		</div>
 		<div class="col-lg-6">
-			<p style="font-size: 12px; font-weight: lighter"><em>By signing up you agree to recieve periodic emails from the Blind Low Vision Foundation and allow the Blind Low Vison Foundation to have access to the provided information.</em></p>
-		</div>
+			<input type="submit" value="Sign Up" onclick="return submit();" class="btn-submit-content"/>
+			<br><br>
+			<p style="font-size: 12px; font-weight: lighter"><em>By signing up you agree to recieve periodic emails from the Blind Low Vision Foundation and allow the Blind Low Vison Foundation to have access to the provided information.</em></p>			
+			
+			</div>
+		</div>		
+
 		<div class="left-frame">
 			<div class="donate-scroll str_wrap"> <img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"></div>
 			<script type="text/javascript">
