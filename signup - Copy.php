@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -390,58 +389,51 @@ function hideAbout() {
     
     <div class="container" style=" position: relative; padding: 15px">
         <div class="container col-lg-6">
-            <form id="sForm" includes="signup.php" method="post">
-                <div class="row">
+			<form>
+			<div class="row">
                     <div class="form-group">
                         <label for="Username">Username&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="name" class="form-control" id="Username" placeholder="myusername">
+                        <div class="form-control" placeholder="<?php echo $_POST["Username"];?>"/>
                     </div>
                     <div class="form-group">
                         <label for="Password">Password&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="password" class="form-control" id="Password" placeholder="*************">
-                        <small><em>Minimum 8 Characters</em></small>
+                        <div class="form-control" placeholder="*************"/>
                     </div>
                     <div class="form-group">
                         <label for="Password">Re-Enter Password&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="password" class="form-control" id="PasswordR" placeholder="*************">
+                        <div class="form-control" placeholder="*************"/>
                     </div>
                     <div class="form-group">
                         <label for="NameF">First Name&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="name" class="form-control" id="NameF" placeholder="John" required autocomplete="given-name">
+                        <div class="form-control" placeholder="<?php echo $_POST["Username"];?>"/>
                     </div>
                     <div class="form-group">
                         <label for="NameL">Last Name&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="name" class="form-control" id="NameL" placeholder="Doe" required autocomplete="family-name">
+                        <div class="form-control" placeholder="<?php echo $_POST["Username"];?>"/>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="EmailA">Email Address&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="email" class="form-control" id="EmailA" placeholder="someone@example.com" required autocomplete="email">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="EmailC">Confirm Email Address&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="email" class="form-control" id="EmailC" placeholder="someone@example.com" required autocomplete="email">
+                                <div class="form-control" placeholder="<?php echo $_POST["Username"];?>"/>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="AddressShip">Address&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="text" class="form-control" id="AddressShip" placeholder="10 Address Street" required="true" autocomplete="shipping street-address">
+                        <div class="form-control" placeholder="<?php echo $_POST["Username"];?>" />
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="CityA">City&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="text" class="form-control" id="CityA" placeholder="Auckland" autocomplete="shipping locality" required="true">
+                                <div class="form-control" placeholder="<?php echo $_POST["Username"];?>"/>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="StateA">State / Province&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="text" class="form-control" id="StateA" placeholder="Waitakere" autocomplete="shipping region" required="true">
+                                <div class="form-control" placeholder="<?php echo $_POST["Username"];?>"/>
                             </div>
                         </div>
                     </div>
@@ -449,13 +441,13 @@ function hideAbout() {
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="ZipCode">Zip&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="postal" class="form-control" id="zipForm" placeholder="0610" autocomplete="shipping postal-code" required="true">
+                                <div class="form-control" placeholder="<?php echo $_POST["Username"];?>"/>
                             </div>
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group">
                                 <label for="PhoneN">Phone Number&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="tel" class="form-control" id="PhoneN" placeholder="021-01234567" autocomplete="tel" required="true">
+                                <div class="form-control" placeholder="<?php echo $_POST["Username"];?>"/>
                             </div>
                         </div>
                     </div>
@@ -463,32 +455,8 @@ function hideAbout() {
             	<p style="color: red; font-weight: lighter">*&nbsp;&nbsp;<em>Required</em></p>
             	<p style="font-size: 14px; font-weight: lighter">I agree to recieve periodic email regarding new events and give aways&nbsp;&nbsp;&nbsp;&nbsp;
                 	<input type="checkbox" name="Notify" style="transform: scale(1.5)">
-            	</p>            
+            	</p>
 			</form>
-        </div>
-        <div class="col-lg-6">
-            <button id="submitbtn" class="btn-submit-content" onClick="checkinfo()" style="margin-top: 15px" enabled>Sign Up</button>
-
-			<script>
-			function checkinfo(){
-				const emailValid = EmailA.checkValidity();
-				if(emailValid){
-					submitbtn.disabled = false;
-					document.getElementById('validationErr').innerHTML = '';
-					document.getElementById('sForm').submit;
-					window.location.href = 'signup.php';
-				}
-				else {
-					submitbtn.disabled = true;
-					document.getElementById('validationErr').innerHTML = 'Invalid Email';
-				}
-				}			
-			</script>
-
-            <br>
-            <br>
-            <p style="font-size: 12px; font-weight: lighter"><em>By signing up you agree to recieve  emails from the Blind Low Vision Foundation and allow the Blind Low Vison Foundation to have access to the provided information for an unlimited period of time unless specified otherwise.</em></p>
-			<label id="validationErr" style="color: red"></label>
         </div>
     </div>
 </div>
