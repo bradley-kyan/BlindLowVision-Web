@@ -390,58 +390,58 @@ function hideAbout() {
     
     <div class="container" style=" position: relative; padding: 15px">
         <div class="container col-lg-6">
-            <form id="sForm" includes="signup.php" method="post">
+            <form id="sForm" action="signup.php" method="post">
                 <div class="row">
                     <div class="form-group">
                         <label for="Username">Username&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="name" class="form-control" id="Username" placeholder="myusername">
+                        <input type="name" class="form-control" name="Username" id="Username" placeholder="myusername">
                     </div>
                     <div class="form-group">
                         <label for="Password">Password&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="password" class="form-control" id="Password" placeholder="*************">
+                        <input type="password" class="form-control" name="Password" id="Password" placeholder="*************">
                         <small><em>Minimum 8 Characters</em></small>
                     </div>
                     <div class="form-group">
                         <label for="Password">Re-Enter Password&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="password" class="form-control" id="PasswordR" placeholder="*************">
+                        <input type="password" class="form-control" name="PasswordR" id="PasswordR" placeholder="*************">
                     </div>
                     <div class="form-group">
                         <label for="NameF">First Name&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="name" class="form-control" id="NameF" placeholder="John" required autocomplete="given-name">
+                        <input type="name" class="form-control" name="NameF" id="NameF" placeholder="John" required autocomplete="given-name">
                     </div>
                     <div class="form-group">
                         <label for="NameL">Last Name&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="name" class="form-control" id="NameL" placeholder="Doe" required autocomplete="family-name">
+                        <input type="name" class="form-control" name="NameL" id="NameL" placeholder="Doe" required autocomplete="family-name">
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="EmailA">Email Address&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="email" class="form-control" id="EmailA" placeholder="someone@example.com" required autocomplete="email">
+                                <input type="email" class="form-control" name="EmailA" id="EmailA" placeholder="someone@example.com" required autocomplete="email">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="EmailC">Confirm Email Address&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="email" class="form-control" id="EmailC" placeholder="someone@example.com" required autocomplete="email">
+                                <input type="email" class="form-control" name="EmailC" id="EmailC" placeholder="someone@example.com" required autocomplete="email">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="AddressShip">Address&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="text" class="form-control" id="AddressShip" placeholder="10 Address Street" required="true" autocomplete="shipping street-address">
+                        <input type="text" class="form-control" name="AddressShip" id="AddressShip" placeholder="10 Address Street" required="true" autocomplete="shipping street-address">
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="CityA">City&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="text" class="form-control" id="CityA" placeholder="Auckland" autocomplete="shipping locality" required="true">
+                                <input type="text" class="form-control" name="CityA" id="CityA" placeholder="Auckland" autocomplete="shipping locality" required="true">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="StateA">State / Province&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="text" class="form-control" id="StateA" placeholder="Waitakere" autocomplete="shipping region" required="true">
+                                <input type="text" class="form-control" name="StateA" id="StateA" placeholder="Waitakere" autocomplete="shipping region" required="true">
                             </div>
                         </div>
                     </div>
@@ -449,20 +449,20 @@ function hideAbout() {
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="ZipCode">Zip&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="postal" class="form-control" id="zipForm" placeholder="0610" autocomplete="shipping postal-code" required="true">
+                                <input type="postal" class="form-control" name="ZipCode" id="ZipCode" placeholder="0610" autocomplete="shipping postal-code" required="true">
                             </div>
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group">
                                 <label for="PhoneN">Phone Number&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="tel" class="form-control" id="PhoneN" placeholder="021-01234567" autocomplete="tel" required="true">
+                                <input type="tel" class="form-control" name="PhoneN" id="PhoneN" placeholder="021-01234567" autocomplete="tel" required="true">
                             </div>
                         </div>
                     </div>
                 </div>
             	<p style="color: red; font-weight: lighter">*&nbsp;&nbsp;<em>Required</em></p>
             	<p style="font-size: 14px; font-weight: lighter">I agree to recieve periodic email regarding new events and give aways&nbsp;&nbsp;&nbsp;&nbsp;
-                	<input type="checkbox" name="Notify" style="transform: scale(1.5)">
+                	<input type="checkbox" name="Notify" id="Notify" style="transform: scale(1.5)">
             	</p>            
 			</form>
         </div>
@@ -475,12 +475,12 @@ function hideAbout() {
 				if(emailValid){
 					submitbtn.disabled = false;
 					document.getElementById('validationErr').innerHTML = '';
-					document.getElementById('sForm').submit;
-					window.location.href = 'signup.php';
+					document.getElementById('sForm').submit();
 				}
 				else {
 					submitbtn.disabled = true;
 					document.getElementById('validationErr').innerHTML = 'Invalid Email';
+                    setTimeout(function(){ submitbtn.disabled = false; }, 200);
 				}
 				}			
 			</script>
