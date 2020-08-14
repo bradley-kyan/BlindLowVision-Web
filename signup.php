@@ -210,7 +210,8 @@ transform: rotate(360deg);
 .btn-submmit-content:not(:hover) {
     transition: background-color .2s;
 }
-
+  
+    
 @media(min-width: 991px) {
 .box-right {
     width: 25%;
@@ -279,7 +280,7 @@ html {
 }
 </style>
 </head>
-<body>
+<body onLoad="setTimeout(pageLoad(),5000)">
 <!-- Returns links to # if linking to current page using 'onclick="function(); return false;"' | Change ID to current page--> 
 <script type="text/javascript" id="register">
 function clickHome() {
@@ -336,11 +337,12 @@ function clickRegister() {
     $('body').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
 $(window).on('load', function(){
   setTimeout(removeLoader, 0);
+    visibility();
 });
 function removeLoader(){
     $( "#loadingDiv" ).fadeOut(500, function() {
       $( "#loadingDiv" ).remove();
-  });  
+  }); 
 }</script> 
 <!-- 'About' Dropdown Javascript Toggle --> 
 <script type="text/javascript">
@@ -350,6 +352,10 @@ function showAbout() {
 function hideAbout() {
     document.getElementById('about').style.display = 'none';
 }
+function pageLoad(){
+   window.setTimeout(function(){$( "#hide" ).fadeOut(1000)}, 5000)
+}
+    
 </script> 
 <!--Navbar-->
 <nav class="navbar-default">
@@ -384,74 +390,74 @@ function hideAbout() {
     </div>
 </nav>
 <!--Content-->
-<div class="content"> <br>
-    <!--Regestration Form-->
-    
-    <div class="container" style=" position: relative; padding: 15px">
-        <div class="container col-lg-6">
-			<form>
-			<div class="row">
-                    <div class="form-group">
-                        <label>Username&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <div class="form-control"><?php echo $_POST["Username"];?></div>
+<div class="content">
+<br>
+<!--Regestration Form-->
+
+<div class="container" style=" position: relative; padding: 15px">
+    <div class="container col-lg-6">
+        <div id="hide"><h3>Thank you for registering <?php echo $_POST["NameF"];echo " "; echo $_POST["NameL"];?></h3></div>
+        <br>
+        <form>
+            <div class="row">
+                <div class="form-group">
+                    <label>Username</label>
+                    <div class="form-control"><?php echo $_POST["Username"];?></div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div type="password" class="form-control" disabled>
+                        <?php
+                        echo str_repeat( "*", strlen( $_POST[ "Password" ] ) );
+                        ?>
                     </div>
-                    <div class="form-group">
-                        <label>Password&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <div type="password" class="form-control" disabled>
-                            <?php
-                            echo str_repeat("*", strlen($_POST["Password"]));
-                            ?>                        
+                </div>
+                <div class="form-group">
+                    <label>First Name</label>
+                    <div class="form-control"> <?php echo $_POST["NameF"];?> </div>
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <div class="form-control"><?php echo $_POST["NameL"];?></div>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <div class="form-control"><?php echo $_POST["AddressShip"];?></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>City</label>
+                            <div class="form-control"><?php echo $_POST["CityA"];?></div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>First Name&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <div class="form-control">
-                            <?php echo $_POST["NameF"];?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Last Name&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <div class="form-control"><?php echo $_POST["NameL"];?></div>
-                    </div>
-                    <div class="form-group">
-                        <label>Address&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <div class="form-control"><?php echo $_POST["AddressShip"];?></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>City&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <div class="form-control"><?php echo $_POST["CityA"];?></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>State / Province&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <div class="form-control"><?php echo $_POST["StateA"];?></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label>Zip&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <div class="form-control"><?php echo $_POST["ZipCode"];?></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-9">
-                            <div class="form-group">
-                                <label>Phone Number&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <div class="form-control"><?php echo $_POST["PhoneN"];?></div>
-                            </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>State / Province</label>
+                            <div class="form-control"><?php echo $_POST["StateA"];?></div>
                         </div>
                     </div>
                 </div>
-            	<p style="color: red; font-weight: lighter">*&nbsp;&nbsp;<em>Required</em></p>
-            	<p style="font-size: 14px; font-weight: lighter">I agree to recieve periodic email regarding new events and give aways&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Zip</label>
+                            <div class="form-control"><?php echo $_POST["ZipCode"];?></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <div class="form-control"><?php echo $_POST["PhoneN"];?></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p style="font-size: 14px; font-weight: lighter">Recive emails regarding events and giveaways&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="checkbox"style="transform: scale(1.5)" checked="<?php echo $_POST["Notify"];?>" onclick="return false;"/>
-            	</p>
-			</form>
-        </div>
+            </p>
+        </form>
+    </div>
 </div>
 </body>
 </html>
