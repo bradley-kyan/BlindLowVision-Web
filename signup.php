@@ -420,6 +420,10 @@ function pageLoad(){
                     <label>Last Name</label>
                     <div class="form-control"><?php echo $_POST["NameL"];?></div>
                 </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <div class="form-control"><?php echo $_POST["EmailA"];?></div>
+                    </div>
                 <div class="form-group">
                     <label>Address</label>
                     <div class="form-control"><?php echo $_POST["AddressShip"];?></div>
@@ -453,11 +457,70 @@ function pageLoad(){
                     </div>
                 </div>
             </div>
-            <p style="font-size: 14px; font-weight: lighter">Recive emails regarding events and giveaways&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="checkbox"style="transform: scale(1.5)" checked="<?php echo $_POST["Notify"];?>" onclick="return false;"/>
-            </p>
         </form>
     </div>
 </div>
+<?php  
+/*Connect using SQL Server authentication.*/  
+$serverName = "tcp:blv2020.database.windows.net,1433";  
+$connectionOptions = array(  
+    "Database" => "blvuserdata",  
+    "UID" => "connection",  
+    "PWD" => "blv2020@connecti0n"  
+);  
+$conn = sqlsrv_connect($serverName, $connectionOptions);  
+  
+if ($conn === false)  
+    {  
+    die(print_r(sqlsrv_errors() , true));  
+    }  
+/*Insert data.*/
+$username = $_POST['Username'];
+$email = $_POST['EmailA'];
+$notifyvalue = $_POST["Notify"];
+if (isset($_POST["Notify"])){
+    $notify = 1;
+    }
+    else {
+    $notify = 0;   
+    }
+$Sql = "
+DECLARE @username varchar(255);
+SET @username = (SELECT Username FROM Login);
+    IF @Username = '$username'
+    return;
+    
+WAITFOR DELAY '00:00:01';
+
+INSERT INTO Login (Username,Password,Email)   
+VALUES (?,?,?);
+
+WAITFOR DELAY '00:00:01';
+
+INSERT INTO UserInformation (UserID,First_Name,Last_Name,Phone,Address,City,Postcode,State)
+VALUES ((SELECT UserID FROM Login WHERE Username='$username'),?,?,?,?,?,?,?);
+
+INSERT INTO Notification(UserID,Notify)
+VALUES ((SELECT UserID FROM Login WHERE Username='$username'),'$notify')";
+    
+$params = array(&$_POST['Username'], &$_POST['Password'], &$_POST['EmailA'],
+                &$_POST['NameF'], &$_POST['NameL'], &$_POST['PhoneN'], &$_POST['AddressShip'], &$_POST['CityA'], &$_POST['ZipCode'], &$_POST['StateA']
+);  
+    $stmt = sqlsrv_query($conn, $Sql, $params);  
+    if ($stmt === false)  
+        {  
+        $errors = sqlsrv_errors();  
+        if ($errors[0]['code'] == 2601)  
+            {  
+            echo "An error occured.</br>";  
+            }  
+  
+        /*Die if other errors occurred.*/  
+            else  
+            {  
+            die(print_r($errors, true));  
+            }  
+        } 
+?>
 </body>
 </html>
