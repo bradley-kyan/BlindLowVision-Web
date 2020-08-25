@@ -383,31 +383,50 @@ function hideAbout() {
             </div>
         </div>
     </div>
-</nav>
+    <div class="container" id="loginbg" style="background-color: rgba(0,0,0,0.83); z-index: 1; position: fixed; width: 100%; height: 100%; top: 0%"></div>
+</nav> 
 <!--Content-->
 <div class="content"> <br>
     <!--Regestration Form-->
     
-    <div class="container" style=" position: relative; padding: 15px">
+    <div class="container-fluid" id="logincontainer" style="background-color:white; position: fixed; top: 10%; left: 10%; right: 40%; z-index: 2">
+        <button type="button" style="color: black; opacity: .8; padding-top: 5px; font-size: 500%" class="close" aria-label="Close" onClick="hideOverlay()">×</button>
+        <h3>Already Have An Account?</h3>
+        <button type="button" onClick="" class="btn-submit-content" style="margin-bottom: 15px">Login</button>
+    </div>
+    <script>
+    $( "#loginbg" ).click(function() {
+    hideOverlay();
+        });
+    function hideOverlay(){
+    $( "#logincontainer" ).fadeOut(500, function() {
+      $( "#logincontainer" ).remove();
+  });  
+    $( "#loginbg" ).fadeOut(500, function() {
+      $( "#loginbg" ).remove();
+  })    
+}
+    </script>
+    <div class="container" style=" position: relative; padding: 15px; z-index: 0">
         <div class="container col-lg-6">
             <form id="sForm" action="signup.php" method="post">
                 <div class="row">
                     <div class="form-group">
                         <label for="Username">Username&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="name" class="form-control" name="Username" id="Username" placeholder="myusername">
+                        <input type="name" class="form-control" name="Username" id="Username" placeholder="myusername" required>
                     </div>
                     <div class="form-group">
                         <label for="Password">Password&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="password" class="form-control" name="Password" id="Password" placeholder="*************">
+                        <input type="password" class="form-control" name="Password" id="Password" placeholder="*************" required>
                         <small><em>Minimum 8 Characters</em></small>
                     </div>
                     <div class="form-group">
                         <label for="Password">Re-Enter Password&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="password" class="form-control" name="PasswordR" id="PasswordR" placeholder="*************">
+                        <input type="password" class="form-control" name="PasswordR" id="PasswordR" placeholder="*************" required>
                     </div>
                     <div class="form-group">
                         <label for="NameF">First Name&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="name" class="form-control" name="NameF" id="NameF" placeholder="John" required autocomplete="given-name">
+                        <input type="name" class="form-control" name="NameF" id="NameF" placeholder="John" required autocomplete="given-name" >
                     </div>
                     <div class="form-group">
                         <label for="NameL">Last Name&nbsp;&nbsp;<span style="color: red">*</span></label>
@@ -429,19 +448,19 @@ function hideAbout() {
                     </div>
                     <div class="form-group">
                         <label for="AddressShip">Address&nbsp;&nbsp;<span style="color: red">*</span></label>
-                        <input type="text" class="form-control" name="AddressShip" id="AddressShip" placeholder="10 Address Street" required="true" autocomplete="shipping street-address">
+                        <input type="text" class="form-control" name="AddressShip" id="AddressShip" placeholder="10 Address Street" required autocomplete="shipping street-address">
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="CityA">City&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="text" class="form-control" name="CityA" id="CityA" placeholder="Auckland" autocomplete="shipping locality" required="true">
+                                <input type="text" class="form-control" name="CityA" id="CityA" placeholder="Auckland" autocomplete="shipping locality" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="StateA">State / Province&nbsp;&nbsp;<span style="color: red">*</span></label>
-                                <input type="text" class="form-control" name="StateA" id="StateA" placeholder="Waitakere" autocomplete="shipping region" required="true">
+                                <input type="text" class="form-control" name="StateA" id="StateA" placeholder="Waitakere" autocomplete="shipping region" required>
                             </div>
                         </div>
                     </div>
@@ -467,28 +486,66 @@ function hideAbout() {
 			</form>
         </div>
         <div class="col-lg-6">
+            <hr style="height: 3px; background:#1A73E8; margin-right:60%">
             <button id="submitbtn" class="btn-submit-content" onClick="checkinfo()" style="margin-top: 15px" enabled>Sign Up</button>
 
 			<script>
 			function checkinfo(){
-				const emailValid = EmailA.checkValidity();
-				if(emailValid){
-					submitbtn.disabled = false;
+                var btn = document.getElementById('submitbtn');
+                var emailValid = EmailA.checkValidity();            
+                var allowed = 0;
+                    document.getElementById('validationErr').innerHTML = ' ';
+                    document.getElementById('validationErr2').innerHTML = ' ';
+                    document.getElementById('validationErr4').innerHTML = ' ';
+                    document.getElementById('validationErr4').innerHTML = ' ';
+                    
+                if((document.getElementById('Password').value) !=  (document.getElementById('PasswordR').value)){
+                    btn.disabled = true;
+                    var allowed = 1;
+                    document.getElementById('validationErr2').innerHTML = 'Passwords are not the same';
+                    setTimeout(function(){ btn.disabled = false; }, 200);
+                }
+                if ((document.getElementById('Password').value.length) < 8){
+                    btn.disabled = true;
+                    var allowed = 1;
+                    document.getElementById('validationErr3').innerHTML = 'Password is shorter than 8 characters';
+                    setTimeout(function(){ btn.disabled = false; }, 200);
+                    
+                }
+                if(!(emailValid)){
+					submitbtn.disabled = true;
+                    var allowed = 1;
+					document.getElementById('validationErr').innerHTML = 'Invalid Email';
+                    setTimeout(function(){ btn.disabled = false; }, 200);
+				}
+                if(((document.getElementById('Username').innerHTML.length) || (document.getElementById('Password').value.length) || (document.getElementById('PasswordR').value.length) || (document.getElementById('NameF').innerHTML.length) || (document.getElementById('NameL').innerHTML.length) || (document.getElementById('EmailA').innerHTML.length) || (document.getElementById('EmailC').innerHTML.length) || (document.getElementById('AddressShip').innerHTML.length) || (document.getElementById('CityA').innerHTML.length) || (document.getElementById('StateA').innerHTML.length) || (document.getElementById('ZipCode').innerHTML.length) || (document.getElementById('PhoneN').innerHTML.length)) == 0){
+                    btn.disabled = true;
+                    var allowed = 1;
+                    document.getElementById('validationErr4').innerHTML = 'Please fill out required fields';
+                    setTimeout(function(){ btn.disabled = false; }, 200);
+                }
+				if (allowed == 0) {
+					btn.disabled = false;
+                    if (confirm("Is this information correct?")){   
 					document.getElementById('validationErr').innerHTML = '';
 					document.getElementById('sForm').submit();
+                        }
+                    else{
+                        return;
+                    }
 				}
-				else {
-					submitbtn.disabled = true;
-					document.getElementById('validationErr').innerHTML = 'Invalid Email';
-                    setTimeout(function(){ submitbtn.disabled = false; }, 200);
-				}
-				}			
+                if (allowed == 1)
+                    setTimeout(function(){alert("Please Fix Errors");},10);
+            }
 			</script>
 
             <br>
             <br>
             <p style="font-size: 12px; font-weight: lighter"><em>By signing up you agree to recieve  emails from the Blind Low Vision Foundation and allow the Blind Low Vison Foundation to have access to the provided information for an unlimited period of time unless specified otherwise.</em></p>
-			<label id="validationErr" style="color: red"></label>
+            <label id="validationErr4" style="color: red"></label><br>
+			<label id="validationErr" style="color: red"></label><br>
+            <label id="validationErr2" style="color: red"></label><br>
+            <label id="validationErr3" style="color: red"></label>
         </div>
     </div>
 </div>
