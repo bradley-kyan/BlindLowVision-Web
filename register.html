@@ -8,13 +8,10 @@
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="icon" href="img/logo.png">
-<link href="css/liMarquee.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
-<script type="text/javascript" src="css/slick.min.js"></script> 
-<script src="js/jquery.liMarquee.js"></script>
 <style type="text/css">
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     transition: background-color .2s;
@@ -392,7 +389,9 @@ function hideAbout() {
     <div class="container-fluid" id="logincontainer" style="background-color:white; position: fixed; top: 10%; left: 10%; right: 40%; z-index: 2">
         <button type="button" style="color: black; opacity: .8; padding-top: 5px; font-size: 500%" class="close" aria-label="Close" onClick="hideOverlay()">×</button>
         <h3>Already Have An Account?</h3>
-        <button type="button" onClick="" class="btn-submit-content" style="margin-bottom: 15px">Login</button>
+        <div class="container-fluid" style="padding-bottom: 15px">
+            <iframe src="login.php" style="overflow: hidden; border: hidden; width: 100%; height: 200px;" scrolling="no"></iframe>
+        </div>
     </div>
     <script>
     $( "#loginbg" ).click(function() {
@@ -487,8 +486,7 @@ function hideAbout() {
         </div>
         <div class="col-lg-6">
             <hr style="height: 3px; background:#1A73E8; margin-right:60%">
-            <button id="submitbtn" class="btn-submit-content" onClick="checkinfo()" style="margin-top: 15px" enabled>Sign Up</button>
-
+            <button id="submitbtn" class="btn-submit-content" onClick="checkinfo()" enabled>Sign Up</button>
 			<script>
 			function checkinfo(){
                 var btn = document.getElementById('submitbtn');

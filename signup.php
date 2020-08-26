@@ -278,6 +278,13 @@ transform: rotate(360deg);
 html {
     scroll-behavior: smooth;
 }
+.duplicate{
+    background-color: white;
+    z-index: 10;
+    position:fixed;
+    height: 100%;
+    width: 100%;
+}
 </style>
 </head>
 <body onLoad="setTimeout(pageLoad(),5000)">
@@ -355,9 +362,28 @@ function hideAbout() {
 function pageLoad(){
    window.setTimeout(function(){$( "#hide" ).fadeOut(1000)}, 5000)
 }
-    
+function duplicateFrame(){
+    document.getElementById('duplicateFrame').style.display = "block";
+    window.setTimeout(function(){window.history.back();}, 7000);
+        var timeleft = 5;
+        var Timer = setInterval(function(){
+        if(timeleft <= 0){
+            clearInterval(Timer);
+            document.getElementById("duplicateTime").innerHTML = "Retuning";
+        } else {
+            document.getElementById("duplicateTime").innerHTML = 'Returning in: &nbsp;&nbsp;';
+            document.getElementById("duplicateTime").innerHTML += timeleft;
+        }
+        timeleft -= 1;
+        }, 1000);
+}  
 </script> 
 <!--Navbar-->
+<div class="container duplicate" id="duplicateFrame" style="display: none">
+    <h2 id="duplicateText">User Already Exists</h2>
+    <h4 id="duplicateTime">Returning in: &nbsp;&nbsp;</h4><br>
+    <a onClick="window.history.back()">Or Press Here To Return</a>
+    </div>
 <nav class="navbar-default">
     <div id="navcontainer" class="container">
         <div class="navbar-header"> <a class="navbar-brand" href="index.html" onclick="clickHome(); return false;"> <img class="img-resonsive" width="300px" height="" src="img/Blind & Low Vision NZ_Formerly_Horizontal_RGB (1).jpg" alt="Blind And Low Vision New Zealand"> </a>
@@ -513,13 +539,18 @@ $params = array(&$_POST['Username'], &$_POST['Password'], &$_POST['EmailA'],
         if ($errors[0]['code'] == 2601)  
             {  
             echo "An error occured.</br>";  
-            }  
+            } 
+            else if($errors[0]['code'] == 512){
+                echo '<script type="text/javascript">',
+                'duplicateFrame();',
+                '</script>';
+                }
   
-        /*Die if other errors occurred.*/  
-            else  
+        /*Die if other errors occurred.*/    
+        else  
             {  
             die(print_r($errors, true));  
-            }  
+            }
         } 
 ?>
 </body>
