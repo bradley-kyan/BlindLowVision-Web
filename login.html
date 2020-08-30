@@ -34,57 +34,35 @@
 </style>
 </head>
 <body>
-    <form id="lForm" method="post">
+    <form id="lForm" method="post" action="login1.php">
         <div class="form-group">
             <label for="Username">Username / Email</label>
-            <input type="name" class="form-control" name="UsernameLogin" id="UsernameLogin" placeholder="myusername" required>
+            <input type="name" class="form-control" name="UsernameLogin" id="UsernameLogin" placeholder="myusername" required disabled>
         </div>
         <div class="form-group">
             <label for="Username">Password</label>
-            <input type="password" class="form-control" name="PasswordLogin" id="PasswordLogin" placeholder="**********" required>
+            <input type="password" class="form-control" name="PasswordLogin" id="PasswordLogin" placeholder="**********" required disabled>
         </div>
+        <p style="font-size: 16px; font-weight: lighter; color: red" id="error"></p>
     </form>
-<button type="button" onClick="" class="btn-submit-content" style="margin-bottom: 15px">Login</button>
-    <?php
-    $usernameLogin = $_POST['UsernameLogin'];
-    $passwordLogin = $_POST['PasswordLogin'];
-    /*Connect using SQL Server authentication.*/  
-$serverName = "tcp:blv2020.database.windows.net,1433";  
-$connectionOptions = array(  
-    "Database" => "blvuserdata",  
-    "UID" => "connection",  
-    "PWD" => "blv2020@connecti0n"  
-);  
-$conn = sqlsrv_connect($serverName, $connectionOptions);  
-  
-if ($conn === false)  
-    {  
-    die(print_r(sqlsrv_errors() , true));  
-    }
-    
-    $Sql = "
-    SELECT Username, Password, Email FROM Login
-    WHERE (Username='$usernameLogin' OR Email='$usernameLogin') AND Password='$passwordLogin'
-    ";
-    
-    
-    $stmt = sqlsrv_query($conn, $Sql, $params);  
-    if ($stmt === false)  
-        {  
-        $errors = sqlsrv_errors();  
-        if ($errors[0]['code'] == 2601)  
-            {  
-            echo "An error occured.</br>";  
-            }  
-  
-        /*Die if other errors occurred.*/  
-            else  
-            {  
-            die(print_r($errors, true));  
-            }  
-        }
-    
-    ?>
-    
+<button type="button" id="requestValid" class="btn-submit-content" style="margin-bottom: 15px" disabled>Login</button>
+    <script language="javascript">
+        $('#requestValid').click(function(e){
+            var username = document.getElementById('UsernameLogin').innerHTML;
+            var password = document.getElementById('PasswordLogin').innerHTML.value;
+            $.ajax({
+            type: "POST",
+            url: "login1.php",
+                data: {username:username, password:password},
+             success :function(data){
+                if(data == 1){
+                    document.getElementById('error').innerHTML = "Invalid username or email";
+                } else {
+                    document.getElementById('error').innerHTML = " ";
+                }
+            }
+            })
+        };   
+    </script>
 </body>
 </html>

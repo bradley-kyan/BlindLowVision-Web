@@ -383,7 +383,7 @@ function duplicateFrame(){
     <h2 id="duplicateText">User Already Exists</h2>
     <h4 id="duplicateTime">Returning in: &nbsp;&nbsp;</h4><br>
     <a onClick="window.history.back()">Or Press Here To Return</a>
-    </div>
+</div>
 <nav class="navbar-default">
     <div id="navcontainer" class="container">
         <div class="navbar-header"> <a class="navbar-brand" href="index.html" onclick="clickHome(); return false;"> <img class="img-resonsive" width="300px" height="" src="img/Blind & Low Vision NZ_Formerly_Horizontal_RGB (1).jpg" alt="Blind And Low Vision New Zealand"> </a>
@@ -503,18 +503,31 @@ if ($conn === false)
 /*Insert data.*/
 $username = $_POST['Username'];
 $email = $_POST['EmailA'];
-$notifyvalue = $_POST["Notify"];
 if (isset($_POST["Notify"])){
     $notify = 1;
     }
     else {
     $notify = 0;   
+    };
+if (isset($_POST["event1"])){
+    $event1 = 1;
     }
+    else {
+    $event1 = 0;   
+    };
+if (isset($_POST["event2"])){
+    $event2 = 1;
+    }
+    else {
+    $event2 = 0;   
+    };
+    $exists = 0;
 $Sql = "
-DECLARE @username varchar(255);
-SET @username = (SELECT Username FROM Login);
-    IF @Username = '$username'
-    return;
+DECLARE @username varchar(255)
+SET @username = (SELECT Username FROM Login WHERE Username 
+LIKE '$username')
+    IF @username = '$username'
+    RETURN;
     
 WAITFOR DELAY '00:00:01';
 
@@ -526,32 +539,38 @@ WAITFOR DELAY '00:00:01';
 INSERT INTO UserInformation (UserID,First_Name,Last_Name,Phone,Address,City,Postcode,State)
 VALUES ((SELECT UserID FROM Login WHERE Username='$username'),?,?,?,?,?,?,?);
 
-INSERT INTO Notification(UserID,Notify)
-VALUES ((SELECT UserID FROM Login WHERE Username='$username'),'$notify')";
+INSERT INTO Notification(UserID,Notify,event1,event2)
+VALUES ((SELECT UserID FROM Login WHERE Username='$username'),'$notify','$event1','$event2');";
     
 $params = array(&$_POST['Username'], &$_POST['Password'], &$_POST['EmailA'],
                 &$_POST['NameF'], &$_POST['NameL'], &$_POST['PhoneN'], &$_POST['AddressShip'], &$_POST['CityA'], &$_POST['ZipCode'], &$_POST['StateA']
 );  
     $stmt = sqlsrv_query($conn, $Sql, $params);  
-    if ($stmt === false)  
+
+if ($stmt) {
+   $rows = sqlsrv_has_rows( $stmt );
+   if ($rows !== false)
+      echo "<script>,
+      duplicateFrame(),
+      </script>;";
+}    
+  
+while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_NUMERIC) ) {
+      echo $row[0];
+}
+if ($stmt === false)  
         {  
-        $errors = sqlsrv_errors();  
-        if ($errors[0]['code'] == 2601)  
+        if (sqlsrv_errors() !== null)  
             {  
-            echo "An error occured.</br>";  
-            } 
-            else if($errors[0]['code'] == 512){
-                echo '<script type="text/javascript">',
+            echo '<script type="text/javascript">',
                 'duplicateFrame();',
-                '</script>';
-                }
+                '</script>';  
+            } 
+}
+
   
         /*Die if other errors occurred.*/    
-        else  
-            {  
-            die(print_r($errors, true));  
-            }
-        } 
+
 ?>
 </body>
 </html>

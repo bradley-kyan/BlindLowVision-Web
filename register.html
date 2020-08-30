@@ -390,7 +390,8 @@ function hideAbout() {
         <button type="button" style="color: black; opacity: .8; padding-top: 5px; font-size: 500%" class="close" aria-label="Close" onClick="hideOverlay()">×</button>
         <h3>Already Have An Account?</h3>
         <div class="container-fluid" style="padding-bottom: 15px">
-            <iframe src="login.php" style="overflow: hidden; border: hidden; width: 100%; height: 200px;" scrolling="no"></iframe>
+            <p style="font-size: 30px"><strong>Login is currently disabled due to errors</strong></p>
+            <iframe src="login.html" style="overflow: hidden; border: hidden; width: 100%; height: 250px;" scrolling="no"></iframe>
         </div>
     </div>
     <script>
@@ -481,10 +482,16 @@ function hideAbout() {
             	<p style="color: red; font-weight: lighter">*&nbsp;&nbsp;<em>Required</em></p>
             	<p style="font-size: 14px; font-weight: lighter">I agree to recieve periodic email regarding new events and give aways&nbsp;&nbsp;&nbsp;&nbsp;
                 	<input type="checkbox" name="Notify" id="Notify" style="transform: scale(1.5)" value="okay">
-            	</p>            
+            	</p> 
+             <p style="font-size: 14px; font-weight: lighter">I am attending the Red Puppy Parade&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="event1" id="event1" style="transform: scale(1.5)">
+            	</p>
+             <p style="font-size: 14px; font-weight: lighter">I am attending the Harbour Bridge Run&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="event2" id="event2" style="transform: scale(1.5)">
+            	</p>
 			</form>
         </div>
-        <div class="col-lg-6">
+            <div class="col-lg-6">
             <hr style="height: 3px; background:#1A73E8; margin-right:60%">
             <button id="submitbtn" class="btn-submit-content" onClick="checkinfo()" enabled>Sign Up</button>
 			<script>
