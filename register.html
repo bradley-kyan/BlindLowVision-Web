@@ -390,8 +390,39 @@ function hideAbout() {
         <button type="button" style="color: black; opacity: .8; padding-top: 5px; font-size: 500%" class="close" aria-label="Close" onClick="hideOverlay()">×</button>
         <h3>Already Have An Account?</h3>
         <div class="container-fluid" style="padding-bottom: 15px">
-            <p style="font-size: 30px"><strong>Login is currently disabled due to errors</strong></p>
-            <iframe src="login.html" style="overflow: hidden; border: hidden; width: 100%; height: 250px;" scrolling="no"></iframe>
+    <form id="lForm" method="post" action="user.php">
+        <div class="form-group">
+            <label for="Username">Username / Email</label>
+            <input type="name" class="form-control" name="UsernameLogin" id="UsernameLogin" placeholder="myusername" enabled>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="PasswordLogin" id="PasswordLogin" placeholder="**********" enabled>
+        </div>
+        <p style="font-size: 16px; font-weight: lighter; color: red" id="error"></p>
+    </form>
+<button type="button" id="requestValid" class="btn-submit-content" style="margin-bottom: 15px">Login</button>
+    <script language="javascript">
+    $(document).ready(function () {    
+        $('#requestValid').click(function(e){
+            var username11 = document.getElementById('UsernameLogin').value;
+            var password11 = document.getElementById('PasswordLogin').value;
+            document.getElementById('error').innerHTML = " ";
+            $.ajax({
+            type: "POST",
+            url: "login.php",
+                data: {username11:username11, password11:password11},
+             success :function(data){
+                if(data == 404){
+                    document.getElementById('error').innerHTML = "Invalid username or email";
+                } else {
+                    document.getElementById('lForm').submit();
+                }
+            }
+            })
+        })
+    });   
+    </script>
         </div>
     </div>
     <script>
@@ -400,12 +431,19 @@ function hideAbout() {
         });
     function hideOverlay(){
     $( "#logincontainer" ).fadeOut(500, function() {
-      $( "#logincontainer" ).remove();
+      $( "#logincontainer" ).hide();
   });  
     $( "#loginbg" ).fadeOut(500, function() {
-      $( "#loginbg" ).remove();
+      $( "#loginbg" ).hide();
   })    
-}
+} 
+
+function showOverlay(){
+    $( "#loginbg" ).fadeIn(500);
+    $( "#logincontainer" ).fadeIn(500); 
+    $( "#logincontainer" ).show();
+      $( "#loginbg" ).show();
+} 
     </script>
     <div class="container" style=" position: relative; padding: 15px; z-index: 0">
         <div class="container col-lg-6">
@@ -551,6 +589,7 @@ function hideAbout() {
 			<label id="validationErr" style="color: red"></label><br>
             <label id="validationErr2" style="color: red"></label><br>
             <label id="validationErr3" style="color: red"></label>
+            <button id="showButton" onClick="showOverlay()">Or Login</button>
         </div>
     </div>
 </div>
