@@ -537,6 +537,16 @@ function showOverlay(){
                 var btn = document.getElementById('submitbtn');
                 var emailValid = EmailA.checkValidity();            
                 var allowed = 0;
+					var Username = document.getElementById('Username').value;
+					var Password = document.getElementById('Password').value;
+					var EmailA = document.getElementById('EmailA').value;
+					var NameF = document.getElementById('NameF').value;
+					var NameL = document.getElementById('NameL').value;
+					var PhoneN = document.getElementById('PhoneN').value;
+					var AddressShip = document.getElementById('AddressShip').value;
+					var CityA = document.getElementById('CityA').value;
+					var ZipCode = document.getElementById('ZipCode').value;
+					var StateA = document.getElementById('StateA').value;
                     document.getElementById('validationErr').innerHTML = ' ';
                     document.getElementById('validationErr2').innerHTML = ' ';
                     document.getElementById('validationErr4').innerHTML = ' ';
@@ -569,27 +579,39 @@ function showOverlay(){
                 }
 				if (allowed == 0) {
 					btn.disabled = false;
-                    if (confirm("Is this information correct?")){   
-					document.getElementById('validationErr').innerHTML = '';
-					document.getElementById('sForm').submit();
-                        }
+                    if (confirm("Is this information correct?")){
+						document.getElementById('validationErr').innerHTML = '';
+						$.ajax({
+						type: "POST",
+						url: "signup.php",
+							data: {Username:Username, Password:Password, EmailA:EmailA, NameF:NameF, NameL:NameL, PhoneN:PhoneN, AddressShip:AddressShip, CityA:CityA, ZipCode:ZipCode, StateA:StateA},
+						 	success :function(data){
+							if(data == 404){
+								alert("An Error Occured Creating User");
+							} else {
+								alert("Thank you for signing up " += NameF += " " += NameL);
+							}
+							}
+						})
+                        }}
                     else{
                         return;
                     }
-				}
-                if (allowed == 1)
-                    setTimeout(function(){alert("Please Fix Errors");},10);
-            }
+				if (allowed == 1)
+                	setTimeout(function(){alert("Please Fix Errors");},10);
+			} 
 			</script>
 
             <br>
             <br>
             <p style="font-size: 12px; font-weight: lighter"><em>By signing up you agree to recieve  emails from the Blind Low Vision Foundation and allow the Blind Low Vison Foundation to have access to the provided information for an unlimited period of time unless specified otherwise.</em></p>
+			<button id="showButton" onClick="showOverlay()">Or Login</button>
+			<br><br>
             <label id="validationErr4" style="color: red"></label><br>
 			<label id="validationErr" style="color: red"></label><br>
             <label id="validationErr2" style="color: red"></label><br>
             <label id="validationErr3" style="color: red"></label>
-            <button id="showButton" onClick="showOverlay()">Or Login</button>
+            
         </div>
     </div>
 </div>
