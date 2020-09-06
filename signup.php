@@ -15,19 +15,19 @@ if ($conn === false)
 /*Insert data.*/
 $username = $_POST['Username'];
 $email = $_POST['EmailA'];
-if (isset($_POST["Notify"])){
+if ($_POST["Notify"] == "1"){
     $notify = 1;
     }
     else {
     $notify = 0;   
     };
-if (isset($_POST["event1"])){
+if ($_POST["event1"] == "1"){
     $event1 = 1;
     }
     else {
     $event1 = 0;   
     };
-if (isset($_POST["event2"])){
+if ($_POST["event2"] == "1"){
     $event2 = 1;
     }
     else {
@@ -37,7 +37,7 @@ if (isset($_POST["event2"])){
 $Sql = "
 DECLARE @username varchar(255)
 SET @username = (SELECT Username FROM Login WHERE Username 
-LIKE '$username')
+= '$username')
     IF @username = '$username'
     RETURN;
     
@@ -61,7 +61,7 @@ $params = array(&$_POST['Username'], &$_POST['Password'], &$_POST['EmailA'],
 
 if ($stmt) {
    $rows = sqlsrv_has_rows( $stmt );
-   if ($rows !== false){
+   if ($rows !== true){
       echo 404;}
 	else{
 		echo 200;

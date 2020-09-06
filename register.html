@@ -277,7 +277,7 @@ html {
 }
 </style>
 </head>
-<body>
+<body onLoad="userAccountName()">
 <!-- Returns links to # if linking to current page using 'onclick="function(); return false;"' | Change ID to current page--> 
 <script type="text/javascript" id="register">
 function clickHome() {
@@ -373,9 +373,39 @@ function hideAbout() {
                     <!--Sign Up Page-->
                     <li class="active"><a href="register.html">Sign Up</a></li>
                     <!-- 2nd page button -->
-                    <li><a href="https://www.blindlowvision.org.nz/">Official Website</a></li>
+                    <li><a href="" id="account"></a></li>
                     <!-- 3rd page button -->
                     <li><a class="btn-donate" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
+                    <script>
+                        function getCookie(cname) {
+                          var name = cname + "=";
+                          var decodedCookie = decodeURIComponent(document.cookie);
+                          var ca = decodedCookie.split(';');
+                          for(var i = 0; i < ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                              c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                              return c.substring(name.length, c.length);
+                            }
+                          }
+                          return "";
+                        }
+
+                        function userAccountName(){
+                            try{
+                                var userCookie = getCookie("cookieUserLogin")
+                                var usernameCookie = JSON.parse(userCookie);
+                                var FirstNUser = usernameCookie.first_name;
+                                var LastNUser = usernameCookie.last_name;
+                                document.getElementById('account').innerHTML = FirstNUser + " " + LastNUser;
+                            }
+                            catch(err){
+                                document.getElementById('account').innerHTML = "My Account";
+                            }
+                        }
+                    </script>
                 </ul>
             </div>
         </div>
@@ -416,7 +446,7 @@ function hideAbout() {
                 if(data == 404){
                     document.getElementById('error').innerHTML = "Invalid username or email";
                 } else {
-                    document.getElementById('lForm').submit();
+                    window.location.replace("index.html");
                 }
             }
             })
@@ -519,46 +549,62 @@ function showOverlay(){
                 </div>
             	<p style="color: red; font-weight: lighter">*&nbsp;&nbsp;<em>Required</em></p>
             	<p style="font-size: 14px; font-weight: lighter">I agree to recieve periodic email regarding new events and give aways&nbsp;&nbsp;&nbsp;&nbsp;
-                	<input type="checkbox" name="Notify" id="Notify" style="transform: scale(1.5)" value="okay">
+                	<input type="checkbox" name="Notify" id="Notify" style="transform: scale(1.5)" value="1">
             	</p> 
              <p style="font-size: 14px; font-weight: lighter">I am attending the Red Puppy Parade&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="checkbox" name="event1" id="event1" style="transform: scale(1.5)">
+                <input type="checkbox" value="1" name="event1" id="event1" style="transform: scale(1.5)">
             	</p>
              <p style="font-size: 14px; font-weight: lighter">I am attending the Harbour Bridge Run&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="checkbox" name="event2" id="event2" style="transform: scale(1.5)">
+                <input type="checkbox" name="event2" value="1" id="event2" style="transform: scale(1.5)">
             	</p>
 			</form>
         </div>
             <div class="col-lg-6">
             <hr style="height: 3px; background:#1A73E8; margin-right:60%">
-            <button id="submitbtn" class="btn-submit-content" onClick="checkinfo()" enabled>Sign Up</button>
+            <button id="submitbtn" class="btn-submit-content">Sign Up</button>
 			<script>
-			function checkinfo(){
+			$(document).ready(function () {    
+            $('#submitbtn').click(function(e){
                 var btn = document.getElementById('submitbtn');
                 var emailValid = EmailA.checkValidity();            
                 var allowed = 0;
-					var Username = document.getElementById('Username').value;
-					var Password = document.getElementById('Password').value;
-					var EmailA = document.getElementById('EmailA').value;
-					var NameF = document.getElementById('NameF').value;
-					var NameL = document.getElementById('NameL').value;
-					var PhoneN = document.getElementById('PhoneN').value;
-					var AddressShip = document.getElementById('AddressShip').value;
-					var CityA = document.getElementById('CityA').value;
-					var ZipCode = document.getElementById('ZipCode').value;
-					var StateA = document.getElementById('StateA').value;
+                if(document.getElementById('Notify').checked === true){
+                    var Notify1 = 1
+                }
+                else{
+                    var Notify1 = 0}
+                if(document.getElementById('event1').checked === true){
+                    var event11 = 1
+                }
+                else{
+                    var event11 = 0}
+                if(document.getElementById('event2').checked === true){
+                    var event21 = 1
+                }
+                else{
+                    var event21 = 0}
+                    var Username1 = document.getElementById('Username').value;
+					var Password1 = document.getElementById('Password').value;
+					var EmailA1 = document.getElementById('EmailA').value;
+					var NameF1 = document.getElementById('NameF').value;
+					var NameL1 = document.getElementById('NameL').value;
+					var PhoneN1 = document.getElementById('PhoneN').value;
+					var AddressShip1 = document.getElementById('AddressShip').value;
+					var CityA1 = document.getElementById('CityA').value;
+					var ZipCode1 = document.getElementById('ZipCode').value;
+					var StateA1 = document.getElementById('StateA').value;
                     document.getElementById('validationErr').innerHTML = ' ';
                     document.getElementById('validationErr2').innerHTML = ' ';
                     document.getElementById('validationErr4').innerHTML = ' ';
                     document.getElementById('validationErr4').innerHTML = ' ';
                     
-                if((document.getElementById('Password').value) !=  (document.getElementById('PasswordR').value)){
+                if(document.getElementById('Password').value !=  document.getElementById('PasswordR').value){
                     btn.disabled = true;
                     var allowed = 1;
                     document.getElementById('validationErr2').innerHTML = 'Passwords are not the same';
                     setTimeout(function(){ btn.disabled = false; }, 200);
                 }
-                if ((document.getElementById('Password').value.length) < 8){
+                if (document.getElementById('Password').value.length < 8){
                     btn.disabled = true;
                     var allowed = 1;
                     document.getElementById('validationErr3').innerHTML = 'Password is shorter than 8 characters';
@@ -571,7 +617,7 @@ function showOverlay(){
 					document.getElementById('validationErr').innerHTML = 'Invalid Email';
                     setTimeout(function(){ btn.disabled = false; }, 200);
 				}
-                if(((document.getElementById('Username').innerHTML.length) || (document.getElementById('Password').value.length) || (document.getElementById('PasswordR').value.length) || (document.getElementById('NameF').innerHTML.length) || (document.getElementById('NameL').innerHTML.length) || (document.getElementById('EmailA').innerHTML.length) || (document.getElementById('EmailC').innerHTML.length) || (document.getElementById('AddressShip').innerHTML.length) || (document.getElementById('CityA').innerHTML.length) || (document.getElementById('StateA').innerHTML.length) || (document.getElementById('ZipCode').innerHTML.length) || (document.getElementById('PhoneN').innerHTML.length)) == 0){
+                if(document.getElementById('Username').value.length == 0 || document.getElementById('Password').value.length == 0 || document.getElementById('PasswordR').value.length == 0 || document.getElementById('NameF').value.length == 0 || document.getElementById('NameL').value.length == 0 || document.getElementById('EmailA').value.length == 0 || document.getElementById('EmailC').value.length == 0 || document.getElementById('AddressShip').value.length == 0 || document.getElementById('CityA').value.length == 0 || document.getElementById('StateA').value.length == 0 || document.getElementById('ZipCode').value.length == 0 || document.getElementById('PhoneN').value.length == 0){
                     btn.disabled = true;
                     var allowed = 1;
                     document.getElementById('validationErr4').innerHTML = 'Please fill out required fields';
@@ -584,22 +630,21 @@ function showOverlay(){
 						$.ajax({
 						type: "POST",
 						url: "signup.php",
-							data: {Username:Username, Password:Password, EmailA:EmailA, NameF:NameF, NameL:NameL, PhoneN:PhoneN, AddressShip:AddressShip, CityA:CityA, ZipCode:ZipCode, StateA:StateA},
+							data: {Username:Username1, Password:Password1, EmailA:EmailA1, NameF:NameF1, NameL:NameL1, PhoneN:PhoneN1, AddressShip:AddressShip1, CityA:CityA1, ZipCode:ZipCode1, StateA:StateA1, event1:event11, event2:event21, Notify:Notify1},
 						 	success :function(data){
 							if(data == 404){
-								alert("An Error Occured Creating User");
+								setTimeout(function(){ alert("𝗔𝗻 𝗘𝗿𝗿𝗼𝗿 𝗢𝗰𝗰𝘂𝗿𝗲𝗱 𝗖𝗿𝗲𝗮𝘁𝗶𝗻𝗴 𝗨𝘀𝗲𝗿 \n -- User Already Exists"); }, 200);
 							} else {
-								alert("Thank you for signing up " += NameF += " " += NameL);
+                                setTimeout(function(){ alert("Thank you for signing up"); }, 200);
 							}
 							}
 						})
-                        }}
-                    else{
-                        return;
                     }
+                }
 				if (allowed == 1)
                 	setTimeout(function(){alert("Please Fix Errors");},10);
-			} 
+            })
+            }); 
 			</script>
 
             <br>

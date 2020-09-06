@@ -11,17 +11,40 @@ $connectionOptions = array(
 $conn = sqlsrv_connect($serverName, $connectionOptions);  
       
     $Sql = "
-    SELECT * FROM Login
-    WHERE (Username='$usernameLogin' OR Email='$usernameLogin') AND Password='$passwordLogin'
+    DECLARE @ID varchar(255)
+    SET @ID = (SELECT UserID FROM Login WHERE (Username='$usernameLogin' OR Email='$usernameLogin') AND Password = '$passwordLogin');
+
+    DECLARE @firstName varchar(255)
+    SET @firstName = (SELECT First_Name FROM UserInformation WHERE UserID = @ID)    
+    
+    DECLARE @lastName varchar(255)
+    SET @lastName = (SELECT Last_Name FROM UserInformation WHERE UserID = @ID)
+    
+    DECLARE @username varchar(255)
+    SET @username = (SELECT Username FROM Login WHERE UserID = @ID)
+    
+    DECLARE @email varchar(255)
+    SET @email = (SELECT Email FROM Login WHERE UserID = @ID)
+    
+    SELECT @firstName AS 'first_name', @lastName AS 'last_name', @ID AS 'UserID', @username AS 'Username', @email AS 'Email'
     ";
     $stmt = sqlsrv_query($conn, $Sql, $params);
     $row_count = sqlsrv_has_rows( $stmt );
+    $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC);
+    $firstName = $row['first_name'];
+    $lastName = $row['last_name'];
+    $UserID = $row['UserID'];
+    $Username = $row['Username'];
+    $Email = $row['Email'];
     if ($row_count === false){
         echo 404;
         exit;
         }
     else {
         echo 200;
+        $array = array("username" => $Username, "password" => $passwordLogin, "first_name" => $firstName, "last_name" => $lastName, "UserID" => $UserID, "Email" => $Email);
+        setcookie('cookieUserLogin',json_encode($array));
+        echo $_COOKIE[$cookieUserLogin];
         exit;
     }
     ?>

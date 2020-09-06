@@ -261,7 +261,7 @@ html {
 }
 </style>
 </head>
-<body>
+<body onLoad="userAccountName()">
 <!-- Returns links to # if linking to current page using 'onclick="function(); return false;"' | Change ID to current page--> 
 <script type="text/javascript" id="events">
 function clickHome() {
@@ -357,9 +357,39 @@ function hideAbout() {
                     <!--Sign Up Page-->
                     <li><a href="register.html">Sign Up</a></li>
                     <!-- 2nd page button -->
-                    <li><a href="https://www.blindlowvision.org.nz/">Official Website</a></li>
+                    <li><a href="" id="account"></a></li>
                     <!-- 3rd page button -->
                     <li><a class="btn-donate" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
+                    <script>
+                        function getCookie(cname) {
+                          var name = cname + "=";
+                          var decodedCookie = decodeURIComponent(document.cookie);
+                          var ca = decodedCookie.split(';');
+                          for(var i = 0; i < ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                              c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                              return c.substring(name.length, c.length);
+                            }
+                          }
+                          return "";
+                        }
+
+                        function userAccountName(){
+                            try{
+                                var userCookie = getCookie("cookieUserLogin")
+                                var usernameCookie = JSON.parse(userCookie);
+                                var FirstNUser = usernameCookie.first_name;
+                                var LastNUser = usernameCookie.last_name;
+                                document.getElementById('account').innerHTML = FirstNUser + " " + LastNUser;
+                            }
+                            catch(err){
+                                document.getElementById('account').innerHTML = "My Account";
+                            }
+                        }
+                    </script>
                 </ul>
             </div>
         </div>
