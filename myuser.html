@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -422,49 +423,44 @@ function duplicateFrame(){
 
 <div class="container" style=" position: relative; padding: 15px">
     <div class="container col-lg-6">
-        <div id="hide"><h3>Thank you for registering <?php echo $_POST["NameF"];echo " "; echo $_POST["NameL"];?></h3></div>
-        <br>
-        <form>
+        <form id="userForm">
             <div class="row">
                 <div class="form-group">
                     <label>Username</label>
-                    <div class="form-control"><?php echo $_POST["Username"];?></div>
+                    <div class="form-control"></div>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <div type="password" class="form-control" disabled>
-                        <?php
-                        echo str_repeat( "*", strlen( $_POST[ "Password" ] ) );
-                        ?>
+                    <div type="password" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label>First Name</label>
-                    <div class="form-control"> <?php echo $_POST["NameF"];?> </div>
+                    <div class="form-control"></div>
                 </div>
                 <div class="form-group">
                     <label>Last Name</label>
-                    <div class="form-control"><?php echo $_POST["NameL"];?></div>
+                    <div class="form-control"></div>
                 </div>
                     <div class="form-group">
                         <label>Email Address</label>
-                        <div class="form-control"><?php echo $_POST["EmailA"];?></div>
+                        <div class="form-control"></div>
                     </div>
                 <div class="form-group">
                     <label>Address</label>
-                    <div class="form-control"><?php echo $_POST["AddressShip"];?></div>
+                    <div class="form-control"></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>City</label>
-                            <div class="form-control"><?php echo $_POST["CityA"];?></div>
+                            <div class="form-control"></div>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>State / Province</label>
-                            <div class="form-control"><?php echo $_POST["StateA"];?></div>
+                            <div class="form-control"></div>
                         </div>
                     </div>
                 </div>
@@ -472,13 +468,13 @@ function duplicateFrame(){
                     <div class="col-lg-3">
                         <div class="form-group">
                             <label>Zip</label>
-                            <div class="form-control"><?php echo $_POST["ZipCode"];?></div>
+                            <div class="form-control"></div>
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <div class="form-group">
                             <label>Phone Number</label>
-                            <div class="form-control"><?php echo $_POST["PhoneN"];?></div>
+                            <div class="form-control"></div>
                         </div>
                     </div>
                 </div>
@@ -486,91 +482,6 @@ function duplicateFrame(){
         </form>
     </div>
 </div>
-<?php  
-/*Connect using SQL Server authentication.*/  
-$serverName = "tcp:blv2020.database.windows.net,1433";  
-$connectionOptions = array(  
-    "Database" => "blvuserdata",  
-    "UID" => "connection",  
-    "PWD" => "blv2020@connecti0n"  
-);  
-$conn = sqlsrv_connect($serverName, $connectionOptions);  
-  
-if ($conn === false)  
-    {  
-    die(print_r(sqlsrv_errors() , true));  
-    }  
-/*Insert data.*/
-$username = $_POST['Username'];
-$email = $_POST['EmailA'];
-if (isset($_POST["Notify"])){
-    $notify = 1;
-    }
-    else {
-    $notify = 0;   
-    };
-if (isset($_POST["event1"])){
-    $event1 = 1;
-    }
-    else {
-    $event1 = 0;   
-    };
-if (isset($_POST["event2"])){
-    $event2 = 1;
-    }
-    else {
-    $event2 = 0;   
-    };
-    $exists = 0;
-$Sql = "
-DECLARE @username varchar(255)
-SET @username = (SELECT Username FROM Login WHERE Username 
-LIKE '$username')
-    IF @username = '$username'
-    RETURN;
-    
-WAITFOR DELAY '00:00:01';
-
-INSERT INTO Login (Username,Password,Email)   
-VALUES (?,?,?);
-
-WAITFOR DELAY '00:00:01';
-
-INSERT INTO UserInformation (UserID,First_Name,Last_Name,Phone,Address,City,Postcode,State)
-VALUES ((SELECT UserID FROM Login WHERE Username='$username'),?,?,?,?,?,?,?);
-
-INSERT INTO Notification(UserID,Notify,event1,event2)
-VALUES ((SELECT UserID FROM Login WHERE Username='$username'),'$notify','$event1','$event2');";
-    
-$params = array(&$_POST['Username'], &$_POST['Password'], &$_POST['EmailA'],
-                &$_POST['NameF'], &$_POST['NameL'], &$_POST['PhoneN'], &$_POST['AddressShip'], &$_POST['CityA'], &$_POST['ZipCode'], &$_POST['StateA']
-);  
-    $stmt = sqlsrv_query($conn, $Sql, $params);  
-
-if ($stmt) {
-   $rows = sqlsrv_has_rows( $stmt );
-   if ($rows !== false)
-      echo "<script>,
-      duplicateFrame(),
-      </script>;";
-}    
-  
-while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_NUMERIC) ) {
-      echo $row[0];
-}
-if ($stmt === false)  
-        {  
-        if (sqlsrv_errors() !== null)  
-            {  
-            echo '<script type="text/javascript">',
-                'duplicateFrame();',
-                '</script>';  
-            } 
-}
-
-  
-        /*Die if other errors occurred.*/    
-
-?>
+</div>
 </body>
 </html>
