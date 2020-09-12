@@ -43,7 +43,7 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
     else {
         echo 200;
         $array = array("username" => $Username, "password" => $passwordLogin, "first_name" => $firstName, "last_name" => $lastName, "UserID" => $UserID, "Email" => $Email);
-        setcookie('cookieUserLogin',json_encode($array));
+        setcookie('cookieUserLogin',json_encode($array),"/");
         echo $_COOKIE[$cookieUserLogin];
         exit;
     }

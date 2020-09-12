@@ -140,15 +140,6 @@ p {
     font-size: 10px;
     position: relative;
     text-indent: -9999em;
-    border-top: 1.1em solid rgba(72,72,72,0.20);
-    border-right: 1.1em solid rgba(72,72,72,0.20);
-    border-bottom: 1.1em solid rgba(72,72,72,0.20);
-    border-left: 1.1em solid rgba(40,40,40,1.00);
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-animation: load8 1.1s infinite linear;
-    animation: load8 1.1s infinite linear;
 }
 @-webkit-keyframes load8 {
 0% {
@@ -355,11 +346,11 @@ function hideAbout() {
                         </ul>
                     </li>
                     <!--Sign Up Page-->
-                    <li><a href="register.html">Sign Up</a></li>
+                    <li id="navHide"><a href="">Sign Out</a></li>
                     <!-- 2nd page button -->
-                    <li><a href="" id="account"></a></li>
+                    <li><a href="#" id="account"></a></li>
                     <!-- 3rd page button -->
-                    <li><a class="btn-donate" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
+                    <li><a class="btn-donate" href="donate.html" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
                     <script>
                         function getCookie(cname) {
                           var name = cname + "=";
@@ -384,11 +375,21 @@ function hideAbout() {
                                 var FirstNUser = usernameCookie.first_name;
                                 var LastNUser = usernameCookie.last_name;
                                 document.getElementById('account').innerHTML = FirstNUser + " " + LastNUser;
+                                document.getElementById("account").href="myuser.html";
+                                $('#navHide').show();
                             }
                             catch(err){
                                 document.getElementById('account').innerHTML = "My Account";
+                                document.getElementById("account").href="register.html";
+                                $('#navHide').hide();
                             }
                         }
+                        $(document).ready(function () {
+                            $( "#navHide" ).click(function() {
+                                document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;";
+                                location.reload();
+                            })
+                        });
                     </script>
                 </ul>
             </div>

@@ -8,13 +8,10 @@
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="icon" href="img/logo.png">
-<link href="css/liMarquee.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
-<script type="text/javascript" src="css/slick.min.js"></script> 
-<script src="js/jquery.liMarquee.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <style type="text/css">
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     transition: background-color .2s;
@@ -140,15 +137,6 @@ p {
     font-size: 10px;
     position: relative;
     text-indent: -9999em;
-    border-top: 1.1em solid rgba(72,72,72,0.20);
-    border-right: 1.1em solid rgba(72,72,72,0.20);
-    border-bottom: 1.1em solid rgba(72,72,72,0.20);
-    border-left: 1.1em solid rgba(40,40,40,1.00);
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-animation: load8 1.1s infinite linear;
-    animation: load8 1.1s infinite linear;
 }
 @-webkit-keyframes load8 {
 0% {
@@ -211,8 +199,7 @@ transform: rotate(360deg);
 .btn-submmit-content:not(:hover) {
     transition: background-color .2s;
 }
-  
-    
+
 @media(min-width: 991px) {
 .box-right {
     width: 25%;
@@ -279,16 +266,9 @@ transform: rotate(360deg);
 html {
     scroll-behavior: smooth;
 }
-.duplicate{
-    background-color: white;
-    z-index: 10;
-    position:fixed;
-    height: 100%;
-    width: 100%;
-}
 </style>
 </head>
-<body onLoad="setTimeout(pageLoad(),5000)">
+<body onLoad="userAccountName()">
 <!-- Returns links to # if linking to current page using 'onclick="function(); return false;"' | Change ID to current page--> 
 <script type="text/javascript" id="register">
 function clickHome() {
@@ -345,12 +325,11 @@ function clickRegister() {
     $('body').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
 $(window).on('load', function(){
   setTimeout(removeLoader, 0);
-    visibility();
 });
 function removeLoader(){
     $( "#loadingDiv" ).fadeOut(500, function() {
       $( "#loadingDiv" ).remove();
-  }); 
+  });  
 }</script> 
 <!-- 'About' Dropdown Javascript Toggle --> 
 <script type="text/javascript">
@@ -360,31 +339,8 @@ function showAbout() {
 function hideAbout() {
     document.getElementById('about').style.display = 'none';
 }
-function pageLoad(){
-   window.setTimeout(function(){$( "#hide" ).fadeOut(1000)}, 5000)
-}
-function duplicateFrame(){
-    document.getElementById('duplicateFrame').style.display = "block";
-    window.setTimeout(function(){window.history.back();}, 7000);
-        var timeleft = 5;
-        var Timer = setInterval(function(){
-        if(timeleft <= 0){
-            clearInterval(Timer);
-            document.getElementById("duplicateTime").innerHTML = "Retuning";
-        } else {
-            document.getElementById("duplicateTime").innerHTML = 'Returning in: &nbsp;&nbsp;';
-            document.getElementById("duplicateTime").innerHTML += timeleft;
-        }
-        timeleft -= 1;
-        }, 1000);
-}  
 </script> 
 <!--Navbar-->
-<div class="container duplicate" id="duplicateFrame" style="display: none">
-    <h2 id="duplicateText">User Already Exists</h2>
-    <h4 id="duplicateTime">Returning in: &nbsp;&nbsp;</h4><br>
-    <a onClick="window.history.back()">Or Press Here To Return</a>
-</div>
 <nav class="navbar-default">
     <div id="navcontainer" class="container">
         <div class="navbar-header"> <a class="navbar-brand" href="index.html" onclick="clickHome(); return false;"> <img class="img-resonsive" width="300px" height="" src="img/Blind & Low Vision NZ_Formerly_Horizontal_RGB (1).jpg" alt="Blind And Low Vision New Zealand"> </a>
@@ -406,82 +362,207 @@ function duplicateFrame(){
                         </ul>
                     </li>
                     <!--Sign Up Page-->
-                    <li class="active"><a href="register.html">Sign Up</a></li>
+                    <li id="navHide"><a href="">Sign Out</a></li>
                     <!-- 2nd page button -->
-                    <li><a href="https://www.blindlowvision.org.nz/">Official Website</a></li>
+                    <li class="active"><a href="#" id="account"></a></li>
                     <!-- 3rd page button -->
-                    <li><a class="btn-donate" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
+                    <li><a class="btn-donate" href="donate.html" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
+                    <script>
+                        function getCookie(cname) {
+                          var name = cname + "=";
+                          var decodedCookie = decodeURIComponent(document.cookie);
+                          var ca = decodedCookie.split(';');
+                          for(var i = 0; i < ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                              c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                              return c.substring(name.length, c.length);
+                            }
+                          }
+                          return "";
+                        }
+
+                        function userAccountName(){
+                            try{
+                                var userCookie = getCookie("cookieUserLogin")
+                                var usernameCookie = JSON.parse(userCookie);
+                                var FirstNUser = usernameCookie.first_name;
+                                var LastNUser = usernameCookie.last_name;
+                                document.getElementById('account').innerHTML = FirstNUser + " " + LastNUser;
+                                document.getElementById("account").href="myuser.html";
+                                $('#navHide').show();
+                            }
+                            catch(err){
+                                document.getElementById('account').innerHTML = "My Account";
+                                document.getElementById("account").href="register.html";
+                                $('#navHide').hide();
+                            }
+                        }
+                        $(document).ready(function () {
+                            $( "#navHide" ).click(function() {
+                                document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;";
+                                location.reload();
+                            })
+                        });                        
+                    </script>
                 </ul>
             </div>
         </div>
     </div>
 </nav>
+    <div class="container" id="loginbg" style="background-color: rgba(0,0,0,0.83); z-index: 1; position: fixed; width: 100%; height: 100%; top: 0%; display: none"></div>
 <!--Content-->
-<div class="content">
-<br>
-<!--Regestration Form-->
-
-<div class="container" style=" position: relative; padding: 15px">
-    <div class="container col-lg-6">
-        <form id="userForm">
-            <div class="row">
-                <div class="form-group">
-                    <label>Username</label>
-                    <div class="form-control"></div>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <div type="password" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>First Name</label>
-                    <div class="form-control"></div>
-                </div>
-                <div class="form-group">
-                    <label>Last Name</label>
-                    <div class="form-control"></div>
-                </div>
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <div class="form-control"></div>
-                    </div>
-                <div class="form-group">
-                    <label>Address</label>
-                    <div class="form-control"></div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>City</label>
-                            <div class="form-control"></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>State / Province</label>
-                            <div class="form-control"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <label>Zip</label>
-                            <div class="form-control"></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <div class="form-control"></div>
-                        </div>
-                    </div>
-                </div>
+<div class="content"> <br>
+    <div class="container-fluid" id="logincontainer" style="background-color:white; position: fixed; top: 10%; left: 10%; right: 40%; z-index: 2; display: none">
+        <button type="button" style="color: black; opacity: .8; padding-top: 5px; font-size: 500%" class="close" aria-label="Close" onClick="hideOverlay()">×</button>
+        <h3>Confirm Password to Save</h3>
+        <div class="container-fluid" style="padding-bottom: 15px">
+        <form id="confirmPW">
+            <div class="form-group">
+                <input type="password" class="form-control" name="PasswordConfirm" id="PasswordConfirm" placeholder="********" enabled>
             </div>
         </form>
+        <button type="button" id="confirmSubmit" class="btn-submit-content" style="margin-bottom: 15px">Confirm</button>
+        </div>
+    </div>
+    <!--Regestration Form-->
+    <div class="container" style=" position: relative; padding: 15px">
+        <div class="container col-lg-6">
+            <form id="userForm">
+                <div class="row">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input class="form-control" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control formDisable">
+                    </div>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input class="form-control formDisable">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input class="form-control formDisable">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input class="form-control formDisable">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input class="form-control formDisable">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input class="form-control formDisable">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>State / Province</label>
+                                <input class="form-control formDisable">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>Zip</label>
+                                <input class="form-control formDisable">
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input class="form-control formDisable">
+                            </div>
+                        </div>
+                    </div>
+                    </div>  
+            </form>
+            <button id="editInitalButton" style="z-index: 0">Edit Information</button>
+            <button id="editSubmitButton" style="z-index: 1; margin-right: 30px; display: none">Save</button>
+            <button id="editCancelButton" style="z-index: 1; display: none">Cancel</button>
+            <script>
+            function confirmOverlay(){
+                $('#loginbg').fadeIn(500, function() {
+                        $( "#loginbg" ).show();
+                    });
+                $('#logincontainer').fadeIn(500, function() {
+                        $( "#logincontainer" ).show();
+                    });
+            }
+                function hideOverlay(){
+                    $('#loginbg').fadeOut(500, function() {
+                        $( "#loginbg" ).hide();
+                    });
+                $('#logincontainer').fadeOut(500, function() {
+                        $( "#logincontainer" ).hide();
+                    });
+                }
+            $(document).ready(function () {
+                $( "#loginbg" ).click(function() {
+                    hideOverlay();
+                });
+                $(".formDisable").addClass("disabled").prop("disabled", true);
+                $('#editInitalButton').click(function(e){
+                    $(".formDisable").addClass("disabled").prop("disabled", false);
+                    $( "#editInitalButton" ).fadeOut(400, function() {
+                        $( "#editInitalButton" ).hide();
+                    });
+
+                    setTimeout(function(){
+                        $( "#editSubmitButton" ).fadeIn(400, function() {
+                        $( "#editSubmitButton" ).show();
+                    })
+                    $( "#editCancelButton" ).fadeIn(400, function() {
+                        $( "#editCancelButton" ).show();
+                    })
+                    },500);
+                    document.getElementsByClassName('formDisable').disabled = false;
+                });
+                $('#editSubmitButton').click(function(e){
+                    confirmOverlay();
+                });
+                $('#editCancelButton').click(function(e){
+                    location.reload();
+                    });
+                })
+            </script> 
+        </div>
     </div>
 </div>
+<div class="footer-dark">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-push-6"><a href="index.html" onclick="clickHome(); return false;"><img class="img-fluid" src="img/Blind_Low_Vision_NZ_Formerly_Stacked_Rev_RGB-1.png" alt="Blind Low Vision - Formerly Blind Foundtation"></a></div>
+                <div class="col-md-3 col-md-pull-6 col-sm-4">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="about.html" style="color: #FFFFFF" onclick="clickAbout(); return false;">Who Are We?</a></li>
+                        <li><a href="about.html#goal" style="color: #FFFFFF" onclick="clickAboutGoal(); return false;">Our Goal</a></li>
+                        <li><a href="about.html#contaact" style="color: #FFFFFF" onclick="clickAboutContact(); return false;">Get In Touch</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-md-pull-6 col-sm-4">
+                    <h3>Events</h3>
+                    <ul>
+                        <li><a href="events.html#red_puppy" style="color: #FFFFFF" onclick="clickEventsPuppy(); return false;">Red Puppy Parade</a></li>
+                        <li><a href="events.html#bridge_run" style="color: #FFFFFF" onclick="clickEventsRun(); return false;">Harbour Bridge Run</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12 col-sm-4"><a href="https://www.instagram.com/BlindLowVisionNZ/" target="_blank"><img class="social" src="img/instagram.svg" alt="Our Instagram"></a><a href="https://www.facebook.com/BlindLowVisionNZ/" target="_blank"><img class="social" src="img/facebook.svg" alt="Our Facebook"></a><a href="https://www.youtube.com/c/BlindLowVisionNZ" target="_blank"><img class="social" src="img/youtube.svg" alt="Our Youtube"></a><a href="https://twitter.com/BlindLowVision" target="_blank"><img class="social" src="img/twitter.svg" alt="Our Twitter"></a><a href="https://www.linkedin.com/company/blind-low-vision-nz" target="_blank"><img class="social" src="img/linkedin.svg" alt="Our LinkedIn"></a></div>
+            </div>
+            <p>Copyright Blind Low Vision NZ 2020 © | Blind Low Vision NZ is registered in New Zealand. Our Charities Commission Registration number is CC21361</p>
+        </div>
+    </footer>
 </div>
 </body>
 </html>
