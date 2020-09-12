@@ -2,19 +2,16 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Blind Low Vision NZ - Events</title>
+<title>Blind Low Vision NZ - Register</title>
 <meta name="viewport" content="width=device-width, inital scale=1">
 <link rel="stylesheet" type="text/css" href="css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="icon" href="img/logo.png">
-<link href="css/liMarquee.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
-<script type="text/javascript" src="css/slick.min.js"></script> 
-<script src="js/jquery.liMarquee.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <style type="text/css">
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     transition: background-color .2s;
@@ -183,6 +180,25 @@ transform: rotate(360deg);
 .btn-donate-content:not(:hover) {
     transition: background-color .2s;
 }
+.btn-submit-content {
+    background-color: #1A73E8;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 2em;
+}
+.btn-submit-content:hover {
+    background-color: #71A8F0;
+    color: #FFFFFF;
+    transition: background-color .2s;
+}
+.btn-submmit-content:not(:hover) {
+    transition: background-color .2s;
+}
 
 @media(min-width: 991px) {
 .box-right {
@@ -254,7 +270,7 @@ html {
 </head>
 <body onLoad="userAccountName()">
 <!-- Returns links to # if linking to current page using 'onclick="function(); return false;"' | Change ID to current page--> 
-<script type="text/javascript" id="events">
+<script type="text/javascript" id="register">
 function clickHome() {
    if ($( "#home" ).length)
        window.location.href = "#";
@@ -335,7 +351,7 @@ function hideAbout() {
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Home Button -->
                     <li><a href="index.html" onclick="clickHome(); return false;">Home</a></li>
-                    <li class="active"><a href="events.html" onclick="clickEvents(); return false;">Events</a></li>
+                    <li><a href="events.html" onclick="clickEvents(); return false;">Events</a></li>
                     <li class="dropdown"> 
                         <!-- 1st page button --> 
                         <a class="dropdown-toggle" data-toggle="dropdown" href="about.html" onmouseover="showAbout()" onmouseout="hideAbout()">About <span class="caret"></span></a>
@@ -346,9 +362,9 @@ function hideAbout() {
                         </ul>
                     </li>
                     <!--Sign Up Page-->
-                    <li id="navHide"><a href="#">Sign Out</a></li>
+                    <li id="navHide"><a href="">Sign Out</a></li>
                     <!-- 2nd page button -->
-                    <li><a href="#" id="account"></a></li>
+                    <li class="active"><a href="#" id="account"></a></li>
                     <!-- 3rd page button -->
                     <li><a class="btn-donate" href="donate.html" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
                     <script>
@@ -370,7 +386,7 @@ function hideAbout() {
 
                         function userAccountName(){
                             try{
-                                var userCookie = getCookie("cookieUserLogin");
+                                var userCookie = getCookie("cookieUserLogin")
                                 var usernameCookie = JSON.parse(userCookie);
                                 var FirstNUser = usernameCookie.first_name;
                                 var LastNUser = usernameCookie.last_name;
@@ -389,46 +405,137 @@ function hideAbout() {
                                 document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;";
                                 location.reload();
                             })
-                        });
+                        });                        
                     </script>
                 </ul>
             </div>
         </div>
     </div>
 </nav>
-<div class="content"> 
-    <!--Content--><br>
-    <div class="container" style="padding: 15px">
-        <div class="left-frame">
-            <div class="donate-scroll str_wrap"> <img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"></div>
-            <script type="text/javascript">
-    $('.donate-scroll').liMarquee({
-        drag: false,
-        scrollamount: 70,
-        hoverstop:false,
-    });
-    </script> 
+    <div class="container" id="loginbg" style="background-color: rgba(0,0,0,0.83); z-index: 1; position: fixed; width: 100%; height: 100%; top: 0%; display: none"></div>
+<!--Content-->
+<div class="content"> <br>
+    <div class="container-fluid" id="logincontainer" style="background-color:white; position: fixed; top: 10%; left: 10%; right: 40%; z-index: 2; display: none">
+        <button type="button" style="color: black; opacity: .8; padding-top: 5px; font-size: 500%" class="close" aria-label="Close" onClick="hideOverlay()">×</button>
+        <h3>Confirm Password to Save</h3>
+        <div class="container-fluid" style="padding-bottom: 15px">
+        <form id="confirmPW">
+            <div class="form-group">
+                <input type="password" class="form-control" name="PasswordConfirm" id="PasswordConfirm" placeholder="********" enabled>
+            </div>
+        </form>
+        <button type="button" id="confirmSubmit" class="btn-submit-content" style="margin-bottom: 15px">Confirm</button>
         </div>
-        <div class="box-right imgfit-content">
-            <h3 style="font-size: 30px; padding-left: 10px">Lets Make <br>
-                This Happen!</h3>
-            <a class="btn-content btn btn-donate-content" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="font-size: 20px; width: 90%">Donate Today</a> </div>
     </div>
-    <div class="container">
-        <h2 class="h-content" id="red_puppy">Red Puppy Parade</h2>
-        <img class="img-content" src="img/Dogs-unite-Auckland-Domain.jpg" alt="Event gazebo for Blind and Low Vision fundraising" align="left">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-        <br>
-        <a class="btn btn-primary btn-lg" href="register.html" role="button">Sign Up</a>
-        <hr>
-    </div>
-    <div class="container">
-        <h2 class="h-content" id="bridge_run">Harbour Bridge Run</h2>
-        <img class="img-content" src="img/1443158919090.jpg" alt="People running on the Auckland Harbour Bridge" align="left">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-        <br>
-        <a class="btn btn-primary btn-lg" href="register.html" role="button">Sign Up</a>
-        <hr>
+    <!--Regestration Form-->
+    <div class="container" style=" position: relative; padding: 15px">
+        <div class="container col-lg-6">
+            <form id="userForm">
+                <div class="row">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input class="form-control" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control formDisable">
+                    </div>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input class="form-control formDisable">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input class="form-control formDisable">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input class="form-control formDisable">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input class="form-control formDisable">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input class="form-control formDisable">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>State / Province</label>
+                                <input class="form-control formDisable">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>Zip</label>
+                                <input class="form-control formDisable">
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input class="form-control formDisable">
+                            </div>
+                        </div>
+                    </div>
+                    </div>  
+            </form>
+            <button id="editInitalButton" style="z-index: 0">Edit Information</button>
+            <button id="editSubmitButton" style="z-index: 1; margin-right: 30px; display: none">Save</button>
+            <button id="editCancelButton" style="z-index: 1; display: none">Cancel</button>
+            <script>
+            function confirmOverlay(){
+                $('#loginbg').fadeIn(500, function() {
+                        $( "#loginbg" ).show();
+                    });
+                $('#logincontainer').fadeIn(500, function() {
+                        $( "#logincontainer" ).show();
+                    });
+            }
+                function hideOverlay(){
+                    $('#loginbg').fadeOut(500, function() {
+                        $( "#loginbg" ).hide();
+                    });
+                $('#logincontainer').fadeOut(500, function() {
+                        $( "#logincontainer" ).hide();
+                    });
+                }
+            $(document).ready(function () {
+                $( "#loginbg" ).click(function() {
+                    hideOverlay();
+                });
+                $(".formDisable").addClass("disabled").prop("disabled", true);
+                $('#editInitalButton').click(function(e){
+                    $(".formDisable").addClass("disabled").prop("disabled", false);
+                    $( "#editInitalButton" ).fadeOut(400, function() {
+                        $( "#editInitalButton" ).hide();
+                    });
+
+                    setTimeout(function(){
+                        $( "#editSubmitButton" ).fadeIn(400, function() {
+                        $( "#editSubmitButton" ).show();
+                    })
+                    $( "#editCancelButton" ).fadeIn(400, function() {
+                        $( "#editCancelButton" ).show();
+                    })
+                    },500);
+                    document.getElementsByClassName('formDisable').disabled = false;
+                });
+                $('#editSubmitButton').click(function(e){
+                    confirmOverlay();
+                });
+                $('#editCancelButton').click(function(e){
+                    location.reload();
+                    });
+                })
+            </script> 
+        </div>
     </div>
 </div>
 <div class="footer-dark">

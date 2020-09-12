@@ -140,15 +140,6 @@ p {
     font-size: 10px;
     position: relative;
     text-indent: -9999em;
-    border-top: 1.1em solid rgba(72,72,72,0.20);
-    border-right: 1.1em solid rgba(72,72,72,0.20);
-    border-bottom: 1.1em solid rgba(72,72,72,0.20);
-    border-left: 1.1em solid rgba(40,40,40,1.00);
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-animation: load8 1.1s infinite linear;
-    animation: load8 1.1s infinite linear;
 }
 @-webkit-keyframes load8 {
 0% {
@@ -261,7 +252,7 @@ html {
 }
 </style>
 </head>
-<body>
+<body onLoad="userAccountName()">
 <!-- Returns links to # if linking to current page using 'onclick="function(); return false;"' | Change ID to current page--> 
 <script type="text/javascript" id="aboutpage">
 function clickHome() {
@@ -355,11 +346,51 @@ function hideAbout() {
                         </ul>
                     </li>
                     <!--Sign Up Page-->
-                    <li><a href="register.html">Sign Up</a></li>
+                    <li id="navHide"><a href="">Sign Out</a></li>
                     <!-- 2nd page button -->
-                    <li><a href="https://www.blindlowvision.org.nz/">Official Website</a></li>
+                    <li><a href="#" id="account"></a></li>
                     <!-- 3rd page button -->
-                    <li><a class="btn-donate" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
+                    <li><a class="btn-donate" href="donate.html" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
+                    <script>
+                        function getCookie(cname) {
+                          var name = cname + "=";
+                          var decodedCookie = decodeURIComponent(document.cookie);
+                          var ca = decodedCookie.split(';');
+                          for(var i = 0; i < ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                              c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                              return c.substring(name.length, c.length);
+                            }
+                          }
+                          return "";
+                        }
+
+                        function userAccountName(){
+                            try{
+                                var userCookie = getCookie("cookieUserLogin")
+                                var usernameCookie = JSON.parse(userCookie);
+                                var FirstNUser = usernameCookie.first_name;
+                                var LastNUser = usernameCookie.last_name;
+                                document.getElementById('account').innerHTML = FirstNUser + " " + LastNUser;
+                                document.getElementById("account").href="myuser.html";
+                                $('#navHide').show();
+                            }
+                            catch(err){
+                                document.getElementById('account').innerHTML = "My Account";
+                                document.getElementById("account").href="register.html";
+                                $('#navHide').hide();
+                            }
+                        }
+                        $(document).ready(function () {
+                            $( "#navHide" ).click(function() {
+                                document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;";
+                                location.reload();
+                            })
+                        });
+                    </script>
                 </ul>
             </div>
         </div>

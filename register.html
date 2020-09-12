@@ -8,13 +8,10 @@
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="icon" href="img/logo.png">
-<link href="css/liMarquee.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
-<script type="text/javascript" src="css/slick.min.js"></script> 
-<script src="js/jquery.liMarquee.js"></script>
 <style type="text/css">
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     transition: background-color .2s;
@@ -140,15 +137,6 @@ p {
     font-size: 10px;
     position: relative;
     text-indent: -9999em;
-    border-top: 1.1em solid rgba(72,72,72,0.20);
-    border-right: 1.1em solid rgba(72,72,72,0.20);
-    border-bottom: 1.1em solid rgba(72,72,72,0.20);
-    border-left: 1.1em solid rgba(40,40,40,1.00);
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-animation: load8 1.1s infinite linear;
-    animation: load8 1.1s infinite linear;
 }
 @-webkit-keyframes load8 {
 0% {
@@ -190,6 +178,25 @@ transform: rotate(360deg);
     transition: background-color .2s;
 }
 .btn-donate-content:not(:hover) {
+    transition: background-color .2s;
+}
+.btn-submit-content {
+    background-color: #1A73E8;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 2em;
+}
+.btn-submit-content:hover {
+    background-color: #71A8F0;
+    color: #FFFFFF;
+    transition: background-color .2s;
+}
+.btn-submmit-content:not(:hover) {
     transition: background-color .2s;
 }
 
@@ -261,7 +268,7 @@ html {
 }
 </style>
 </head>
-<body>
+<body onLoad="userAccountName()">
 <!-- Returns links to # if linking to current page using 'onclick="function(); return false;"' | Change ID to current page--> 
 <script type="text/javascript" id="register">
 function clickHome() {
@@ -355,35 +362,304 @@ function hideAbout() {
                         </ul>
                     </li>
                     <!--Sign Up Page-->
-                    <li class="active"><a href="register.html">Sign Up</a></li>
+                    <li id="navHide"><a href="">Sign Out</a></li>
                     <!-- 2nd page button -->
-                    <li><a href="https://www.blindlowvision.org.nz/">Official Website</a></li>
+                    <li class="active"><a href="#" id="account"></a></li>
                     <!-- 3rd page button -->
-                    <li><a class="btn-donate" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
+                    <li><a class="btn-donate" href="donate.html" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
+                    <script>
+                        function getCookie(cname) {
+                          var name = cname + "=";
+                          var decodedCookie = decodeURIComponent(document.cookie);
+                          var ca = decodedCookie.split(';');
+                          for(var i = 0; i < ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                              c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                              return c.substring(name.length, c.length);
+                            }
+                          }
+                          return "";
+                        }
+
+                        function userAccountName(){
+                            try{
+                                var userCookie = getCookie("cookieUserLogin")
+                                var usernameCookie = JSON.parse(userCookie);
+                                var FirstNUser = usernameCookie.first_name;
+                                var LastNUser = usernameCookie.last_name;
+                                document.getElementById('account').innerHTML = FirstNUser + " " + LastNUser;
+                                document.getElementById("account").href="myuser.html";
+                                $('#navHide').show();
+                            }
+                            catch(err){
+                                document.getElementById('account').innerHTML = "My Account";
+                                document.getElementById("account").href="register.html";
+                                $('#navHide').hide();
+                            }
+                        }
+                        $(document).ready(function () {
+                            $( "#navHide" ).click(function() {
+                                document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;";
+                                location.reload();
+                            })
+                        });                        
+                    </script>
                 </ul>
             </div>
         </div>
     </div>
-</nav>
-<div class="content"> 
-    <!--Content--><br>
-    <div class="container" style="padding: 15px">
-        <div class="left-frame">
-            <div class="donate-scroll str_wrap"> <img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"><img class="imgfit-content" src="img/1.png" alt="puppies kissing"> <img class="imgfit-content" src="img/2002_RedPuppyAppeal_Website-homepage-banner_FA-1.jpg" alt="kissing puppy"> <img class="imgfit-content" src="img/3 puppies photoshopped jackets.jpg" alt="three puppies in line"></div>
-            <script type="text/javascript">
-    $('.donate-scroll').liMarquee({
-        drag: false,
-        scrollamount: 70,
-        hoverstop:false,
-    });
-    </script> 
+    <div class="container" id="loginbg" style="background-color: rgba(0,0,0,0.83); z-index: 1; position: fixed; width: 100%; height: 100%; top: 0%"></div>
+</nav> 
+<!--Content-->
+<div class="content"> <br>
+    <!--Regestration Form-->
+    
+    <div class="container-fluid" id="logincontainer" style="background-color:white; position: fixed; top: 10%; left: 10%; right: 40%; z-index: 2">
+        <button type="button" style="color: black; opacity: .8; padding-top: 5px; font-size: 500%" class="close" aria-label="Close" onClick="hideOverlay()">×</button>
+        <h3>Already Have An Account?</h3>
+        <div class="container-fluid" style="padding-bottom: 15px">
+    <form id="lForm" method="post" action="user.php">
+        <div class="form-group">
+            <label for="Username">Username / Email</label>
+            <input type="name" class="form-control" name="UsernameLogin" id="UsernameLogin" placeholder="myusername" enabled>
         </div>
-        <div class="box-right imgfit-content">
-            <h3 style="font-size: 30px; padding-left: 10px">Lets Make <br>
-                This Happen!</h3>
-            <a class="btn-content btn btn-donate-content" href="https://blindfoundation.secure.force.com/DonateNow/" role="menuitem" style="font-size: 20px; width: 90%">Donate Today</a> </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="PasswordLogin" id="PasswordLogin" placeholder="**********" enabled>
+        </div>
+        <p style="font-size: 16px; font-weight: lighter; color: red" id="error"></p>
+    </form>
+<button type="button" id="requestValid" class="btn-submit-content" style="margin-bottom: 15px">Login</button>
+    <script language="javascript">
+    $(document).ready(function () {    
+        $('#requestValid').click(function(e){
+            var username11 = document.getElementById('UsernameLogin').value;
+            var password11 = document.getElementById('PasswordLogin').value;
+            document.getElementById('error').innerHTML = " ";
+            $.ajax({
+            type: "POST",
+            url: "login.php",
+                data: {username11:username11, password11:password11},
+             success :function(data){
+                if(data == 404){
+                    document.getElementById('error').innerHTML = "Invalid username or email";
+                } else {
+                    window.location.replace("index.html");
+                }
+            }
+            })
+        })
+    });   
+    </script>
+        </div>
     </div>
-    <div class="container"> </div>
+    <script>
+    $( "#loginbg" ).click(function() {
+    hideOverlay();
+        });
+    function hideOverlay(){
+    $( "#logincontainer" ).fadeOut(500, function() {
+      $( "#logincontainer" ).hide();
+  });  
+    $( "#loginbg" ).fadeOut(500, function() {
+      $( "#loginbg" ).hide();
+  })    
+} 
+
+function showOverlay(){
+    $( "#loginbg" ).fadeIn(500);
+    $( "#logincontainer" ).fadeIn(500); 
+    $( "#logincontainer" ).show();
+      $( "#loginbg" ).show();
+} 
+    </script>
+    <div class="container" style=" position: relative; padding: 15px; z-index: 0">
+        <div class="container col-lg-6">
+            <form id="sForm" action="signup.php" method="post">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Username">Username&nbsp;&nbsp;<span style="color: red">*</span></label>
+                        <input type="name" class="form-control" name="Username" id="Username" placeholder="myusername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Password&nbsp;&nbsp;<span style="color: red">*</span></label>
+                        <input type="password" class="form-control" name="Password" id="Password" placeholder="*************" required>
+                        <small><em>Minimum 8 Characters</em></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Re-Enter Password&nbsp;&nbsp;<span style="color: red">*</span></label>
+                        <input type="password" class="form-control" name="PasswordR" id="PasswordR" placeholder="*************" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="NameF">First Name&nbsp;&nbsp;<span style="color: red">*</span></label>
+                        <input type="name" class="form-control" name="NameF" id="NameF" placeholder="John" required autocomplete="given-name" >
+                    </div>
+                    <div class="form-group">
+                        <label for="NameL">Last Name&nbsp;&nbsp;<span style="color: red">*</span></label>
+                        <input type="name" class="form-control" name="NameL" id="NameL" placeholder="Doe" required autocomplete="family-name">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="EmailA">Email Address&nbsp;&nbsp;<span style="color: red">*</span></label>
+                                <input type="email" class="form-control" name="EmailA" id="EmailA" placeholder="someone@example.com" required autocomplete="email">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="EmailC">Confirm Email Address&nbsp;&nbsp;<span style="color: red">*</span></label>
+                                <input type="email" class="form-control" name="EmailC" id="EmailC" placeholder="someone@example.com" required autocomplete="email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="AddressShip">Address&nbsp;&nbsp;<span style="color: red">*</span></label>
+                        <input type="text" class="form-control" name="AddressShip" id="AddressShip" placeholder="10 Address Street" required autocomplete="shipping street-address">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="CityA">City&nbsp;&nbsp;<span style="color: red">*</span></label>
+                                <input type="text" class="form-control" name="CityA" id="CityA" placeholder="Auckland" autocomplete="shipping locality" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="StateA">State / Province&nbsp;&nbsp;<span style="color: red">*</span></label>
+                                <input type="text" class="form-control" name="StateA" id="StateA" placeholder="Waitakere" autocomplete="shipping region" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="ZipCode">Zip&nbsp;&nbsp;<span style="color: red">*</span></label>
+                                <input type="postal" class="form-control" name="ZipCode" id="ZipCode" placeholder="0610" autocomplete="shipping postal-code" required="true">
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group">
+                                <label for="PhoneN">Phone Number&nbsp;&nbsp;<span style="color: red">*</span></label>
+                                <input type="tel" class="form-control" name="PhoneN" id="PhoneN" placeholder="021-01234567" autocomplete="tel" required="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            	<p style="color: red; font-weight: lighter">*&nbsp;&nbsp;<em>Required</em></p>
+            	<p style="font-size: 14px; font-weight: lighter">I agree to recieve periodic email regarding new events and give aways&nbsp;&nbsp;&nbsp;&nbsp;
+                	<input type="checkbox" name="Notify" id="Notify" style="transform: scale(1.5)" value="1">
+            	</p> 
+             <p style="font-size: 14px; font-weight: lighter">I am attending the Red Puppy Parade&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" value="1" name="event1" id="event1" style="transform: scale(1.5)">
+            	</p>
+             <p style="font-size: 14px; font-weight: lighter">I am attending the Harbour Bridge Run&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="event2" value="1" id="event2" style="transform: scale(1.5)">
+            	</p>
+			</form>
+        </div>
+            <div class="col-lg-6">
+            <hr style="height: 3px; background:#1A73E8; margin-right:60%">
+            <button id="submitbtn" class="btn-submit-content">Sign Up</button>
+			<script>
+			$(document).ready(function () {    
+            $('#submitbtn').click(function(e){
+                var btn = document.getElementById('submitbtn');
+                var emailValid = EmailA.checkValidity();            
+                var allowed = 0;
+                if(document.getElementById('Notify').checked === true){
+                    var Notify1 = 1
+                }
+                else{
+                    var Notify1 = 0}
+                if(document.getElementById('event1').checked === true){
+                    var event11 = 1
+                }
+                else{
+                    var event11 = 0}
+                if(document.getElementById('event2').checked === true){
+                    var event21 = 1
+                }
+                else{
+                    var event21 = 0}
+                    var Username1 = document.getElementById('Username').value;
+					var Password1 = document.getElementById('Password').value;
+					var EmailA1 = document.getElementById('EmailA').value;
+					var NameF1 = document.getElementById('NameF').value;
+					var NameL1 = document.getElementById('NameL').value;
+					var PhoneN1 = document.getElementById('PhoneN').value;
+					var AddressShip1 = document.getElementById('AddressShip').value;
+					var CityA1 = document.getElementById('CityA').value;
+					var ZipCode1 = document.getElementById('ZipCode').value;
+					var StateA1 = document.getElementById('StateA').value;
+                    document.getElementById('validationErr').innerHTML = ' ';
+                    document.getElementById('validationErr2').innerHTML = ' ';
+                    document.getElementById('validationErr4').innerHTML = ' ';
+                    document.getElementById('validationErr4').innerHTML = ' ';
+                    
+                if(document.getElementById('Password').value !=  document.getElementById('PasswordR').value){
+                    btn.disabled = true;
+                    var allowed = 1;
+                    document.getElementById('validationErr2').innerHTML = 'Passwords are not the same';
+                    setTimeout(function(){ btn.disabled = false; }, 200);
+                }
+                if (document.getElementById('Password').value.length < 8){
+                    btn.disabled = true;
+                    var allowed = 1;
+                    document.getElementById('validationErr3').innerHTML = 'Password is shorter than 8 characters';
+                    setTimeout(function(){ btn.disabled = false; }, 200);
+                    
+                }
+                if(!(emailValid)){
+					submitbtn.disabled = true;
+                    var allowed = 1;
+					document.getElementById('validationErr').innerHTML = 'Invalid Email';
+                    setTimeout(function(){ btn.disabled = false; }, 200);
+				}
+                if(document.getElementById('Username').value.length == 0 || document.getElementById('Password').value.length == 0 || document.getElementById('PasswordR').value.length == 0 || document.getElementById('NameF').value.length == 0 || document.getElementById('NameL').value.length == 0 || document.getElementById('EmailA').value.length == 0 || document.getElementById('EmailC').value.length == 0 || document.getElementById('AddressShip').value.length == 0 || document.getElementById('CityA').value.length == 0 || document.getElementById('StateA').value.length == 0 || document.getElementById('ZipCode').value.length == 0 || document.getElementById('PhoneN').value.length == 0){
+                    btn.disabled = true;
+                    var allowed = 1;
+                    document.getElementById('validationErr4').innerHTML = 'Please fill out required fields';
+                    setTimeout(function(){ btn.disabled = false; }, 200);
+                }
+				if (allowed == 0) {
+					btn.disabled = false;
+                    if (confirm("Is this information correct?")){
+						document.getElementById('validationErr').innerHTML = '';
+						$.ajax({
+						type: "POST",
+						url: "signup.php",
+							data: {Username:Username1, Password:Password1, EmailA:EmailA1, NameF:NameF1, NameL:NameL1, PhoneN:PhoneN1, AddressShip:AddressShip1, CityA:CityA1, ZipCode:ZipCode1, StateA:StateA1, event1:event11, event2:event21, Notify:Notify1},
+						 	success :function(data){
+							if(data == 404){
+								setTimeout(function(){ alert("𝗔𝗻 𝗘𝗿𝗿𝗼𝗿 𝗢𝗰𝗰𝘂𝗿𝗲𝗱 𝗖𝗿𝗲𝗮𝘁𝗶𝗻𝗴 𝗨𝘀𝗲𝗿 \n -- User Already Exists"); }, 200);
+							} else {
+                                setTimeout(function(){ alert("Thank you for signing up"); }, 200);
+							}
+							}
+						})
+                    }
+                }
+				if (allowed == 1)
+                	setTimeout(function(){alert("Please Fix Errors");},10);
+            })
+            }); 
+			</script>
+
+            <br>
+            <br>
+            <p style="font-size: 12px; font-weight: lighter"><em>By signing up you agree to recieve  emails from the Blind Low Vision Foundation and allow the Blind Low Vison Foundation to have access to the provided information for an unlimited period of time unless specified otherwise.</em></p>
+			<button id="showButton" onClick="showOverlay()">Or Login</button>
+			<br><br>
+            <label id="validationErr4" style="color: red"></label><br>
+			<label id="validationErr" style="color: red"></label><br>
+            <label id="validationErr2" style="color: red"></label><br>
+            <label id="validationErr3" style="color: red"></label>
+            
+        </div>
+    </div>
 </div>
 <div class="footer-dark">
     <footer>
