@@ -404,10 +404,10 @@ function hideAbout() {
                                 location.reload();
                             })
                         });
-                        function userLoggedIn(){
-                            if (loggedIn == 0){
-                                window.location.replace("register.html");
-                            }
+//                        function userLoggedIn(){
+//                            if (loggedIn == 0){
+//                                window.location.replace("register.html");
+//                            }
                         }
                     </script>
                 </ul>
@@ -442,13 +442,13 @@ function hideAbout() {
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Name on Card</label>
-                            <input class="form-control" autocomplete="cc-name">
+                            <input id="ccName" name="ccName" class="form-control" autocomplete="cc-name">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Credit card number</label>
-                            <input autocomplete="cc-number" class="form-control">
+                            <input id="ccNumber" name="ccNumber" autocomplete="cc-number" class="form-control">
                         </div>
                     </div>
                     </div>
@@ -456,31 +456,31 @@ function hideAbout() {
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Exp Date</label>
-                                <input type="month" class="form-control" autocomplete="cc-exp-month">
+                                <input id="ccExp" name="ccExp" type="month" class="form-control" autocomplete="cc-exp-month">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>CVV</label>
-                                <input type="number" class="form-control" autocomplete="cc-csc">
+                                <input id="ccCsc" name="ccCsc" type="number" class="form-control" autocomplete="cc-csc">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Address</label>
-                        <input class="form-control" required autocomplete="shipping street-address">
+                        <input id="address" name="address" class="form-control" required autocomplete="shipping street-address">
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>City</label>
-                                <input class="form-control" autocomplete="shipping locality">
+                                <input id="city" name="city" class="form-control" autocomplete="shipping locality">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>State / Province</label>
-                                <input class="form-control" autocomplete="shipping region">
+                                <input id="state" name="state" class="form-control" autocomplete="shipping region">
                             </div>
                         </div>
                     </div>
@@ -488,7 +488,7 @@ function hideAbout() {
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Zip</label>
-                                <input type="postal" class="form-control" autocomplete="shipping postal-code">
+                                <input id="zip" name="zip" type="postal" class="form-control" autocomplete="shipping postal-code">
                             </div>
                         </div>
                     </div>
@@ -512,7 +512,7 @@ function hideAbout() {
         <div class="container col-lg-2">
             <input class="form-control" type="number" id="donatevarinput" value="0" min="0" step="5" disabled>
             <br>
-            <button class="btn-content btn btn-donate-content" style="font-size: min(max(16px, 6vw), 25px)">Donate!</button>
+            <button id="donateSubmit" class="btn-content btn btn-donate-content" style="font-size: min(max(16px, 6vw), 25px)">Donate!</button>
         </div>  
     <script>
         $(document).ready(function(){
@@ -539,7 +539,18 @@ function hideAbout() {
                         $('#donatevarinput').val(Math.floor($('#donatevarinput').val()/5) * 5);
             })
                 
-        })
+
+			$('#donateSubmit').click(function(){
+				checkValidity();
+			})
+			
+		})
+		var date = new Date();
+		
+		function checkValidity(){
+			if(document.getElementById('ccNumber').value.length <= 19 || document.getElementById('ccExp').value  || document.getElementById('ccNumber').value.length <= 19)
+				alert("Invalid Card Information")
+		}
     </script>
 </div>
 </div>
