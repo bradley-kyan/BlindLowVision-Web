@@ -448,7 +448,7 @@ function hideAbout() {
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Credit card number</label>
-                            <input id="ccNumber" name="ccNumber" autocomplete="cc-number" class="form-control">
+                            <input id="ccNumber" name="ccNumber" type="number" autocomplete="cc-number" class="form-control">
                         </div>
                     </div>
                     </div>
@@ -515,10 +515,13 @@ function hideAbout() {
             <button id="donateSubmit" class="btn-content btn btn-donate-content" style="font-size: min(max(16px, 6vw), 25px)">Donate!</button>
         </div>  
     <script>
+		//Check if radio boxes are clicked or if 'other' input is selected
+		
         $(document).ready(function(){
             $('.nonOther').click(function(){
                 otherSelected();
-                })
+			})
+			ccDash();
             $('#donatevar').click(function(){
                 otherIsSelected();
                 })
@@ -530,6 +533,7 @@ function hideAbout() {
             function otherIsSelected(){
                 $('#donatevarinput').prop("disabled", false);
             }
+			
             $(document.body).click(function(){
                 if($('#donatevarinput').val() <= 0)
                     $('#donatevarinput').val(null);   
@@ -539,12 +543,34 @@ function hideAbout() {
                         $('#donatevarinput').val(Math.floor($('#donatevarinput').val()/5) * 5);
             })
                 
-
 			$('#donateSubmit').click(function(){
 				checkValidity();
 			})
 			
 		})
+		
+		//Auto add dahes every 4 numbers -> ccNumber
+		
+		
+		
+		//Remove characters over 15
+		function ccDash(){
+			function remove_character(str, char_pos){
+				  part1 = str.substring(0, char_pos);
+				  part2 = str.substring(char_pos + 1, str.length);
+				  return (part1 + part2);
+				 }
+			
+			if(document.getElementById('ccNumber').value.length > 15){
+				var newStr = remove_character(document.getElementById('ccNumber').value,15);
+				document.getElementById('ccNumber').value = newStr;
+				return;
+				}
+		}
+			
+		}
+		
+		//Check if information is valid
 		var date = new Date();
 		
 		function checkValidity(){
