@@ -408,7 +408,6 @@ function hideAbout() {
 //                            if (loggedIn == 0){
 //                                window.location.replace("register.html");
 //                            }
-                        }
                     </script>
                 </ul>
             </div>
@@ -448,7 +447,7 @@ function hideAbout() {
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Credit card number</label>
-                            <input id="ccNumber" name="ccNumber" type="number" autocomplete="cc-number" class="form-control">
+                            <input id="ccNumber" name="ccNumber" type="text" autocomplete="cc-number" class="form-control">
                         </div>
                     </div>
                     </div>
@@ -516,12 +515,10 @@ function hideAbout() {
         </div>  
     <script>
 		//Check if radio boxes are clicked or if 'other' input is selected
-		
         $(document).ready(function(){
             $('.nonOther').click(function(){
                 otherSelected();
 			})
-			ccDash();
             $('#donatevar').click(function(){
                 otherIsSelected();
                 })
@@ -549,32 +546,60 @@ function hideAbout() {
 			
 		})
 		
-		//Auto add dahes every 4 numbers -> ccNumber
-		
-		
-		
-		//Remove characters over 15
-		function ccDash(){
-			function remove_character(str, char_pos){
-				  part1 = str.substring(0, char_pos);
-				  part2 = str.substring(char_pos + 1, str.length);
-				  return (part1 + part2);
-				 }
-			
-			if(document.getElementById('ccNumber').value.length > 15){
-				var newStr = remove_character(document.getElementById('ccNumber').value,15);
-				document.getElementById('ccNumber').value = newStr;
-				return;
-				}
-		}
-			
-		}
-		
+		//Calls functions
+        var key;
+        
+        $( "#ccNumber" ).keyup(function() {
+            ccDash();
+            ccSplice();
+        })
+        $( "#ccNumber" ).keydown(function() {
+            key = event.keyCode
+        })
+        //Remove characters over 19
+		function ccSplice(){
+            var ccNumArray = Array.from(document.getElementById('ccNumber').value);
+            if(document.getElementById('ccNumber').value.length >= 19){
+                ccNumArray.splice(19);
+                document.getElementById('ccNumber').value = ccNumArray.join("");
+                }
+            //Removes two values from end of array when '–' and backspace are pressed
+            if( key == 8 && ccNumArray.slice(-1).pop() == "–"){
+                ccNumArray.pop();
+                ccNumArray.pop();
+                document.getElementById('ccNumber').value = ccNumArray.join("");
+            }
+            //Removes non number values from array
+            if(isNaN(ccNumArray.slice(-1).pop()) == true && ccNumArray.slice(-1).pop() !== "–"){
+                ccNumArray.pop();
+                document.getElementById('ccNumber').value = ccNumArray.join("");
+            }
+        }
+        //Adds '–' between each 4 digits of ccNumber
+        function ccDash(){
+            var newVal;
+            var currentVal = document.getElementById('ccNumber').value;
+                if( key !== 8 ){
+                    switch(currentVal.length){
+                        case 4:
+                            newVal = currentVal += "–";
+                            break;
+                        case 9:
+                            newVal = currentVal += "–";
+                            break;
+                        case 14:
+                            newVal = currentVal += "–";
+                            break;
+                        default:
+                            newVal = currentVal;
+                            break;
+                    }
+                    document.getElementById('ccNumber').value = newVal;            
+                }
+        }
 		//Check if information is valid
-		var date = new Date();
-		
 		function checkValidity(){
-			if(document.getElementById('ccNumber').value.length <= 19 || document.getElementById('ccExp').value  || document.getElementById('ccNumber').value.length <= 19)
+			if(document.getElementById('ccNumber').value.length < 19 || document.getElementById('ccName').value.length == 0 || document.getElementById('ccNumber').value.length == 0 || document.getElementById('ccExp').value.length == 0 || document.getElementById('ccCsc').value.length == 0 || document.getElementById('address').value.length == 0 || document.getElementById('city').value.length == 0 || document.getElementById('state').value.length == 0 || document.getElementById('zip').value.length == 0)
 				alert("Invalid Card Information")
 		}
     </script>
