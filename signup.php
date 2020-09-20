@@ -39,43 +39,36 @@ DECLARE @username varchar(255)
 SET @username = (SELECT Username FROM Login WHERE Username 
 = '$username')
     IF @username = '$username'
-    RETURN;
+    BEGIN
+        SELECT '404' AS 'Status'
+        SET NOEXEC ON
+    END
     
-WAITFOR DELAY '00:00:01';
+WAITFOR DELAY '00:00:00.010';
 
 INSERT INTO Login (Username,Password,Email)   
 VALUES (?,?,?);
 
-WAITFOR DELAY '00:00:01';
+WAITFOR DELAY '00:00:00.010';
 
-INSERT INTO UserInformation (UserID,First_Name,Last_Name,Phone,Address,City,Postcode,State)
+INSERT INTO UserInformation
+(UserID,First_Name,Last_Name,Phone,Address,City,Postcode,State)
 VALUES ((SELECT UserID FROM Login WHERE Username='$username'),?,?,?,?,?,?,?);
 
 INSERT INTO Notification(UserID,Notify,event1,event2)
-VALUES ((SELECT UserID FROM Login WHERE Username='$username'),'$notify','$event1','$event2');";
+VALUES ((SELECT UserID FROM Login WHERE Username='$username'),'$notify','$event1','$event2');
+
+WAITFOR DELAY '00:00:00.010';
+SET NOEXEC OFF;
+";
     
 $params = array(&$_POST['Username'], &$_POST['Password'], &$_POST['EmailA'],
                 &$_POST['NameF'], &$_POST['NameL'], &$_POST['PhoneN'], &$_POST['AddressShip'], &$_POST['CityA'], &$_POST['ZipCode'], &$_POST['StateA']
 );  
     $stmt = sqlsrv_query($conn, $Sql, $params);  
 
-if ($stmt) {
-   $rows = sqlsrv_has_rows( $stmt );
-   if ($rows !== true){
-      echo 404;}
-	else{
-		echo 200;
-	}
-}    
-  
-while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_NUMERIC) ) {
-      echo $row[0];
+while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+      echo $row['Status'];
 }
-if ($stmt === false)  
-        {  
-        if (sqlsrv_errors() !== null)  
-            {  
-            echo 404;  
-            } 
-}
+sqlsrv_free_stmt( $stmt);
 ?>

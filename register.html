@@ -137,6 +137,15 @@ p {
     font-size: 10px;
     position: relative;
     text-indent: -9999em;
+    border-top: 1.1em solid rgba(72,72,72,0.20);
+    border-right: 1.1em solid rgba(72,72,72,0.20);
+    border-bottom: 1.1em solid rgba(72,72,72,0.20);
+    border-left: 1.1em solid rgba(40,40,40,1.00);
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 1.1s infinite linear;
+    animation: load8 1.1s infinite linear;
 }
 @-webkit-keyframes load8 {
 0% {
@@ -421,7 +430,7 @@ function hideAbout() {
         <button type="button" style="color: black; opacity: .8; padding-top: 5px; font-size: 500%" class="close" aria-label="Close" onClick="hideOverlay()">×</button>
         <h3>Already Have An Account?</h3>
         <div class="container-fluid" style="padding-bottom: 15px">
-    <form id="lForm" method="post" action="user.php">
+    <form id="lForm">
         <div class="form-group">
             <label for="Username">Username / Email</label>
             <input type="name" class="form-control" name="UsernameLogin" id="UsernameLogin" placeholder="myusername" enabled>
@@ -584,6 +593,16 @@ function showOverlay(){
                 }
                 else{
                     var event21 = 0}
+                    var Username1 = document.getElementById('Username').value;
+					var Password1 = document.getElementById('Password').value;
+					var EmailA1 = document.getElementById('EmailA').value;
+					var NameF1 = document.getElementById('NameF').value;
+					var NameL1 = document.getElementById('NameL').value;
+					var PhoneN1 = document.getElementById('PhoneN').value;
+					var AddressShip1 = document.getElementById('AddressShip').value;
+					var CityA1 = document.getElementById('CityA').value;
+					var ZipCode1 = document.getElementById('ZipCode').value;
+					var StateA1 = document.getElementById('StateA').value;
                     document.getElementById('validationErr').innerHTML = ' ';
                     document.getElementById('validationErr2').innerHTML = ' ';
                     document.getElementById('validationErr4').innerHTML = ' ';

@@ -26,7 +26,12 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
     DECLARE @email varchar(255)
     SET @email = (SELECT Email FROM Login WHERE UserID = @ID)
     
-    SELECT @firstName AS 'first_name', @lastName AS 'last_name', @ID AS 'UserID', @username AS 'Username', @email AS 'Email'
+    IF @ID IS NULL
+        BEGIN
+            SELECT '404' AS 'Status'
+            SET NOEXEC ON
+        END
+    SELECT @firstName AS 'first_name', @lastName AS 'last_name', @ID AS 'UserID', @username AS 'Username', @email AS 'Email', 'Status' AS '200';
     ";
     $stmt = sqlsrv_query($conn, $Sql, $params);
     $row_count = sqlsrv_has_rows( $stmt );
@@ -36,10 +41,17 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
     $UserID = $row['UserID'];
     $Username = $row['Username'];
     $Email = $row['Email'];
-    if ($row_count === false){
+    
+
+    
+if ($row_count === false){
         echo 404;
         exit;
-        }
+        }    
+    else if($row['Status'] == 404){
+        echo $row['Status'];
+        exit;
+    }
     else {
         echo 200;
         $array = array("username" => $Username, "password" => $passwordLogin, "first_name" => $firstName, "last_name" => $lastName, "UserID" => $UserID, "Email" => $Email);

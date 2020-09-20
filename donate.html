@@ -404,10 +404,11 @@ function hideAbout() {
                                 location.reload();
                             })
                         });
-//                        function userLoggedIn(){
-//                            if (loggedIn == 0){
-//                                window.location.replace("register.html");
-//                            }
+                        function userLoggedIn(){
+                            if (loggedIn == 0){
+                                window.location.replace("register.html");
+                            }
+                        }
                     </script>
                 </ul>
             </div>
@@ -514,14 +515,16 @@ function hideAbout() {
             <button id="donateSubmit" class="btn-content btn btn-donate-content" style="font-size: min(max(16px, 6vw), 25px)">Donate!</button>
         </div>  
     <script>
+        var btn = document.getElementById('donatevarinput');
+        var allowed = 0;
 		//Check if radio boxes are clicked or if 'other' input is selected
         $(document).ready(function(){
             $('.nonOther').click(function(){
                 otherSelected();
-			})
+			});
             $('#donatevar').click(function(){
                 otherIsSelected();
-                })
+            });
 
             function otherSelected(){
                 $('#donatevarinput').prop("disabled", true);  
@@ -532,30 +535,84 @@ function hideAbout() {
             }
 			
             $(document.body).click(function(){
+                
                 if($('#donatevarinput').val() <= 0)
                     $('#donatevarinput').val(null);   
                 if(($('#donatevarinput').val() % 5) >= 2.5)
                         $('#donatevarinput').val(Math.ceil($('#donatevarinput').val()/5) * 5);
-                    else
-                        $('#donatevarinput').val(Math.floor($('#donatevarinput').val()/5) * 5);
-            })
-                
-			$('#donateSubmit').click(function(){
+                    else{ $('#donatevarinput').val(Math.floor($('#donatevarinput').val()/5) * 5);}
+                donateValSet();
+            });
+            //Check Validity of inputs    
+			$('#donateSubmit').click(function(e){
 				checkValidity();
-			})
+                submit();
+			});
 			
-		})
-		
+		});
+        //Check if information is valid
+		function checkValidity(){
+            
+			if(document.getElementById('ccNumber').value.length < 19 || document.getElementById('ccName').value.length == 0 || document.getElementById('ccExp').value.length == 0 || document.getElementById('ccCsc').value.length == 0 || document.getElementById('address').value.length == 0 || document.getElementById('city').value.length == 0 || document.getElementById('state').value.length == 0 || document.getElementById('zip').value.length == 0){
+				alert("Invalid Card Information");
+                btn.disabled = true;
+                allowed = 0;
+            }
+            else
+                allowed = 1;
+        }
+
+					
+            var donateAmount;
+        
+            function submit(){
+                
+                var ccNumber1 = document.getElementById('ccNumber').value;
+					var ccName1 = document.getElementById('ccName').value;
+					var ccExp1 = document.getElementById('ccExp').value;
+					var address1 = document.getElementById('address').value;
+					var city1 = document.getElementById('city').value;
+					var state1 = document.getElementById('state').value;
+					var zip1 = document.getElementById('zip').value;
+                
+            if(allowed == 1){
+                btn.disabled = false;
+            if (confirm("Is this information correct?")){
+				$.ajax({
+                    type: "POST",
+                    url: "donate.php",
+                    data: {ccNumber:ccNumber1, ccName:ccName1, ccExp:ccExp1, address:address1, city:city1, state:state1, zip:zip1, donateAmount:donateAmount},
+                    success:function(data){
+                        if(data == 404)
+                            setTimeout(function(){ alert("𝗔𝗻 𝗘𝗿𝗿𝗼𝗿 𝗢𝗰𝗰𝘂𝗿𝗲𝗱"); }, 200);
+                        else{
+                            setTimeout(function(){ alert("Thank you for donating!"); }, 200);}
+                        }
+                })
+            }    
+            }            		
+            }
+        //Radio Button value
+
+        function donateValSet(){
+            $('#donatevar').prop('value', $('#donatevarinput').val());
+            var radios = document.getElementsByName('donateval');
+            for (var i = 0, length = radios.length; i < length; i++) {
+              if (radios[i].checked) {
+                donateAmount = radios[i].value;
+                break;
+              }
+            }
+        }
 		//Calls functions
         var key;
-        
         $( "#ccNumber" ).keyup(function() {
             ccDash();
             ccSplice();
-        })
+        });
         $( "#ccNumber" ).keydown(function() {
-            key = event.keyCode
-        })
+            key = event.keyCode;
+        });
         //Remove characters over 19
 		function ccSplice(){
             var ccNumArray = Array.from(document.getElementById('ccNumber').value);
@@ -563,45 +620,40 @@ function hideAbout() {
                 ccNumArray.splice(19);
                 document.getElementById('ccNumber').value = ccNumArray.join("");
                 }
-            //Removes two values from end of array when '–' and backspace are pressed
-            if( key == 8 && ccNumArray.slice(-1).pop() == "–"){
+            //Removes two values from end of array when '-' and backspace are pressed
+            if( key == 8 && ccNumArray.slice(-1).pop() == "-"){
                 ccNumArray.pop();
                 ccNumArray.pop();
                 document.getElementById('ccNumber').value = ccNumArray.join("");
             }
             //Removes non number values from array
-            if(isNaN(ccNumArray.slice(-1).pop()) == true && ccNumArray.slice(-1).pop() !== "–"){
+            if(isNaN(ccNumArray.slice(-1).pop()) == true && ccNumArray.slice(-1).pop() !== "-"){
                 ccNumArray.pop();
                 document.getElementById('ccNumber').value = ccNumArray.join("");
             }
         }
-        //Adds '–' between each 4 digits of ccNumber
+        //Adds '-' between each 4 digits of ccNumber
         function ccDash(){
             var newVal;
             var currentVal = document.getElementById('ccNumber').value;
                 if( key !== 8 ){
                     switch(currentVal.length){
                         case 4:
-                            newVal = currentVal += "–";
+                            newVal = currentVal += "-";
                             break;
                         case 9:
-                            newVal = currentVal += "–";
+                            newVal = currentVal += "-";
                             break;
                         case 14:
-                            newVal = currentVal += "–";
+                            newVal = currentVal += "-";
                             break;
                         default:
                             newVal = currentVal;
                             break;
                     }
-                    document.getElementById('ccNumber').value = newVal;            
+                    document.getElementById('ccNumber').value = newVal;   
                 }
         }
-		//Check if information is valid
-		function checkValidity(){
-			if(document.getElementById('ccNumber').value.length < 19 || document.getElementById('ccName').value.length == 0 || document.getElementById('ccNumber').value.length == 0 || document.getElementById('ccExp').value.length == 0 || document.getElementById('ccCsc').value.length == 0 || document.getElementById('address').value.length == 0 || document.getElementById('city').value.length == 0 || document.getElementById('state').value.length == 0 || document.getElementById('zip').value.length == 0)
-				alert("Invalid Card Information")
-		}
     </script>
 </div>
 </div>
