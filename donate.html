@@ -1,0 +1,687 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>Blind Low Vision NZ - Fundraising to support ones with vision impairment</title>
+<meta name="viewport" content="width=device-width, inital scale=1">
+<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="icon" href="img/logo.png">
+<link href="css/liMarquee.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
+<script type="text/javascript" src="css/slick.min.js"></script> 
+<script src="js/jquery.liMarquee.js"></script>
+<style type="text/css">
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    transition: background-color .2s;
+    transition: color .2;
+    background-color: #656565;
+    color: #FFFFFF;
+}
+.navbar-default {
+    background-color: #FFFFFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.navbar-brand {
+    padding-top: 10px;
+}
+
+@media (max-width: 991px) {
+.navbar-header {
+    float: none;
+}
+.navbar-toggle {
+    display: block;
+}
+.navbar-collapse {
+    margin-top: 20px;
+    overflow: hidden !important;
+}
+.navbar-collapse.collapse {
+    display: none!important;
+}
+.navbar-collapse.collapse.in {
+    display: block!important;
+}
+.navbar-collapse *[class*='navbar-'] {
+    float: none!important;
+    margin: 7.5px -15px;
+}
+.navbar-nav > li {
+    float: none;
+}
+.navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+}
+#navcontainer {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+#navcont {
+    padding-top: 10px;
+}
+.content {
+    padding: 10px 10px;
+}
+.btn-donate {
+    background-color: #BE1C28;
+    color: #FFFFFF;
+}
+.btn-donate:hover {
+    transition: background-color .2s;
+    transition: transform .2s;
+    background-color: #9A1620;
+    transform: scale(1.1);
+}
+.btn-donate:not(:hover) {
+    transition: transform .2s;
+    transform: scale(1)
+}
+</style>
+<style type="text/css">
+.front {
+    z-index: 2;
+    position: absolute;
+}
+.behind {
+    position: relative;
+    z-index: 1;
+}
+.imgfit {
+    height: 400px;
+    object-fit: cover;
+}
+.btn-primary {
+    background-color: #F9D014;
+    border-color: transparent;
+    color: black;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open >.dropdown-toggle.btn-primary {
+    color: black;
+    transition: background-color .3s;
+    background-color: #FBE683;
+    border-color: transparent;
+    text-decoration: underline;
+}
+.img-content {
+    padding: 15px;
+    width: 40vmin;
+}
+.img-content:hover {
+    transition: transform .2s;
+    transform: scale(1.04);
+}
+.img-content:not(:hover) {
+    transition: transform .2s;
+    transform: scale(1);
+}
+.h-content {
+    font-size: min(max(4vw), 45px);
+}
+p {
+    text-align: justify;
+}
+</style>
+<style type="text/css">
+.loader, .loader:after {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+}
+.loader {
+    margin: 60px auto;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+}
+@-webkit-keyframes load8 {
+0% {
+-webkit-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+100% {
+-webkit-transform: rotate(360deg);
+transform: rotate(360deg);
+}
+}
+@keyframes load8 {
+0% {
+-webkit-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+100% {
+-webkit-transform: rotate(360deg);
+transform: rotate(360deg);
+}
+}
+#loadingDiv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    z-index: 99;
+}
+.btn-donate-content {
+    background-color: #BE1C28;
+    color: #FFFFFF;
+}
+.btn-donate-content:hover {
+    background-color: #E44652;
+    color: #FFFFFF;
+    text-decoration: underline;
+    transition: background-color .2s;
+}
+.btn-donate-content:not(:hover) {
+    transition: background-color .2s;
+}
+.border-content {
+    border-bottom: solid;
+    border-bottom-color: #E7E7E7;
+}
+
+@media(min-width: 991px) {
+.box-right {
+    width: 25%;
+    float: right;
+    background-color: #E7E7E7;
+    position: relative;
+}
+.left-frame {
+    width: 75%;
+    float: left;
+}
+}
+
+@media(max-width: 991px) {
+.box-right {
+    width: 40%;
+    float: right;
+    background-color: #E7E7E7;
+    position: relative;
+}
+.left-frame {
+    width: 60%;
+    float: left;
+}
+}
+.imgfit-content {
+    height: 200px;
+    object-fit: cover;
+}
+.btn-content {
+    left: 10px;
+    bottom: 10px;
+}
+.footer-dark {
+    padding: 50px 0;
+    color: #FFFFFF;
+    background-color: #1B1B1B;
+}
+
+@media(max-width: 991px) {
+.img-fluid {
+    width: 250px;
+}
+}
+
+@media(max-width: 768px) {
+.img-fluid {
+    width: 200px;
+    position: absolute;
+    right: 50px;
+}
+}
+
+@media(min-width: 991px) {
+.img-fluid {
+    width: 400px;
+}
+}
+.social {
+    width: 60px;
+    border: 10px solid #1B1B1B;
+}
+html {
+    scroll-behavior: smooth;
+}
+</style>
+</head>
+<body onLoad="userAccountName(); userLoggedIn()">
+<!-- Returns links to # if linking to current page using 'onclick="function(); return false;"' | Change ID to current page--> 
+<script type="text/javascript" id="donate">
+function clickHome() {
+   if ($( "#home" ).length)
+       window.location.href = "#";
+   else
+       window.location.href = "index.html";
+}
+function clickDonate() {
+   if ($( "#donate" ).length)
+       window.location.href = "#";
+   else
+       window.location.href = "donate.html";
+}
+function clickEvents() {
+   if ($( "#events" ).length)
+       window.location.href = "#";
+   else
+       window.location.href = "events.html";
+}
+function clickEventsPuppy() {
+   if ($( "#events" ).length)
+       window.location.href = "#red_puppy";
+   else
+       window.location.href = "events.html#red_puppy";
+}
+function clickEventsRun() {
+   if ($( "#events" ).length)
+       window.location.href = "#bride_run";
+   else
+       window.location.href = "events.html#bridge_run";
+}
+function clickAbout() {
+   if ($( "#aboutpage" ).length)
+       window.location.href = "#";
+   else
+       window.location.href = "about.html";
+}
+function clickAboutGoal() {
+   if ($( "#aboutpage" ).length)
+       window.location.href = "#goal";
+   else
+       window.location.href = "about.html#goal";
+}
+function clickAboutContact() {
+   if ($( "#aboutpage" ).length)
+       window.location.href = "#contact";
+   else
+       window.location.href = "about.html#contact";
+}
+function clickRegister() {
+   if ($( "#register" ).length)
+       window.location.href = "#";
+   else
+       window.location.href = "register.html";
+}
+</script> 
+<!--Loading --> 
+<script type="text/javascript">
+    $('body').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
+$(window).on('load', function(){
+  setTimeout(removeLoader, 0);
+});
+function removeLoader(){
+    $( "#loadingDiv" ).fadeOut(500, function() {
+      $( "#loadingDiv" ).remove();
+  });  
+}</script> 
+<!-- 'About' Dropdown Javascript Toggle --> 
+<script type="text/javascript">
+function showAbout() {
+    document.getElementById('about').style.display = 'block';
+}
+function hideAbout() {
+    document.getElementById('about').style.display = 'none';
+}
+</script> 
+<!--Navbar-->
+<nav class="navbar-default">
+    <div id="navcontainer" class="container">
+        <div class="navbar-header"> <a class="navbar-brand" href="index.html" onclick="clickHome(); return false;"> <img class="img-resonsive" width="300px" height="" src="img/Blind & Low Vision NZ_Formerly_Horizontal_RGB (1).jpg" alt="Blind And Low Vision New Zealand"> </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded=""> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        </div>
+        <div id="navcont" class="container">
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Home Button -->
+                    <li><a href="index.html" onclick="clickHome(); return false;">Home</a></li>
+                    <li><a href="events.html" onclick="clickEvents(); return false;">Events</a></li>
+                    <li class="dropdown"> 
+                        <!-- 1st page button --> 
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="about.html" onmouseover="showAbout()" onmouseout="hideAbout()">About <span class="caret"></span></a>
+                        <ul class="dropdown-menu" id="about" onmouseover="showAbout()" onmouseout="hideAbout()">
+                            <li><a href="about.html#about" onclick="clickAbout(); return false;">Who Are We?</a></li>
+                            <li><a href="about.html#goal" onclick="clickAboutGoal(); return false;">Our Goal</a></li>
+                            <li><a href="about.html#contact" onclick="clickAboutContact(); return false;">Get In Touch</a></li>
+                        </ul>
+                    </li>
+                    <!--Sign Up Page-->
+                    <li id="navHide"><a href="">Sign Out</a></li>
+                    <!-- 2nd page button -->
+                    <li><a href="#" id="account"></a></li>
+                    <!-- 3rd page button -->
+                    <li class="active"><a class="btn-donate" href="#" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28" onClick="clickDonate() return false;">Donate</a></li>
+                    <script type="text/javascript">
+                        function getCookie(cname) {
+                          var name = cname + "=";
+                          var decodedCookie = decodeURIComponent(document.cookie);
+                          var ca = decodedCookie.split(';');
+                          for(var i = 0; i < ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                              c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                              return c.substring(name.length, c.length);
+                            }
+                          }
+                          return "";
+                        }
+                        
+                        var loggedIn;
+                        
+                        function userAccountName(){
+                            try{
+                                var userCookie = getCookie("cookieUserLogin")
+                                var usernameCookie = JSON.parse(userCookie);
+                                var FirstNUser = usernameCookie.first_name;
+                                var LastNUser = usernameCookie.last_name;
+                                document.getElementById('account').innerHTML = FirstNUser + " " + LastNUser;
+                                document.getElementById("account").href="myuser.html";
+                                $('#navHide').show();
+                                loggedIn = 1
+                            }
+                            catch(err){
+                                document.getElementById('account').innerHTML = "My Account";
+                                document.getElementById("account").href="register.html";
+                                $('#navHide').hide();
+                                loggedIn = 0
+                            }
+                        }
+                        $(document).ready(function () {
+                            $( "#navHide" ).click(function() {
+                                document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;";
+                                location.reload();
+                            })
+                        });
+                        function userLoggedIn(){
+                            if (loggedIn == 0){
+                                window.location.replace("register.html");
+                            }
+                        }
+                    </script>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--Main Body of Website -->
+<div class="content"> 
+    <!--Regestration Form-->
+    <div class="container" style=" position: relative; padding: 15px">
+        <h1>Donate</h1>
+        <hr>
+            <p>When you donate you are not only helping us change lives you are also helping us keep everything up and running smoothly. Donating allows us to continue to do our work throughout New Zealand, regardless of age, gender or race!</p>
+            <p>By donating you automatically go into the draw for prizes when you attend one of our events. You also are able to claim special rewards at any of our  fundraising events at the marked locations! All you need to do is show the QR code that was emailed to you or <a>press here to resend</a> email.</p>
+        <h4>What benefits you get:</h4>
+        <p><ul>
+        <li>$5 : Free Wristband</li>
+        <li>$10 : Entry into monthly raffle</li>
+        <li>$20 : Free Drinks</li>
+        <li>$50 : Blind + Low Vision T shirt</li>
+        <li>$100+ : Free entry into our paid events + special invites and special notification regarding events</li>
+        </ul>
+        <p><i>All teirs higher than the previous have the benefits of the previous</i></p>
+        </p>
+        <br>
+        <form id="userForm">
+        <div class="container col-lg-6">
+                <div class="row">
+                    <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Name on Card</label>
+                            <input id="ccName" name="ccName" class="form-control" autocomplete="cc-name">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Credit card number</label>
+                            <input id="ccNumber" name="ccNumber" type="text" autocomplete="cc-number" class="form-control">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Exp Date</label>
+                                <input id="ccExp" name="ccExp" type="month" class="form-control" autocomplete="cc-exp-month">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>CVV</label>
+                                <input id="ccCsc" name="ccCsc" type="number" class="form-control" autocomplete="cc-csc">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input id="address" name="address" class="form-control" required autocomplete="shipping street-address">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input id="city" name="city" class="form-control" autocomplete="shipping locality">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>State / Province</label>
+                                <input id="state" name="state" class="form-control" autocomplete="shipping region">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>Zip</label>
+                                <input id="zip" name="zip" type="postal" class="form-control" autocomplete="shipping postal-code">
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        <div class="container col-lg-6">
+            <input class="nonOther" type="radio" name="donateval" id="donate5" value="5">
+            <label style="font-size: 14px; font-weight: lighter">$5</label>
+            <input class="nonOther" type="radio" name="donateval" id="donate10" value="10">
+            <label style="font-size: 14px; font-weight: lighter">$10</label>
+            <input class="nonOther" type="radio" name="donateval" id="donate20" value="20">
+            <label style="font-size: 14px; font-weight: lighter">$20</label>
+            <input class="nonOther" type="radio" name="donateval" id="donate50" value="50">
+            <label style="font-size: 14px; font-weight: lighter">$50</label>  
+            <input class="nonOther" type="radio" name="donateval" id="donate100" value="100">
+            <label style="font-size: 14px; font-weight: lighter">$100</label>
+            <input type="radio" name="donateval" id="donatevar" value="">
+            <label style="font-size: 14px; font-weight: lighter">Other (please specify):</label> 
+        </div>
+    </form>
+        <div class="container col-lg-2">
+            <input class="form-control" type="number" id="donatevarinput" value="0" min="0" step="5" disabled>
+            <br>
+            <button id="donateSubmit" class="btn-content btn btn-donate-content" style="font-size: min(max(16px, 6vw), 25px)">Donate!</button>
+        </div>  
+    <script>
+        var btn = document.getElementById('donatevarinput');
+        var allowed = 0;
+		//Check if radio boxes are clicked or if 'other' input is selected
+        $(document).ready(function(){
+            $('.nonOther').click(function(){
+                otherSelected();
+			});
+            $('#donatevar').click(function(){
+                otherIsSelected();
+            });
+
+            function otherSelected(){
+                $('#donatevarinput').prop("disabled", true);  
+                $('#donatevarinput').val(0);
+            }
+            function otherIsSelected(){
+                $('#donatevarinput').prop("disabled", false);
+            }
+			
+            $(document.body).click(function(){
+                
+                if($('#donatevarinput').val() <= 0)
+                    $('#donatevarinput').val(null);   
+                if(($('#donatevarinput').val() % 5) >= 2.5)
+                        $('#donatevarinput').val(Math.ceil($('#donatevarinput').val()/5) * 5);
+                    else{ $('#donatevarinput').val(Math.floor($('#donatevarinput').val()/5) * 5);}
+                donateValSet();
+            });
+            //Check Validity of inputs    
+			$('#donateSubmit').click(function(e){
+				checkValidity();
+                submit();
+			});
+			
+		});
+        //Check if information is valid
+		function checkValidity(){
+            
+			if(document.getElementById('ccNumber').value.length < 19 || document.getElementById('ccName').value.length == 0 || document.getElementById('ccExp').value.length == 0 || document.getElementById('ccCsc').value.length == 0 || document.getElementById('address').value.length == 0 || document.getElementById('city').value.length == 0 || document.getElementById('state').value.length == 0 || document.getElementById('zip').value.length == 0){
+				alert("Invalid Card Information");
+                btn.disabled = true;
+                allowed = 0;
+            }
+            else
+                allowed = 1;
+        }
+
+					
+            var donateAmount;
+        
+            function submit(){
+                
+                var ccNumber1 = document.getElementById('ccNumber').value;
+					var ccName1 = document.getElementById('ccName').value;
+					var ccExp1 = document.getElementById('ccExp').value;
+					var address1 = document.getElementById('address').value;
+					var city1 = document.getElementById('city').value;
+					var state1 = document.getElementById('state').value;
+					var zip1 = document.getElementById('zip').value;
+                
+            if(allowed == 1){
+                btn.disabled = false;
+            if (confirm("Is this information correct?")){
+				$.ajax({
+                    type: "POST",
+                    url: "donate.php",
+                    data: {ccNumber:ccNumber1, ccName:ccName1, ccExp:ccExp1, address:address1, city:city1, state:state1, zip:zip1, donateAmount:donateAmount},
+                    success:function(data){
+                        if(data == 404)
+                            setTimeout(function(){ alert("𝗔𝗻 𝗘𝗿𝗿𝗼𝗿 𝗢𝗰𝗰𝘂𝗿𝗲𝗱"); }, 200);
+                        else{
+                            setTimeout(function(){ alert("Thank you for donating!"); }, 200);}
+                        }
+                })
+            }    
+            }            		
+            }
+        //Radio Button value
+
+        function donateValSet(){
+            $('#donatevar').prop('value', $('#donatevarinput').val());
+            var radios = document.getElementsByName('donateval');
+            for (var i = 0, length = radios.length; i < length; i++) {
+              if (radios[i].checked) {
+                donateAmount = radios[i].value;
+                break;
+              }
+            }
+        }
+		//Calls functions
+        var key;
+        $( "#ccNumber" ).keyup(function() {
+            ccDash();
+            ccSplice();
+        });
+        $( "#ccNumber" ).keydown(function() {
+            key = event.keyCode;
+        });
+        //Remove characters over 19
+		function ccSplice(){
+            var ccNumArray = Array.from(document.getElementById('ccNumber').value);
+            if(document.getElementById('ccNumber').value.length >= 19){
+                ccNumArray.splice(19);
+                document.getElementById('ccNumber').value = ccNumArray.join("");
+                }
+            //Removes two values from end of array when '-' and backspace are pressed
+            if( key == 8 && ccNumArray.slice(-1).pop() == "-"){
+                ccNumArray.pop();
+                ccNumArray.pop();
+                document.getElementById('ccNumber').value = ccNumArray.join("");
+            }
+            //Removes non number values from array
+            if(isNaN(ccNumArray.slice(-1).pop()) == true && ccNumArray.slice(-1).pop() !== "-"){
+                ccNumArray.pop();
+                document.getElementById('ccNumber').value = ccNumArray.join("");
+            }
+        }
+        //Adds '-' between each 4 digits of ccNumber
+        function ccDash(){
+            var newVal;
+            var currentVal = document.getElementById('ccNumber').value;
+                if( key !== 8 ){
+                    switch(currentVal.length){
+                        case 4:
+                            newVal = currentVal += "-";
+                            break;
+                        case 9:
+                            newVal = currentVal += "-";
+                            break;
+                        case 14:
+                            newVal = currentVal += "-";
+                            break;
+                        default:
+                            newVal = currentVal;
+                            break;
+                    }
+                    document.getElementById('ccNumber').value = newVal;   
+                }
+        }
+    </script>
+</div>
+</div>
+<div class="footer-dark">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-push-6"><a href="index.html" onclick="clickHome(); return false;"><img class="img-fluid" src="img/Blind_Low_Vision_NZ_Formerly_Stacked_Rev_RGB-1.png" alt="Blind Low Vision - Formerly Blind Foundtation"></a></div>
+                <div class="col-md-3 col-md-pull-6 col-sm-4">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="about.html" style="color: #FFFFFF" onclick="clickAbout(); return false;">Who Are We?</a></li>
+                        <li><a href="about.html#goal" style="color: #FFFFFF" onclick="clickAboutGoal(); return false;">Our Goal</a></li>
+                        <li><a href="about.html#contact" style="color: #FFFFFF" onclick="clickAboutContact(); return false;">Get In Touch</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-md-pull-6 col-sm-4">
+                    <h3>Events</h3>
+                    <ul>
+                        <li><a href="events.html#red_puppy" style="color: #FFFFFF" onclick="clickEventsPuppy(); return false;">Red Puppy Parade</a></li>
+                        <li><a href="events.html#bridge_run" style="color: #FFFFFF" onclick="clickEventsRun(); return false;">Harbour Bridge Run</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12 col-sm-4"><a href="https://www.instagram.com/BlindLowVisionNZ/" target="_blank"><img class="social" src="img/instagram.svg" alt="Our Instagram"></a><a href="https://www.facebook.com/BlindLowVisionNZ/" target="_blank"><img class="social" src="img/facebook.svg" alt="Our Facebook"></a><a href="https://www.youtube.com/c/BlindLowVisionNZ" target="_blank"><img class="social" src="img/youtube.svg" alt="Our Youtube"></a><a href="https://twitter.com/BlindLowVision" target="_blank"><img class="social" src="img/twitter.svg" alt="Our Twitter"></a><a href="https://www.linkedin.com/company/blind-low-vision-nz" target="_blank"><img class="social" src="img/linkedin.svg" alt="Our LinkedIn"></a></div>
+            </div>
+            <p>Copyright Blind Low Vision NZ 2020 © | Blind Low Vision NZ is registered in New Zealand. Our Charities Commission Registration number is CC21361</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
