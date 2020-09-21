@@ -489,7 +489,26 @@ function hideAbout() {
             <button id="editInitalButton" style="z-index: 0">Edit Information</button>
             <button id="editSubmitButton" style="z-index: 1; margin-right: 30px; display: none">Save</button>
             <button id="editCancelButton" style="z-index: 1; display: none">Cancel</button>
-            <script>
+            
+			<script>
+			
+				$(document).ready(function(){
+				$.ajax({
+					type: "POST",
+					url: "userinfo.php",
+						data: {},
+						success :function(data){
+						if(data == ){
+							
+						} else {
+                            
+						}
+						}
+				
+			});
+			
+			</script>
+			<script>
             function confirmOverlay(){
                 $('#loginbg').fadeIn(500, function() {
                         $( "#loginbg" ).show();

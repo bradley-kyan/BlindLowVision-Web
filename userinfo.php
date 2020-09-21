@@ -39,7 +39,7 @@ switch($sqlCallVar){
 		break;        
 }
 
-$password = $_POST['password'];
+$passwordN = $_POST['passwordN'];
 $nameF = $_POST['nameF'];
 $nameL = $_POST['nameL'];
 $emailA = $_POST['emailA'];
@@ -98,7 +98,7 @@ WHERE UserId = '$UserID;
 WAITFOR DELAY '00:00:00.010';
 
 UPDATE Login
-SET Username = '$username', Password = '$password' Email = '$emailA'
+SET Username = '$username', Password = '$passwordN' Email = '$emailA'
 WHERE UserID = '$UserID';
 
 SELECT 'SqlUpdate' AS Status,
@@ -120,6 +120,13 @@ BEGIN CATCH
 	SELECT '404' AS 'Status'
 	SET NOEXEC ON
 END CATCH
+
+WAITFOR DELAY '00:00:00.010';
+
+SET @Password varchar(255) = (SELECT Password FROM Login WHERE Pasword = '$Password');
+IF @Password = '$Password'
+	SELECT 'SqlLogin' AS 'Status';
+	SET NOEXC OFF
 ";
 
 $stmt = sqlsrv_query($conn, $Sql, $params);  
@@ -135,10 +142,10 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
             echo json_encode($array);
             break;
         case 'SqlGet':
-            
+            echo 100;
             break;
         case 'SqlLogin':
-            
+            echo 202;
             break;
     }
     
