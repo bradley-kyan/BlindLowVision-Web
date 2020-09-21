@@ -29,14 +29,17 @@ $sqlCallVar = $_POST[''];
 
 switch($sqlCallVar){
 	case 001:
-		$sql = $sqlGet;
+		$Sql = $sqlGet;
 		break;
 	case 002:
-		$sql = $sqlUpdate;
+		$Sql = $sqlUpdate;
 		break;
+	case 003:
+		$Sql = $sqlLogin;
+		break;        
 }
 
-$username = $_POST['username'];
+$password = $_POST['password'];
 $nameF = $_POST['nameF'];
 $nameL = $_POST['nameL'];
 $emailA = $_POST['emailA'];
@@ -58,7 +61,11 @@ BEGIN CATCH
     SET NOEXEC ON
 END CATCH
 
-SELECT First_Name,Last_Name,Phone,Address,City,Postcode,State FROM UserInformation WHERE UserID = '$UserID';
+DECLARE @username varchar(255) = (Select Username from Login Where UserID = '$UserID')
+DECLARE @email varchar(255) = (Select Email from Login Where UserID = '$UserID')
+
+SELECT 
+'SqlGet' AS Status, @username AS 'Username', @email AS 'Email', First_Name,Last_Name,Phone,Address,City,Postcode,State FROM UserInformation WHERE UserID = '$UserID';
 
 SET NOEXEC OFF;
 ";
@@ -74,24 +81,54 @@ BEGIN CATCH
     SET NOEXEC ON
 END CATCH
 
+UPDATE UserInformation
+SET First_Name = '$nameF', Last_Name = '$nameL', Address = '$address', City = '$city', Postcode = '$zip', State = '$state'
+WHERE UserId = '$UserID;
 
+WAITFOR DELAY '00:00:00.010';
 
+UPDATE Login
+SET Username = '$username', Password = '$password' Email = '$emailA'
+WHERE UserID = '$UserID';
+
+SELECT 'SqlUpdate' AS Status,
 SET NOEXEC OFF;
 ";
 
+$SqlLogin = "
+BEGIN TRY
+DECLARE @ID varchar(255)
+SET @ID = (SELECT UserID FROM Login WHERE UserID 
+= '$UserID')
+END TRY
+BEGIN CATCH
+    SELECT '404' AS 'Status'
+    SET NOEXEC ON
+END CATCH
+";
 
 $stmt = sqlsrv_query($conn, $Sql, $params);  
   
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-      if($row['Status'] = 404){
-		  echo $row['Status'];
-		  exit;
-	  }
-	else{
-		$array = array("username" => $row['Status'], "first_name" => $row['First_Name'], "last_name" => $row['Last_Name'], "Email" => $row['Phone'],"Email" => $row['Phone'],"Email" => $row['Phone'],"Email" => $row['Phone']);
-		json_encode();
-	}
-}
-sqlsrv_free_stmt( $stmt);
 
+    switch($row['Status']){
+        case 404:
+            echo $row['Status'];
+            break;
+        case 'SqlUpdate':
+            $array = array("first_name" => $row['First_Name'], "last_name" => $row['Last_Name'], "Email" => $row['Email'],"username" => $row['Username'],"phone" => $row['Phone'],"address" => $row['Address'],"city" => $row['City'],"zip" => $row['Postcode'],"state" => $row['State']);
+            echo json_encode($array);
+            break;
+        case 'SqlGet':
+            
+            break;
+        case 'SqlLogin':
+            
+            break;
+    }
+    
+}
+
+sqlsrv_free_stmt( $stmt);
+exit;
 ?>
