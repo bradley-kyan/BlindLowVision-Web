@@ -30,12 +30,17 @@ $UserID = $cookieData['UserID'];
 $Sql = "
 BEGIN TRY
 DECLARE @ID varchar(255)
-SET @ID = (SELECT UserID FROM Login WHERE UserID 
+SET @ID =(SELECT UserID FROM Login WHERE UserID 
 = '$UserID')
+IF (@ID = '$UserID')
+	SELECT '200' AS 'Status'
+ELSE 
+	SELECT '404' AS 'Status'
+	SET NOEXEC ON
 END TRY
 BEGIN CATCH
-    SELECT '404' AS 'Status'
-    SET NOEXEC ON
+	SELECT '404' AS 'Status'
+	SET NOEXEC ON
 END CATCH
 
 WAITFOR DELAY '00:00:00.010';

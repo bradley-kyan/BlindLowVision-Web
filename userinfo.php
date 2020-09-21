@@ -53,12 +53,17 @@ $phoneN = $_POST['phoneN'];
 $SqlGet = "
 BEGIN TRY
 DECLARE @ID varchar(255)
-SET @ID = (SELECT UserID FROM Login WHERE UserID 
+SET @ID =(SELECT UserID FROM Login WHERE UserID 
 = '$UserID')
+IF (@ID = '$UserID')
+	SELECT '200' AS 'Status'
+ELSE 
+	SELECT '404' AS 'Status'
+	SET NOEXEC ON
 END TRY
 BEGIN CATCH
-    SELECT '404' AS 'Status'
-    SET NOEXEC ON
+	SELECT '404' AS 'Status'
+	SET NOEXEC ON
 END CATCH
 
 DECLARE @username varchar(255) = (Select Username from Login Where UserID = '$UserID')
@@ -73,12 +78,17 @@ SET NOEXEC OFF;
 $SqlUpdate = "
 BEGIN TRY
 DECLARE @ID varchar(255)
-SET @ID = (SELECT UserID FROM Login WHERE UserID 
+SET @ID =(SELECT UserID FROM Login WHERE UserID 
 = '$UserID')
+IF (@ID = '$UserID')
+	SELECT '200' AS 'Status'
+ELSE 
+	SELECT '404' AS 'Status'
+	SET NOEXEC ON
 END TRY
 BEGIN CATCH
-    SELECT '404' AS 'Status'
-    SET NOEXEC ON
+	SELECT '404' AS 'Status'
+	SET NOEXEC ON
 END CATCH
 
 UPDATE UserInformation
@@ -98,12 +108,17 @@ SET NOEXEC OFF;
 $SqlLogin = "
 BEGIN TRY
 DECLARE @ID varchar(255)
-SET @ID = (SELECT UserID FROM Login WHERE UserID 
+SET @ID =(SELECT UserID FROM Login WHERE UserID 
 = '$UserID')
+IF (@ID = '$UserID')
+	SELECT '200' AS 'Status'
+ELSE 
+	SELECT '404' AS 'Status'
+	SET NOEXEC ON
 END TRY
 BEGIN CATCH
-    SELECT '404' AS 'Status'
-    SET NOEXEC ON
+	SELECT '404' AS 'Status'
+	SET NOEXEC ON
 END CATCH
 ";
 
