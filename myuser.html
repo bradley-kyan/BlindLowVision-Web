@@ -438,7 +438,7 @@ function hideAbout() {
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control formDisable" placeholder="**********">
+                        <input id="password" type="password" class="form-control formDisable" placeholder="**********">
                     </div>
                     <div class="form-group">
                         <label>First Name</label>
@@ -491,22 +491,107 @@ function hideAbout() {
             <button id="editCancelButton" style="z-index: 1; display: none">Cancel</button>
             
 			<script>
-			
-				$(document).ready(function(){
-				$.ajax({
-					type: "POST",
-					url: "userinfo.php",
-						data: {},
-						success :function(data){
-						if(data == ){
-							
-						} else {
-                            
-						}
-						}
-				
-			});
-			
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+                var nameF = document.getElementById('nameF').value;
+                var nameL = document.getElementById('nameL').value;
+                var emailA = document.getElementById('emailA').value;
+                var phoneN = document.getElementById('phoneN').value;
+                var address = document.getElementById('address').value;
+                var city = document.getElementById('city').value;
+                var zip = document.getElementById('zip').value;
+                var state = document.getElementById('state').value;
+                    
+                var userFlow = 0;
+
+                $(document).ready(function(){
+                    userFlow0();
+                });
+                $('#confirmSubmit').click(function(){
+                    userFlow1();
+                });
+                
+                function userFlow1(){
+
+                    var passwordConfirm = document.getElementById('PasswordConfirm').value;
+                    $.ajax({
+                        type: "POST",
+                        url: "userinfoconfirm.php",
+                        data:{password:passwordConfirm},
+                        success :function(data){
+                            if(data == 404){
+                                if(alert('An error occured, please re-login.')){
+                                    document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;"; window.location.replace("register.html");
+                                }	
+                            }
+                            else {
+                                userflow3();
+                            }
+                        }
+                    })
+                }
+                
+                function userflow3(){                    
+                    
+                    var username = document.getElementById('username').value;
+                    var password = document.getElementById('password').value;
+                    var nameF = document.getElementById('nameF').value;
+                    var nameL = document.getElementById('nameL').value;
+                    var emailA = document.getElementById('emailA').value;
+                    var phoneN = document.getElementById('phoneN').value;
+                    var address = document.getElementById('address').value;
+                    var city = document.getElementById('city').value;
+                    var zip = document.getElementById('zip').value;
+                    var state = document.getElementById('state').value;
+                    var passwordConfirm = document.getElementById('PasswordConfirm').value;
+                    if(password.length == 0){
+                       password = passwordConfirm
+                    }
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "userinfoupdate.php",
+                        data:{passwordN:password,nameF:nameF,nameL:nameL,emailA:emailA,address:address,city:city,state:state,zip:zip,phoneN:phoneN},
+                        success :function(data){
+                            if(data == 404){
+                                if(alert('An error occured, please re-login.')){
+                                    document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;"; window.location.replace("register.html");
+                                }	
+                            }
+                            else {
+                                if(alert("Information has succesfully been updated!")){
+                                    location.reload();
+                                }
+                            }
+                        }
+                    })
+                }
+				function userFlow0(){
+                    $.ajax({
+                        type: "POST",
+                        url: "userinfo.php",
+                        success :function(data){
+                            if(data == 404){
+                                if(alert('An error occured, please re-login.')){
+                                    document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;"; window.location.replace("register.html");
+                                }	
+                            }
+                            else {
+                                var dataGet = JSON.parse(data);
+                                document.getElementById('username').value = dataGet.username;
+                                document.getElementById('nameF').value = dataGet.first_name;
+                                document.getElementById('nameL').value = dataGet.last_name;
+                                document.getElementById('emailA').value = dataGet.Email;
+                                document.getElementById('phoneN').value = dataGet.phone;
+                                document.getElementById('address').value = dataGet.address;
+                                document.getElementById('city').value = dataGet.city;
+                                document.getElementById('zip').value = dataGet.zip;
+                                document.getElementById('state').value = dataGet.state;
+                            }
+                        }
+                    })
+                }
+                
 			</script>
 			<script>
             function confirmOverlay(){

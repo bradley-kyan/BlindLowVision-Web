@@ -65,3 +65,24 @@ DECLARE @email varchar(255) = (Select Email from Login Where UserID = '13B064FB-
 
 SELECT 
 'SqlGet' AS Status, @username AS 'Username', @email AS 'Email', First_Name,Last_Name,Phone,Address,City,Postcode,State FROM UserInformation WHERE UserID = '13B064FB-667E-41F9-BA6D-19213ECE880E';
+
+BEGIN TRY
+DECLARE @username varchar(255) = (Select Username from Login Where UserID = '13B064FB-667E-41F9-BA6D-19213ECE880E')
+DECLARE @email varchar(255) = (Select Email from Login Where UserID = '13B064FB-667E-41F9-BA6D-19213ECE880E')
+
+DECLARE @ID varchar(255)
+DECLARE @Status int;
+SET @ID =(SELECT UserID FROM Login WHERE UserID 
+= '13B064FB-667E-41F9-BA6D-19213ECE880E')
+IF (@ID = '13B064FB-667E-41F9-BA6D-19213ECE880E')
+	SELECT 
+'SqlGet' AS 'Status', @username AS 'Username', @email AS 'Email', First_Name,Last_Name,Phone,Address,City,Postcode,State FROM UserInformation WHERE UserID = '13B064FB-667E-41F9-BA6D-19213ECE880E';
+ELSE 
+	SELECT '404' AS 'Status'
+	SET NOEXEC ON
+END TRY
+BEGIN CATCH
+	SELECT '404' AS 'Status'
+	SET NOEXEC ON
+END CATCH
+SET NOEXEC OFF;

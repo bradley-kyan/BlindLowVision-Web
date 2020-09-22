@@ -21,50 +21,61 @@ if(!isset($_COOKIE['cookieUserLogin'])) {
 }
 $cookieGet = $_COOKIE['cookieUserLogin'];
 $cookieData = json_decode($cookieGet, true);
-
+$donateAmount = $_POST['donateAmount'];
 //UserId from login cookie
 $UserID = $cookieData['UserID'];
+
+$passwordN = $_POST['passwordN'];
+$nameF = $_POST['nameF'];
+$nameL = $_POST['nameL'];
+$emailA = $_POST['emailA'];
+$address = $_POST['address'];
+$city = $_POST['city'];
+$state = $_POST['state'];
+$zip = $_POST['zip'];
+$phoneN = $_POST['phoneN'];
 
 //Data calling
 $Sql = "
 BEGIN TRY
-DECLARE @username varchar(255) = (Select Username from Login Where UserID = '$UserID')
-DECLARE @email varchar(255) = (Select Email from Login Where UserID = '$UserID')
-DECLARE @ID varchar(255)
-SET @ID =(SELECT UserID FROM Login WHERE UserID 
-= '$UserID')
+
+DECLARE @ID varchar(255) = (SELECT UserID FROM Login WHERE UserID 
+= '$UserID') 
+
 IF (@ID = '$UserID')
-	SELECT 
-'SqlGet' AS 'Status', @username AS 'Username', @email AS 'Email', First_Name,Last_Name,Phone,Address,City,Postcode,State FROM UserInformation WHERE UserID = '$UserID';
+	
+    UPDATE UserInformation
+    SET First_Name = '$nameF', Last_Name = '$nameL', Address = '$address', City = '$city', Postcode = '$zip', State = '$state'
+    WHERE UserId = '$UserID';
+
+    UPDATE Login
+    Password = '$passwordN', Email = '$emailA'
+    WHERE UserID = '$UserID';
+
+    SELECT 'SqlUpdate' AS 'Status';
+    
 ELSE 
 	SELECT '404' AS 'Status'
-	SET NOEXEC ON
+    
 END TRY
 BEGIN CATCH
 	SELECT '404' AS 'Status'
-	SET NOEXEC ON
 END CATCH
-
-SET NOEXEC OFF;
 ";
-  
 
-$stmt = sqlsrv_query($conn, $Sql, $params);  
-  
+$stmt = sqlsrv_query($conn, $Sql, $params); 
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 
     switch($row['Status']){
         case 404:
             echo $row['Status'];
             exit;
-        case 'SqlGet':
-            $arrayGet = array("username" => $row['Username'], "first_name" => $row['First_Name'], "last_name" => $row['Last_Name'], "Email" => $row['Email'], "phone" => $row['Phone'],"address" => $row['Address'],"city" => $row['City'],"zip" => $row['Postcode'],"state" => $row['State'] );
-            echo json_encode($arrayGet);
+        case 'SqlUpdate':
+            echo 200;
             exit;
     }
     
 }
 
 sqlsrv_free_stmt( $stmt);
-exit;
 ?>
