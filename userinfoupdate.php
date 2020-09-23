@@ -40,22 +40,26 @@ $Sql = "
 BEGIN TRY
 
 DECLARE @ID varchar(255) = (SELECT UserID FROM Login WHERE UserID 
-= '$UserID') 
+= '$UserID');
 
 IF (@ID = '$UserID')
 	
+	BEGIN
     UPDATE UserInformation
     SET First_Name = '$nameF', Last_Name = '$nameL', Address = '$address', City = '$city', Postcode = '$zip', State = '$state'
     WHERE UserId = '$UserID';
 
     UPDATE Login
-    Password = '$passwordN', Email = '$emailA'
+    SET Password = '$passwordN', Email = '$emailA'
     WHERE UserID = '$UserID';
 
     SELECT 'SqlUpdate' AS 'Status';
+	END
     
 ELSE 
+	BEGIN
 	SELECT '404' AS 'Status'
+	END
     
 END TRY
 BEGIN CATCH
