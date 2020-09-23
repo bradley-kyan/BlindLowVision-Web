@@ -518,6 +518,16 @@ function hideAbout() {
 		//Resend QR code
 		$('#resend').click(function(){
 			
+            $.ajax({
+                    type: "POST",
+                    url: "sendqr.php",
+                    success:function(data){
+                        if(data == 404)
+                            setTimeout(function(){ alert("𝗔𝗻 𝗘𝗿𝗿𝗼𝗿 𝗢𝗰𝗰𝘂𝗿𝗲𝗱"); }, 200);
+                        else{
+                            setTimeout(function(){ alert("Your email has successfully sent!"); }, 200);}
+                        }
+                })
 			
 		})
 		
