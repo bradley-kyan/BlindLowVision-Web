@@ -434,39 +434,39 @@ function hideAbout() {
                 <div class="row">
                     <div class="form-group">
                         <label>Username</label>
-                        <input class="form-control" disabled>
+                        <input id="username" class="form-control" disabled>
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control formDisable">
+                        <input id="password" type="password" class="form-control formDisable" placeholder="**********">
                     </div>
                     <div class="form-group">
                         <label>First Name</label>
-                        <input class="form-control formDisable">
+                        <input id="nameF" class="form-control formDisable">
                     </div>
                     <div class="form-group">
                         <label>Last Name</label>
-                        <input class="form-control formDisable">
+                        <input id="nameL" class="form-control formDisable">
                     </div>
                     <div class="form-group">
                         <label>Email Address</label>
-                        <input class="form-control formDisable">
+                        <input id="emailA" class="form-control formDisable">
                     </div>
                     <div class="form-group">
                         <label>Address</label>
-                        <input class="form-control formDisable">
+                        <input id="address" class="form-control formDisable">
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>City</label>
-                                <input class="form-control formDisable">
+                                <input id="city" class="form-control formDisable">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>State / Province</label>
-                                <input class="form-control formDisable">
+                                <input id="state" class="form-control formDisable">
                             </div>
                         </div>
                     </div>
@@ -474,13 +474,13 @@ function hideAbout() {
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Zip</label>
-                                <input class="form-control formDisable">
+                                <input id="zip" class="form-control formDisable">
                             </div>
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input class="form-control formDisable">
+                                <input id="phoneN" class="form-control formDisable">
                             </div>
                         </div>
                     </div>
@@ -489,7 +489,111 @@ function hideAbout() {
             <button id="editInitalButton" style="z-index: 0">Edit Information</button>
             <button id="editSubmitButton" style="z-index: 1; margin-right: 30px; display: none">Save</button>
             <button id="editCancelButton" style="z-index: 1; display: none">Cancel</button>
-            <script>
+            
+			<script>
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+                var nameF = document.getElementById('nameF').value;
+                var nameL = document.getElementById('nameL').value;
+                var emailA = document.getElementById('emailA').value;
+                var phoneN = document.getElementById('phoneN').value;
+                var address = document.getElementById('address').value;
+                var city = document.getElementById('city').value;
+                var zip = document.getElementById('zip').value;
+                var state = document.getElementById('state').value;
+                    
+                var userFlow = 0;
+
+                $(document).ready(function(){
+                    userFlow0();
+                });
+                $('#confirmSubmit').click(function(){
+                    userFlow1();
+                });
+                
+                function userFlow1(){
+
+                    var passwordConfirm = document.getElementById('PasswordConfirm').value;
+                    $.ajax({
+                        type: "POST",
+                        url: "userinfoconfirm.php",
+                        data:{password:passwordConfirm},
+                        success :function(data){
+                            if(data == 404){
+                                if(alert('An error occured, please re-login.')){
+                                    document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;"; window.location.replace("register.html");
+                                }	
+                            }
+                            else {
+                                userflow3();
+                            }
+                        }
+                    })
+                }
+                
+                function userflow3(){                    
+                    
+                    var username = document.getElementById('username').value;
+                    var password = document.getElementById('password').value;
+                    var nameF = document.getElementById('nameF').value;
+                    var nameL = document.getElementById('nameL').value;
+                    var emailA = document.getElementById('emailA').value;
+                    var phoneN = document.getElementById('phoneN').value;
+                    var address = document.getElementById('address').value;
+                    var city = document.getElementById('city').value;
+                    var zip = document.getElementById('zip').value;
+                    var state = document.getElementById('state').value;
+                    var passwordConfirm = document.getElementById('PasswordConfirm').value;
+                    if(password.length == 0){
+                       password = passwordConfirm
+                    }
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "userinfoupdate.php",
+                        data:{passwordN:password,nameF:nameF,nameL:nameL,emailA:emailA,address:address,city:city,state:state,zip:zip,phoneN:phoneN},
+                        success :function(data){
+                            if(data == 404){
+                                if(alert('An error occured, please re-login.')){
+                                    document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;"; window.location.replace("register.html");
+                                }	
+                            }
+                            else {
+                                if(alert('Information has succesfully been updated!')){
+                                    location.reload();
+                                }
+                            }
+                        }
+                    })
+                }
+				function userFlow0(){
+                    $.ajax({
+                        type: "POST",
+                        url: "userinfo.php",
+                        success :function(data){
+                            if(data == 404){
+                                if(alert('An error occured, please re-login.')){
+                                    document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;"; window.location.replace("register.html");
+                                }	
+                            }
+                            else {
+                                var dataGet = JSON.parse(data);
+                                document.getElementById('username').value = dataGet.username;
+                                document.getElementById('nameF').value = dataGet.first_name;
+                                document.getElementById('nameL').value = dataGet.last_name;
+                                document.getElementById('emailA').value = dataGet.Email;
+                                document.getElementById('phoneN').value = dataGet.phone;
+                                document.getElementById('address').value = dataGet.address;
+                                document.getElementById('city').value = dataGet.city;
+                                document.getElementById('zip').value = dataGet.zip;
+                                document.getElementById('state').value = dataGet.state;
+                            }
+                        }
+                    })
+                }
+                
+			</script>
+			<script>
             function confirmOverlay(){
                 $('#loginbg').fadeIn(500, function() {
                         $( "#loginbg" ).show();
