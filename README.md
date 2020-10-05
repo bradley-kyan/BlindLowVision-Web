@@ -8,7 +8,7 @@ This project is part of a solo assesment for NCEA LVL 2 soley created by Kyan Br
 This project also contains depenecies for the Blind-LowVision-Application (as91896 - 2.7) assesment.<br><br>
 <h3 title="DONT EVEN THINK ABOUT USING THIS OUTSIDE TESTING PURPOSES">THIS PROJECT IS ONLY PROOF OF CONCEPT!</h3>  
 <p>Do not in under any circumstances attempt to publish/deploy this website due to security reasons. Do not use this solution outside of testing purposes. This webiste does not use any forms of encryption (SSL etc.) for data transfer. The code does not prevent SQL injection attacks, and too the connection strings to the MSSQL server is hard coded -> once again without any encryption.</p><br>
-<p><q><b><i>Personally I consider this project to be a breeding ground for security flaws.</i></b></q> - Kyan Bradley </p>
+<p><q><b><i>I presume you know the difference between front and back, right hand and left hand?</i></b></q> ― Sun Tzu </p>
 <hr>
 
 ### What is contained in this repository ###
