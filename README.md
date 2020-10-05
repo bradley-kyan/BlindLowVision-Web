@@ -27,8 +27,10 @@ To set up the web server I personally used Microsoft IIS due to its great interg
 [Microsoft Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx) made installing the required dependencies easy in comparison to other methods.<br><br>
 
 ### Special thanks to: ###
- [kenwheeler](https://github.com/kenwheeler) - Slick.js [link](https://github.com/kenwheeler/slick/)<br/>
- [niklasvh](https://github.com/niklasvh) - Html2Canvas [link](https://github.com/niklasvh/html2canvas)<br/>
- [omcg33](https://github.com/omcg33) - jquery.limarquee [link](https://github.com/omcg33/jquery.limarquee)<br/>
+ [kenwheeler](https://github.com/kenwheeler) - Slick.js &nbsp;-&nbsp;&nbsp; *[link](https://github.com/kenwheeler/slick/)*<br/>
+ [niklasvh](https://github.com/niklasvh) - Html2Canvas &nbsp;-&nbsp;&nbsp; *[link](https://github.com/niklasvh/html2canvas)*<br/>
+ [omcg33](https://github.com/omcg33) - jquery.limarquee &nbsp;-&nbsp;&nbsp; *[link](https://github.com/omcg33/jquery.limarquee)*<br/>
+ [davidshimjs](https://github.com/davidshimjs) - QRCode.js &nbsp;-&nbsp;&nbsp; *[link](https://github.com/davidshimjs/qrcodejs)*
+
  
  Mr Vijay Prasad - Teacher at Avondale College<br>
