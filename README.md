@@ -12,7 +12,7 @@ This project also contains depenecies for the Blind-LowVision-Application (as918
 This repository contains html pages, MSSQL queries javascript scripts and php scripts, which are all dependant on one another.
 ## Dependencies and Requirements ##
 To reporoduce this project the following are needed:
-<ul><li>A PHP compatible web server running PHP 7.3 or later with MSSQL drivers enabled <br><i> See <b>info </b> for further web server details</i>
+<ul><li>A PHP compatible web server running PHP 7.3 or later with MSSQL drivers enabled <br><i> See <a href="#info"><b>info </b></a> for further web server details</i>
 <li>Google Chrome, Firefox, Edge etc. ( not Internet Explorer v11 )
 <li>Reliable internet connetion
 <li>MSSQL Server</ul>
