@@ -362,6 +362,7 @@ function hideAbout() {
                     <!-- 3rd page button -->
                     <li class="active"><a class="btn-donate" href="#" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28" onClick="clickDonate() return false;">Donate</a></li>
                     <script type="text/javascript">
+						//Get cookie
                         function getCookie(cname) {
                           var name = cname + "=";
                           var decodedCookie = decodeURIComponent(document.cookie);
@@ -379,7 +380,7 @@ function hideAbout() {
                         }
                         
                         var loggedIn;
-                        
+						//Get info from cookie then update navbar 'account' inner html text
                         function userAccountName(){
                             try{
                                 var userCookie = getCookie("cookieUserLogin")
@@ -398,13 +399,13 @@ function hideAbout() {
                                 loggedIn = 0
                             }
                         }
-                        $(document).ready(function () {
+                        $(document).ready(function () {//catch error if cookie does not exist then redirect
                             $( "#navHide" ).click(function() {
                                 document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;";
                                 location.reload();
                             })
                         });
-                        function userLoggedIn(){
+                        function userLoggedIn(){//If signout then delete cookie
                             if (loggedIn == 0){
                                 window.location.replace("register.html");
                             }
@@ -657,6 +658,7 @@ function hideAbout() {
     </script>
 </div>
 </div>
+<!--Footer-->
 <div class="footer-dark">
     <footer>
         <div class="container">
