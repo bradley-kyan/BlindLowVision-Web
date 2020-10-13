@@ -20,7 +20,7 @@ if(!isset($_COOKIE['cookieUserLogin'])) {
     exit;
 }
 $cookieGet = $_COOKIE['cookieUserLogin'];
-$cookieData = json_decode($cookieGet, true);
+$cookieData = json_decode($cookieGet, true);//Decode json string
 
 //UserId from login cookie
 $UserID = $cookieData['UserID'];
@@ -30,6 +30,7 @@ $Password = $_POST['password'];
 //Data calling
 
 $Sql = "
+--Check if inforation is correct
 BEGIN TRY
 DECLARE @Password varchar(255) = (SELECT Password FROM Login WHERE UserID = '$UserID'); 
 IF (@Password = '$Password')
@@ -44,7 +45,7 @@ END CATCH
 
 $stmt = sqlsrv_query($conn, $Sql, $params);  
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-
+//Returns data to sender if successfull
     switch($row['Status']){
         case 404:
             echo $row['Status'];

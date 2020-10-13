@@ -15,6 +15,7 @@ if ($conn === false)
 /*Insert data.*/
 $username = $_POST['Username'];
 $email = $_POST['EmailA'];
+/*Fixes sent data from notify changes variable values accordingly which are used in the query*/
 if ($_POST["Notify"] == "1"){
     $notify = 1;
     }
@@ -35,6 +36,7 @@ if ($_POST["event2"] == "1"){
     };
     $exists = 0;
 $Sql = "
+--Checks if username exist
 DECLARE @username varchar(255)
 SET @username = (SELECT Username FROM Login WHERE Username 
 = '$username')
@@ -46,6 +48,7 @@ SET @username = (SELECT Username FROM Login WHERE Username
     
 WAITFOR DELAY '00:00:00.010';
 
+--Inserts posted values from array
 INSERT INTO Login (Username,Password,Email)   
 VALUES (?,?,?);
 
@@ -61,12 +64,13 @@ VALUES ((SELECT UserID FROM Login WHERE Username='$username'),'$notify','$event1
 WAITFOR DELAY '00:00:00.010';
 SET NOEXEC OFF;
 ";
-    
+/*Array parameters*/   
 $params = array(&$_POST['Username'], &$_POST['Password'], &$_POST['EmailA'],
                 &$_POST['NameF'], &$_POST['NameL'], &$_POST['PhoneN'], &$_POST['AddressShip'], &$_POST['CityA'], &$_POST['ZipCode'], &$_POST['StateA']
 );  
     $stmt = sqlsrv_query($conn, $Sql, $params);  
 
+/*Echo staus*/
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
       echo $row['Status'];
 }

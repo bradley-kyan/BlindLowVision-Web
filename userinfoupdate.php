@@ -24,7 +24,7 @@ $cookieData = json_decode($cookieGet, true);
 $donateAmount = $_POST['donateAmount'];
 //UserId from login cookie
 $UserID = $cookieData['UserID'];
-
+//Declare variable from post data
 $passwordN = $_POST['passwordN'];
 $nameF = $_POST['nameF'];
 $nameL = $_POST['nameL'];
@@ -38,12 +38,13 @@ $phoneN = $_POST['phoneN'];
 //Data calling
 $Sql = "
 BEGIN TRY
-
+--Check if userID is valid
 DECLARE @ID varchar(255) = (SELECT UserID FROM Login WHERE UserID 
 = '$UserID');
 
 IF (@ID = '$UserID')
-	
+
+--Update user inforamtion from set variables
 	BEGIN
     UPDATE UserInformation
     SET First_Name = '$nameF', Last_Name = '$nameL', Address = '$address', City = '$city', Postcode = '$zip', State = '$state'
@@ -69,7 +70,7 @@ END CATCH
 
 $stmt = sqlsrv_query($conn, $Sql, $params); 
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-
+//Returns to sender if successfull execution
     switch($row['Status']){
         case 404:
             echo $row['Status'];

@@ -11,6 +11,7 @@ $connectionOptions = array(
 $conn = sqlsrv_connect($serverName, $connectionOptions);  
       
     $Sql = "
+--Declares variables
     DECLARE @ID varchar(255)
     SET @ID = (SELECT UserID FROM Login WHERE (Username='$usernameLogin' OR Email='$usernameLogin') AND Password = '$passwordLogin');
 
@@ -26,6 +27,7 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
     DECLARE @email varchar(255)
     SET @email = (SELECT Email FROM Login WHERE UserID = @ID)
     
+--Checks if userID exists if exists gets userinfo
     IF @ID IS NULL
         BEGIN
             SELECT '404' AS 'Status'
@@ -52,6 +54,7 @@ if ($row_count === false){
         echo $row['Status'];
         exit;
     }
+/*Creates cookie containing user data without expiry date, thus meaning that closing the browser will delete cookie*/
     else {
         echo 200;
         $array = array("username" => $Username, "password" => $passwordLogin, "first_name" => $firstName, "last_name" => $lastName, "UserID" => $UserID, "Email" => $Email);

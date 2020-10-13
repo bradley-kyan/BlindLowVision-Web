@@ -1,4 +1,5 @@
 <?php
+//Gets data from cookie for generated QR Code
 
 if(!isset($_COOKIE['cookieUserLogin'])) {
   //cookie does not exist;

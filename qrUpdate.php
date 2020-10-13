@@ -1,4 +1,5 @@
 <?php
+/*Php Script dedicated for Blind + Low Vision mobile application*/
 $UserID = $_POST['UserID'];
 $Value = $_POST['Value'];
 
@@ -14,13 +15,14 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
     $Sql = "
     DECLARE @ID varchar(255)
     SET @ID = (SELECT UserID FROM UserInformation WHERE UserID='$UserID');
-
+--Check if userID exists, if exsists executes rest of script
     IF @ID IS NULL
         BEGIN
             SELECT '404' AS 'Status'
             SET NOEXEC ON
         END
     ELSE
+--Subtracts from current donate value
         BEGIN
             UPDATE UserInformation
             SET Current_Donate = Current_Donate - '$Value'
@@ -35,7 +37,7 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
     $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC);
 
 
-    
+/*Echo result to sender*/   
 echo $row['Status'];
 exit;
 

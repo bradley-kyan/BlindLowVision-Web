@@ -27,6 +27,7 @@ $UserID = $cookieData['UserID'];
 
 //Data calling
 $Sql = "
+--Declare Variables, check if UserID exists, if not error caught, execution stopped
 BEGIN TRY
 DECLARE @username varchar(255) = (Select Username from Login Where UserID = '$UserID')
 DECLARE @email varchar(255) = (Select Email from Login Where UserID = '$UserID')
@@ -35,6 +36,7 @@ SET @ID =(SELECT UserID FROM Login WHERE UserID
 = '$UserID')
 IF (@ID = '$UserID')
 	SELECT 
+--Returns values
 'SqlGet' AS 'Status', @username AS 'Username', @email AS 'Email', First_Name,Last_Name,Phone,Address,City,Postcode,State FROM UserInformation WHERE UserID = '$UserID';
 ELSE 
 	SELECT '404' AS 'Status'
@@ -58,6 +60,7 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
             echo $row['Status'];
             exit;
         case 'SqlGet':
+//Returns data to sender in json format
             $arrayGet = array("username" => $row['Username'], "first_name" => $row['First_Name'], "last_name" => $row['Last_Name'], "Email" => $row['Email'], "phone" => $row['Phone'],"address" => $row['Address'],"city" => $row['City'],"zip" => $row['Postcode'],"state" => $row['State'] );
             echo json_encode($arrayGet);
             exit;
