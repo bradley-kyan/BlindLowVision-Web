@@ -368,6 +368,7 @@ function hideAbout() {
                     <!-- 3rd page button -->
                     <li><a class="btn-donate" href="donate.html" role="menuitem" style="text-align: center; color: #FFFFFF; background-color: #BE1C28">Donate</a></li>
                     <script>
+					//Get cookie
                         function getCookie(cname) {
                           var name = cname + "=";
                           var decodedCookie = decodeURIComponent(document.cookie);
@@ -383,7 +384,7 @@ function hideAbout() {
                           }
                           return "";
                         }
-
+						//Get info from cookie then update navbar 'account' inner html text
                         function userAccountName(){
                             try{
                                 var userCookie = getCookie("cookieUserLogin")
@@ -400,7 +401,7 @@ function hideAbout() {
                                 $('#navHide').hide();
                             }
                         }
-                        $(document).ready(function () {
+                        $(document).ready(function () {//If signout then delete cookie
                             $( "#navHide" ).click(function() {
                                 document.cookie = "cookieUserLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=*/;";
                                 location.reload();
