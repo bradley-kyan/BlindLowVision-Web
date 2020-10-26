@@ -41,3 +41,12 @@ CREATE TABLE Transactions (
 	CC_City VARCHAR(255),
 	CC_State VARCHAR(255),
 )
+GO
+CREATE TABLE SupportUser (
+	UserID uniqueidentifier  NOT NULL default newid() PRIMARY KEY,
+	Username VARCHAR(50),
+	Password VARCHAR(255),
+	First_Name VARCHAR(25),
+	Last_Name VARCHAR(25),
+	Branch VARCHAR(50),
+)
