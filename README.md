@@ -3,6 +3,8 @@
 Blind &amp; Low Vision fundraising landing page + database -- as91897-2.8 + as91892 - 2.3<br/>
 ***Coded by <a href="https://github.com/bradley-kyan" title="bradley-kyan Github">Kyan Bradley</a> of [Avondale College](https://www.avcol.school.nz/)***
 
+> ***Note*** - *Connection strings for the azure database used during development are inactive, thus the project will not have proper functionality in current state.*
+
 ## Overview ##
 This project is part of a solo assesment for NCEA LVL 2 soley created by Kyan Bradley of Avondale College. This repository contains the website for as91897 and the MSSQL queries to required properly reproduce the project.
 This project also contains depenecies for the Blind-LowVision-Application (as91896 - 2.7) assesment.<br><br>
